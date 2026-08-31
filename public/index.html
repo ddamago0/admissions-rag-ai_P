@@ -2,238 +2,508 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Colombia Language Academy - AI Admissions Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Colombia Language Academy - Academic Excellence &amp; Language Immersion</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="app-container">
-    
-    <!-- Top Navigation Bar -->
-    <header class="top-navbar">
-      <div class="brand-container">
-        <div class="brand-logo">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="main-navbar">
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <div class="brand-badge">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
-            <path d="M6 6h10"/>
-            <path d="M6 10h10"/>
-            <path d="M6 14h7"/>
+            <path d="M6 6h10M6 10h10M6 14h7"/>
           </svg>
         </div>
-        <div>
-          <h1 class="brand-title">Colombia Language Academy</h1>
-          <p class="brand-subtitle">AI Admissions & Academic Support Assistant</p>
+        <div class="brand-text">
+          <span class="brand-name">Colombia Language Academy</span>
+          <span class="brand-tagline">Est. 2012 • Bogotá &amp; Medellín</span>
         </div>
-      </div>
+      </a>
 
-      <div class="header-badges">
-        <div class="status-chip online">
+      <!-- Desktop Navigation Menu -->
+      <nav id="desktop-nav" class="nav-links">
+        <a href="#programs">Programs</a>
+        <a href="#modalities">Schedules &amp; Tuition</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#campuses">Campuses</a>
+        <a href="#financials">Financing</a>
+      </nav>
+
+      <!-- Header Action Buttons -->
+      <div class="nav-actions">
+        <button id="btn-header-chat" class="btn-chat-trigger" aria-label="Open Admissions AI Chat">
           <span class="pulse-dot"></span>
-          <span>Gemini 1.5 Flash</span>
-        </div>
-        <div class="status-chip rag-chip">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
-          <span>HNSWLib RAG</span>
-        </div>
-        <button id="btn-reindex" class="btn-secondary" title="Re-index Knowledge Base">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
-          <span>Re-index Docs</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span class="btn-text-full">Ask Admissions AI</span>
+          <span class="btn-text-short">AI Chat</span>
+        </button>
+        <a href="admin.html" class="btn-admin-nav" title="Portal de Administración">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span class="btn-text-full">Admin</span>
+        </a>
+        <button id="btn-mobile-menu" class="btn-mobile-hamburger" aria-label="Toggle Navigation Menu">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
         </button>
       </div>
-    </header>
+    </div>
 
-    <!-- Main Workspace Layout -->
-    <main class="main-layout">
-      
-      <!-- Chat Interface Column -->
-      <section class="chat-section">
+    <!-- Mobile Dropdown Navigation Menu -->
+    <div id="mobile-menu-drawer" class="mobile-nav-dropdown hidden">
+      <a href="#programs" class="mobile-nav-link">📚 Academic Programs</a>
+      <a href="#modalities" class="mobile-nav-link">⏱️ Schedules &amp; Tuition</a>
+      <a href="#certifications" class="mobile-nav-link">🎓 Certifications (IELTS/DELF)</a>
+      <a href="#campuses" class="mobile-nav-link">📍 Campuses &amp; Virtual</a>
+      <a href="#financials" class="mobile-nav-link">💳 Financing &amp; Discounts</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="container hero-container">
+      <div class="hero-badge">
+        <span>🇨🇴 Official Colombian Ministry of Education Accreditations</span>
+      </div>
+      <h1 class="hero-title">
+        Master World Languages with <span class="gradient-text">Academic Distinction</span>
+      </h1>
+      <p class="hero-subtitle">
+        Accelerate your fluency in <strong>English, French, German, Portuguese, Italian, and Spanish</strong>. Certified CEFR (A1–C1) curriculum with in-person campuses in Bogotá and Medellín, plus 100% live interactive online cohorts.
+      </p>
+
+      <div class="hero-actions">
+        <button id="btn-hero-chat" class="btn-primary-hero">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span>Talk to AI Admissions Advisor</span>
+        </button>
+        <a href="#programs" class="btn-secondary-hero">
+          <span>Browse Academic Programs</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Quick Metrics Ribbon -->
+      <div class="hero-metrics-bar">
+        <div class="metric-card">
+          <strong class="metric-val">6</strong>
+          <span class="metric-sub">Global Languages</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric-card">
+          <strong class="metric-val">98.4%</strong>
+          <span class="metric-sub">IELTS &amp; DELF Pass Rate</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric-card">
+          <strong class="metric-val">4</strong>
+          <span class="metric-sub">Bogotá &amp; Medellín Campuses</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric-card">
+          <strong class="metric-val">12k+</strong>
+          <span class="metric-sub">Graduated Alumni</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section id="programs" class="section-padding bg-surface">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">CURRICULAR OFFERINGS</span>
+        <h2 class="section-title">Explore Our Academic Language Programs</h2>
+        <p class="section-desc">
+          Structured according to the Common European Framework of Reference for Languages (CEFR A1–C1) with certified native and bilingual faculty.
+        </p>
+      </div>
+
+      <div class="programs-grid">
         
-        <!-- Human Escalation Alert Banner (Hidden by default) -->
-        <div id="escalation-banner" class="escalation-banner hidden">
-          <div class="escalation-icon">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <!-- Program 1: English -->
+        <div class="program-card highlight">
+          <div class="program-flag">🇬🇧 / 🇺🇸</div>
+          <div class="program-badge">Most Popular</div>
+          <h3 class="program-name">English Mastery</h3>
+          <p class="program-desc">General English, Business English for Executives, Kids &amp; Teens, and specialized IELTS / TOEFL iBT preparation tracks.</p>
+          <div class="program-details">
+            <div class="detail-item"><strong>Levels:</strong> A1, A2, B1, B2, C1 (CEFR)</div>
+            <div class="detail-item"><strong>Starting At:</strong> $480,000 COP / module</div>
           </div>
-          <div class="escalation-content">
-            <div class="escalation-header">
-              <strong>Human Advisor Escalation Dispatched</strong>
-              <span id="escalation-ticket-id" class="ticket-badge">ESC-000000</span>
-            </div>
-            <p id="escalation-reason-text">Your inquiry has been routed to our Admissions & Support Team.</p>
-            <div class="escalation-actions">
-              <a href="https://wa.me/573109876543" target="_blank" rel="noopener noreferrer" class="contact-link whatsapp">
-                <span>WhatsApp: +57 310 987 6543</span>
-              </a>
-              <a href="tel:+576017459000" class="contact-link phone">
-                <span>PBX: +57 (601) 745-9000</span>
-              </a>
-            </div>
-          </div>
-          <button id="close-escalation-banner" class="btn-icon" aria-label="Dismiss banner">✕</button>
+          <button class="btn-card-inquire" data-query="Tell me about the English program levels, schedules and pricing.">
+            Ask AI about English →
+          </button>
         </div>
 
-        <!-- Chat Messages Container -->
-        <div id="chat-messages" class="chat-messages">
-          
-          <!-- Welcome Message -->
-          <div class="message assistant welcome-card">
-            <div class="msg-avatar">
-              <span>🇨🇴</span>
-            </div>
-            <div class="msg-body">
-              <h3>Welcome to Colombia Language Academy!</h3>
-              <p>I am your AI admissions assistant grounded in our official academic and pricing policies. How can I help you today?</p>
-              
-              <div class="info-highlights">
-                <div class="highlight-item">
-                  <strong>Languages:</strong> English, French, German, Portuguese, Italian, Spanish
-                </div>
-                <div class="highlight-item">
-                  <strong>Campuses:</strong> Bogotá (Calle 72 & Usaquén), Medellín (El Poblado & Laureles) & Live Online
-                </div>
-                <div class="highlight-item">
-                  <strong>Payment:</strong> PSE, Credit Cards, Addi Financing (All prices in COP)
-                </div>
-              </div>
-            </div>
+        <!-- Program 2: French -->
+        <div class="program-card">
+          <div class="program-flag">🇫🇷</div>
+          <h3 class="program-name">French Immersion</h3>
+          <p class="program-desc">Academic and conversational French. Specialized training for DELF (A1–B2) and DALF (C1) international certifications.</p>
+          <div class="program-details">
+            <div class="detail-item"><strong>Levels:</strong> A1 through B2+</div>
+            <div class="detail-item"><strong>Starting At:</strong> $480,000 COP / module</div>
           </div>
-
+          <button class="btn-card-inquire" data-query="What are the French course schedules and DELF certification details?">
+            Ask AI about French →
+          </button>
         </div>
 
-        <!-- Suggestion Chips Row -->
-        <div class="suggestions-container">
-          <span class="suggestion-label">Quick topics:</span>
-          <div id="chips-row" class="chips-row">
-            <button class="chip" data-query="What are the tuition fees and discounts for English courses?">💰 Tuition & Discounts</button>
-            <button class="chip" data-query="What class schedules and modalities are available in Bogotá and Medellín?">🗓️ Schedules & Campuses</button>
-            <button class="chip" data-query="Do you offer official IELTS and DELF certification prep? What is the passing grade?">🎓 IELTS / Certifications</button>
-            <button class="chip" data-query="Can I pay using PSE or Addi financing?">💳 Payment Methods (PSE)</button>
-            <button class="chip" data-query="I have a billing issue and need an advisor to call me at 3101234567.">🚨 Contact Human Advisor</button>
+        <!-- Program 3: German -->
+        <div class="program-card">
+          <div class="program-flag">🇩🇪</div>
+          <h3 class="program-name">German for Professionals</h3>
+          <p class="program-desc">Structured for university exchange students, engineers, and technical work visas (Goethe-Zertifikat &amp; TestDaF).</p>
+          <div class="program-details">
+            <div class="detail-item"><strong>Levels:</strong> A1, A2, B1, B2</div>
+            <div class="detail-item"><strong>Starting At:</strong> $480,000 COP / module</div>
           </div>
+          <button class="btn-card-inquire" data-query="How does the German program work and what are the start dates in Bogota?">
+            Ask AI about German →
+          </button>
         </div>
 
-        <!-- Chat Input Form -->
-        <form id="chat-form" class="chat-input-container">
-          <div class="input-wrapper">
-            <textarea 
-              id="user-input" 
-              placeholder="Ask about courses, schedules, COP pricing, refund policies, or request an advisor..." 
-              rows="1"
-              maxlength="1000"
-              required
-            ></textarea>
-            <button type="submit" id="btn-send" class="btn-send" aria-label="Send message">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13"></line>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-              </svg>
-            </button>
+        <!-- Program 4: Portuguese -->
+        <div class="program-card">
+          <div class="program-flag">🇧🇷</div>
+          <h3 class="program-name">Brazilian Portuguese</h3>
+          <p class="program-desc">Fast-track immersion for Latin American business, tourism, and CELPE-Bras academic qualification.</p>
+          <div class="program-details">
+            <div class="detail-item"><strong>Levels:</strong> A1 through B2</div>
+            <div class="detail-item"><strong>Starting At:</strong> $480,000 COP / module</div>
           </div>
-          <div class="input-footer">
-            <span class="input-hint">Press <strong>Enter</strong> to send, <strong>Shift + Enter</strong> for newline</span>
-            <span id="char-counter" class="char-counter">0 / 1000</span>
+          <button class="btn-card-inquire" data-query="What are the Portuguese course options and weekend intensive schedules?">
+            Ask AI about Portuguese →
+          </button>
+        </div>
+
+        <!-- Program 5: Italian -->
+        <div class="program-card">
+          <div class="program-flag">🇮🇹</div>
+          <h3 class="program-name">Italian &amp; Culture</h3>
+          <p class="program-desc">Dynamic language modules integrated with Italian culture, literature, gastronomy, and CILS certification prep.</p>
+          <div class="program-details">
+            <div class="detail-item"><strong>Levels:</strong> A1 through B2</div>
+            <div class="detail-item"><strong>Starting At:</strong> $480,000 COP / module</div>
           </div>
-        </form>
+          <button class="btn-card-inquire" data-query="Can you share the Italian course schedule and tuition details?">
+            Ask AI about Italian →
+          </button>
+        </div>
 
-      </section>
+        <!-- Program 6: Spanish for Foreigners -->
+        <div class="program-card">
+          <div class="program-flag">🇨🇴</div>
+          <h3 class="program-name">Spanish Immersion</h3>
+          <p class="program-desc">Comprehensive Latin American Spanish for expatriates, digital nomads, and university researchers in Colombia.</p>
+          <div class="program-details">
+            <div class="detail-item"><strong>Levels:</strong> Beginner to Advanced C1</div>
+            <div class="detail-item"><strong>Starting At:</strong> $480,000 COP / module</div>
+          </div>
+          <button class="btn-card-inquire" data-query="I am a foreigner interested in learning Spanish in Medellin or Bogota.">
+            Ask AI about Spanish →
+          </button>
+        </div>
 
-      <!-- Real-Time Metrics & Knowledge Sidebar -->
-      <aside class="sidebar-section">
+      </div>
+    </div>
+  </section>
+
+  <!-- Modalities and Schedules Section -->
+  <section id="modalities" class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">FLEXIBLE LEARNING TRACKS</span>
+        <h2 class="section-title">Schedule Tracks Tailored to Your Life</h2>
+        <p class="section-desc">Choose the pace that matches your schedule. All tracks include conversation club access and digital workbooks.</p>
+      </div>
+
+      <div class="tracks-grid">
         
-        <!-- Live Metrics Card -->
-        <div class="card metrics-card">
-          <div class="card-header">
-            <h3>System & Operational Metrics</h3>
-            <span class="live-tag">LIVE</span>
+        <div class="track-card">
+          <div class="track-header">
+            <h3>Standard Track</h3>
+            <span class="track-price">$480,000 COP</span>
+            <span class="track-period">per 40h module (5 weeks)</span>
           </div>
-          
-          <div class="metrics-grid">
-            <div class="metric-item">
-              <span class="metric-val" id="metric-total-queries">0</span>
-              <span class="metric-title">Total Queries</span>
-            </div>
-            <div class="metric-item">
-              <span class="metric-val" id="metric-escalation-rate">0.0%</span>
-              <span class="metric-title">Escalation Rate</span>
-            </div>
-            <div class="metric-item">
-              <span class="metric-val" id="metric-avg-latency">0 ms</span>
-              <span class="metric-title">Avg Latency</span>
-            </div>
-            <div class="metric-item">
-              <span class="metric-val" id="metric-est-tokens">0</span>
-              <span class="metric-title">Est. Tokens</span>
-            </div>
-          </div>
-
-          <div class="metric-cost-row">
-            <span>Estimated API Cost:</span>
-            <strong id="metric-est-cost">$0.000000</strong>
-          </div>
-        </div>
-
-        <!-- Knowledge Base Documents Card -->
-        <div class="card kb-card">
-          <div class="card-header">
-            <h3>Knowledge Base (RAG)</h3>
-            <span class="badge-count">3 Docs</span>
-          </div>
-          <ul class="kb-doc-list">
-            <li class="kb-doc-item">
-              <span class="doc-icon">📄</span>
-              <div class="doc-details">
-                <strong>courses_and_levels.md</strong>
-                <span>6 Languages, A1-C1 CEFR, 4 Tracks</span>
-              </div>
-            </li>
-            <li class="kb-doc-item">
-              <span class="doc-icon">📄</span>
-              <div class="doc-details">
-                <strong>pricing_and_enrollment.md</strong>
-                <span>COP Tuition, PSE, Addi, Refunds</span>
-              </div>
-            </li>
-            <li class="kb-doc-item">
-              <span class="doc-icon">📄</span>
-              <div class="doc-details">
-                <strong>certifications_and_policies.md</strong>
-                <span>IELTS/DELF, 80% Attendance, Escalations</span>
-              </div>
-            </li>
+          <ul class="track-features">
+            <li>✓ Monday to Thursday (8 hours / week)</li>
+            <li>✓ Mornings: 7:00 AM – 9:00 AM</li>
+            <li>✓ Midday: 12:00 PM – 2:00 PM</li>
+            <li>✓ Evenings: 6:30 PM – 8:30 PM</li>
+            <li>✓ Max 12 students per group</li>
           </ul>
         </div>
 
-        <!-- Python Automation Status Card -->
-        <div class="card automation-card">
-          <div class="card-header">
-            <h3>Python Automation Bridge</h3>
-            <span class="badge-pulse">Webhook Ready</span>
+        <div class="track-card highlight-track">
+          <div class="track-badge">Fastest Progress</div>
+          <div class="track-header">
+            <h3>Super Intensive</h3>
+            <span class="track-price">$690,000 COP</span>
+            <span class="track-period">per 40h module (2.5 weeks)</span>
           </div>
-          <p class="automation-desc">
-            Monitors incoming customer queries and automatically logs urgent tickets to <code>automation/escalations.log</code> upon AI escalation signals.
+          <ul class="track-features">
+            <li>✓ Monday to Friday (15 hours / week)</li>
+            <li>✓ Morning Shift: 8:00 AM – 11:00 AM</li>
+            <li>✓ Evening Shift: 6:00 PM – 9:00 PM</li>
+            <li>✓ Rapid sub-level completion</li>
+            <li>✓ Free unlimited conversation club</li>
+          </ul>
+        </div>
+
+        <div class="track-card">
+          <div class="track-header">
+            <h3>Saturday Intensive</h3>
+            <span class="track-price">$350,000 COP</span>
+            <span class="track-period">per month (20h / month)</span>
+          </div>
+          <ul class="track-features">
+            <li>✓ Saturdays (5 hours / week)</li>
+            <li>✓ Morning Block: 8:00 AM – 1:00 PM</li>
+            <li>✓ Afternoon Block: 1:30 PM – 6:30 PM</li>
+            <li>✓ Ideal for full-time workers</li>
+            <li>✓ Hybrid live-virtual option</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Campuses Section -->
+  <section id="campuses" class="section-padding bg-surface">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">LOCATIONS &amp; INFRASTRUCTURE</span>
+        <h2 class="section-title">Our Campuses &amp; Virtual Platform</h2>
+        <p class="section-desc">Modern multimedia language laboratories in prime metropolitan hubs across Colombia.</p>
+      </div>
+
+      <div class="campuses-grid">
+        <div class="campus-card">
+          <div class="campus-icon">📍</div>
+          <h3>Bogotá - Chapinero</h3>
+          <p class="campus-address">Calle 72 # 11-86, Zona Financiera</p>
+          <span class="campus-feat">14 Smart Classrooms • Conversation Lounge • Coffee Bar</span>
+        </div>
+
+        <div class="campus-card">
+          <div class="campus-icon">📍</div>
+          <h3>Bogotá - Usaquén</h3>
+          <p class="campus-address">Carrera 7 # 120-20, Centro Empresarial</p>
+          <span class="campus-feat">Executive Language Suites • Parking On-site</span>
+        </div>
+
+        <div class="campus-card">
+          <div class="campus-icon">📍</div>
+          <h3>Medellín - El Poblado</h3>
+          <p class="campus-address">Carrera 43A # 1-50, San Fernando Plaza</p>
+          <span class="campus-feat">Modern Terrace Labs • Metro Access (Poblado Station)</span>
+        </div>
+
+        <div class="campus-card">
+          <div class="campus-icon">📍</div>
+          <h3>Medellín - Laureles</h3>
+          <p class="campus-address">Avenida Nutibara # 70-45, Segundo Parque</p>
+          <span class="campus-feat">Interactive Media Center • Study Lounges</span>
+        </div>
+
+        <div class="campus-card full-span-campus">
+          <div class="campus-icon">🌐</div>
+          <div>
+            <h3>100% Live Interactive Virtual Platform</h3>
+            <p class="campus-address">Access live teacher-led classes with students from anywhere in Colombia and abroad.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Financials and Payment Methods -->
+  <section id="financials" class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">TUITION &amp; PAYMENT</span>
+        <h2 class="section-title">Transparent Pricing &amp; Flexible Financing</h2>
+        <p class="section-desc">Zero hidden fees. All initial tuition quotes include student access and digital materials.</p>
+      </div>
+
+      <div class="financials-layout">
+        <div class="finance-box">
+          <h3>💰 Tuition Discounts</h3>
+          <ul class="finance-list">
+            <li><strong>10% Upfront Discount:</strong> When paying 3 modules in advance.</li>
+            <li><strong>15% Full Level Discount:</strong> When enrolling in a complete CEFR level (e.g. Full B1 or B2).</li>
+            <li><strong>One-time Registration Fee:</strong> $80,000 COP for new students.</li>
+            <li><strong>Textbook &amp; Platform Access:</strong> $120,000 COP (covers 2 sub-levels).</li>
+          </ul>
+        </div>
+
+        <div class="finance-box">
+          <h3>💳 Accepted Payment Methods</h3>
+          <div class="payment-badges">
+            <span class="pay-chip">PSE (All Colombian Banks)</span>
+            <span class="pay-chip">Bancolombia QR &amp; Transfers</span>
+            <span class="pay-chip">Visa / Mastercard / Amex</span>
+            <span class="pay-chip">Addi (0% Interest Financing)</span>
+            <span class="pay-chip">Sistecrédito</span>
+          </div>
+          <p class="refund-note">
+            <em>Refund policy: 100% refund (minus 10% admin fee) if requested at least 3 business days before cohort start.</em>
           </p>
-          <div class="hotline-box">
-            <div><strong>Central PBX:</strong> +57 (601) 745-9000</div>
-            <div><strong>WhatsApp:</strong> +57 310 987 6543</div>
-            <div><strong>Hours:</strong> Mon-Fri 7am-8pm, Sat 8am-4pm (COT)</div>
-          </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Recent Escalated Tickets List -->
-        <div class="card tickets-card">
-          <div class="card-header">
-            <h3>Recent Escalations</h3>
-          </div>
-          <div id="recent-tickets-list" class="recent-tickets-list">
-            <div class="no-tickets">No active escalations recorded.</div>
-          </div>
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-container">
+      <div class="footer-col brand-col">
+        <div class="brand-badge-sm">🇨🇴</div>
+        <strong>Colombia Language Academy</strong>
+        <p>Institutional quality in foreign language education and international certification since 2012.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Direct Contact</h4>
+        <p>Central PBX: +57 (601) 745-9000</p>
+        <p>WhatsApp Admissions: +57 301 477 7763</p>
+        <p>Email: admissions@colombialanguageacademy.edu.co</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Hours of Operation</h4>
+        <p>Monday – Friday: 7:00 AM – 8:00 PM COT</p>
+        <p>Saturdays: 8:00 AM – 4:00 PM COT</p>
+        <p>Sundays &amp; Holidays: Closed</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Academia de Idiomas Colombia. All rights reserved. • Powered by Google Gemini AI &amp; HNSWLib RAG.</p>
+    </div>
+  </footer>
+
+  <!-- ============================================================= -->
+  <!-- FLOATING INTERACTIVE ADMISSIONS AI CHAT WIDGET (Messenger UI) -->
+  <!-- ============================================================= -->
+
+  <!-- Floating Launcher Button (Bottom Right) -->
+  <div id="chat-widget-launcher" class="chat-launcher" title="Open AI Admissions Assistant">
+    <div class="launcher-pulse"></div>
+    <div class="launcher-icon">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+    </div>
+    <span class="launcher-label">Chat with Admissions AI</span>
+    <span class="launcher-badge">1</span>
+  </div>
+
+  <!-- Floating Chat Window / Modal Drawer -->
+  <div id="chat-widget-drawer" class="chat-drawer hidden">
+    
+    <!-- Widget Top Header -->
+    <div class="drawer-header">
+      <div class="drawer-advisor-info">
+        <div class="drawer-avatar">
+          <span>🇨🇴</span>
+          <span class="avatar-status-dot"></span>
         </div>
+        <div>
+          <h3 class="drawer-title">Admissions &amp; Academic AI</h3>
+          <span class="drawer-status">Grounded with Academy Knowledge Base</span>
+        </div>
+      </div>
+      
+      <div class="drawer-controls">
+        <button id="btn-minimize-chat" class="btn-drawer-ctrl" title="Minimize chat">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
 
-      </aside>
+    <!-- Human Escalation Alert Banner (Hidden by default) -->
+    <div id="escalation-banner" class="escalation-banner hidden">
+      <div class="escalation-icon">🚨</div>
+      <div class="escalation-content">
+        <div class="escalation-header">
+          <strong>Human Advisor Escalation Dispatched</strong>
+          <span id="escalation-ticket-id" class="ticket-badge">ESC-000000</span>
+        </div>
+        <p id="escalation-reason-text">Our Admissions &amp; Support Team has received your priority ticket.</p>
+        <div class="escalation-actions">
+          <a href="https://wa.me/573014777763" target="_blank" rel="noopener noreferrer" class="contact-link whatsapp">
+            <span>WhatsApp: +57 301 477 7763</span>
+          </a>
+          <a href="mailto:ddamago0@gmail.com" class="contact-link email">
+            <span>Email: ddamago0@gmail.com</span>
+          </a>
+        </div>
+      </div>
+      <button id="close-escalation-banner" class="btn-icon" aria-label="Dismiss banner">✕</button>
+    </div>
 
-    </main>
+    <!-- Messages Scrollable Body -->
+    <div id="chat-messages" class="drawer-messages">
+      
+      <!-- Welcome Message Card -->
+      <div class="message assistant welcome-card">
+        <div class="msg-avatar">🇨🇴</div>
+        <div class="msg-body">
+          <h4>Welcome to Colombia Language Academy!</h4>
+          <p>I am your AI admissions counselor. Ask me anything about our 6 language programs, class schedules, COP pricing, PSE payment, or certification prep.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Suggestions Chips Row -->
+    <div class="suggestions-container">
+      <span class="suggestion-label">Quick topics:</span>
+      <div id="chips-row" class="chips-row">
+        <button class="chip" data-query="What are the tuition fees and discounts for English courses?">💰 Tuition &amp; Discounts</button>
+        <button class="chip" data-query="What class schedules and modalities are available in Bogotá and Medellín?">🗓️ Schedules &amp; Campuses</button>
+        <button class="chip" data-query="Do you offer official IELTS and DELF certification prep? What is the passing grade?">🎓 IELTS / Certifications</button>
+        <button class="chip" data-query="Can I pay using PSE or Addi financing?">💳 Payment (PSE)</button>
+        <button class="chip" data-query="I have a special case and need an advisor to contact me.">🚨 Contact Human Advisor</button>
+      </div>
+    </div>
+
+    <!-- Chat Input Form -->
+    <form id="chat-form" class="drawer-input-form">
+      <div class="input-wrapper">
+        <textarea 
+          id="user-input" 
+          placeholder="Ask about courses, schedules, COP pricing, refund policies..." 
+          rows="1"
+          maxlength="1000"
+          required
+        ></textarea>
+        <button type="submit" id="btn-send" class="btn-send" aria-label="Send message">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+      <div class="input-footer">
+        <span class="input-hint">Enter to send • Shift+Enter newline</span>
+        <span id="char-counter" class="char-counter">0 / 1000</span>
+      </div>
+    </form>
 
   </div>
 

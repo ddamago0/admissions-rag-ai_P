@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Portal - Colombia Language Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <!-- Authentication Locked Screen (Displayed when not logged in) -->
+  <div id="auth-screen" class="auth-screen">
+    <div class="auth-card">
+      <div class="auth-brand">
+        <div class="auth-logo">⚙️</div>
+        <h2>Admin Management Portal</h2>
+        <p>Colombia Language Academy AI System</p>
+      </div>
+
+      <div id="auth-error-msg" class="alert-error hidden"></div>
+
+      <form id="admin-login-form" class="auth-form">
+        <div class="form-group">
+          <label for="admin-user">Administrator Username</label>
+          <input type="text" id="admin-user" placeholder="Enter username (e.g. admin)" required autocomplete="username" />
+        </div>
+
+        <div class="form-group">
+          <label for="admin-pass">Security Password</label>
+          <input type="password" id="admin-pass" placeholder="Enter password" required autocomplete="current-password" />
+        </div>
+
+        <button type="submit" id="btn-login" class="btn-primary-block">
+          <span>Secure Sign In</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+        <a href="index.html" class="back-link">← Return to Public Student Chat</a>
+      </form>
+    </div>
+  </div>
+
+  <!-- Protected Admin Dashboard (Displayed only with valid token) -->
+  <div id="dashboard-app" class="dashboard-app hidden">
+    
+    <!-- Admin Top Navbar -->
+    <header class="admin-navbar">
+      <div class="nav-brand">
+        <div class="nav-icon">⚙️</div>
+        <div>
+          <h1>Administration Dashboard</h1>
+          <p>Knowledge Base Documents (CRUD) & Escalations Manager</p>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <a href="index.html" class="btn-secondary" target="_blank">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
+          <span>Open Public Chat</span>
+        </a>
+        <button id="btn-reindex-all" class="btn-primary" title="Re-index vector database">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+          <span>Re-index Vector Store</span>
+        </button>
+        <button id="btn-logout" class="btn-danger-outline">
+          <span>Sign Out</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Global Notification Banner -->
+    <div id="toast-banner" class="toast-banner hidden"></div>
+
+    <!-- Main Container -->
+    <main class="dashboard-main">
+      
+      <!-- Stats Overview Cards -->
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon docs">📄</div>
+          <div class="stat-data">
+            <span class="stat-num" id="stat-docs-count">0</span>
+            <span class="stat-label">Active Knowledge Docs</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon tickets">🚨</div>
+          <div class="stat-data">
+            <span class="stat-num" id="stat-tickets-count">0</span>
+            <span class="stat-label">Escalated Leads</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon queries">💬</div>
+          <div class="stat-data">
+            <span class="stat-num" id="stat-queries-count">0</span>
+            <span class="stat-label">Total Student Queries</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon cost">⚡</div>
+          <div class="stat-data">
+            <span class="stat-num" id="stat-cost-val">$0.0000</span>
+            <span class="stat-label">Estimated Gemini Cost</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation Tabs -->
+      <div class="tabs-bar">
+        <button class="tab-btn active" data-tab="docs-tab">
+          <span>📄 Knowledge Base Documents (CRUD)</span>
+        </button>
+        <button class="tab-btn" data-tab="tickets-tab">
+          <span>🚨 Escalated Tickets & Leads</span>
+        </button>
+        <button class="tab-btn" data-tab="telemetry-tab">
+          <span>📊 Live System Telemetry</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: Documents CRUD -->
+      <section id="docs-tab" class="tab-content active">
+        <div class="section-header">
+          <div>
+            <h2>Knowledge Base Documents (RAG)</h2>
+            <p>Upload, create, edit, and delete curriculum, pricing, and policy markdown files indexed in the vector store.</p>
+          </div>
+          <div class="section-actions">
+            <button id="btn-open-upload" class="btn-secondary">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+              <span>Upload .md File</span>
+            </button>
+            <button id="btn-open-create" class="btn-primary">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              <span>New Document</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Documents Table -->
+        <div class="table-card">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Document File</th>
+                <th>Size</th>
+                <th>Lines</th>
+                <th>Words</th>
+                <th>Last Modified</th>
+                <th class="text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="docs-table-body">
+              <tr><td colspan="6" class="loading-td">Loading knowledge base files...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 2: Escalated Leads & Tickets -->
+      <section id="tickets-tab" class="tab-content">
+        <div class="section-header">
+          <div>
+            <h2>Priority Escalation Tickets</h2>
+            <p>Direct leads captured by AI requiring advisor human intervention.</p>
+          </div>
+          <button id="btn-refresh-tickets" class="btn-secondary">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+            <span>Refresh Tickets</span>
+          </button>
+        </div>
+
+        <!-- Tickets Table -->
+        <div class="table-card">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Ticket ID</th>
+                <th>Priority</th>
+                <th>Student Full Name</th>
+                <th>Phone / Telegram</th>
+                <th>Email</th>
+                <th>Inquiry / Topic</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th class="text-right">Quick Contact</th>
+              </tr>
+            </thead>
+            <tbody id="tickets-table-body">
+              <tr><td colspan="9" class="loading-td">Loading escalation records...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 3: Telemetry -->
+      <section id="telemetry-tab" class="tab-content">
+        <div class="section-header">
+          <div>
+            <h2>System & API Telemetry</h2>
+            <p>Live operational performance metrics from the admissions assistant.</p>
+          </div>
+        </div>
+
+        <div class="telemetry-grid">
+          <div class="telemetry-box">
+            <h3>Latency & Speed</h3>
+            <div class="telemetry-item"><span>Average Response Time:</span> <strong id="tel-latency">0 ms</strong></div>
+            <div class="telemetry-item"><span>Active User Sessions:</span> <strong id="tel-sessions">0</strong></div>
+            <div class="telemetry-item"><span>Vector Store Status:</span> <strong class="text-green">HNSWLib Ready</strong></div>
+          </div>
+
+          <div class="telemetry-box">
+            <h3>Token Usage & Cost</h3>
+            <div class="telemetry-item"><span>Estimated Tokens Processed:</span> <strong id="tel-tokens">0</strong></div>
+            <div class="telemetry-item"><span>Gemini Model:</span> <strong>gemini-2.5-flash-lite</strong></div>
+            <div class="telemetry-item"><span>Total Estimated Cost:</span> <strong id="tel-cost">$0.0000</strong></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Document Editor / Creator Modal -->
+  <div id="doc-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-title">Create Knowledge Document</h3>
+        <button id="btn-close-modal" class="btn-icon">✕</button>
+      </div>
+      <form id="doc-form">
+        <div class="form-group">
+          <label for="doc-filename">Document Filename (e.g. scholarships_and_discounts.md)</label>
+          <input type="text" id="doc-filename" placeholder="scholarships_and_discounts.md" required />
+        </div>
+        <div class="form-group">
+          <label for="doc-content">Document Content (Markdown format)</label>
+          <textarea id="doc-content" rows="14" placeholder="# Write your institutional knowledge content here..." required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="btn-cancel-doc" class="btn-secondary">Cancel</button>
+          <button type="submit" id="btn-save-doc" class="btn-primary">
+            <span>Save &amp; Re-index Vector Store</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Upload File Modal -->
+  <div id="upload-modal" class="modal-overlay hidden">
+    <div class="modal-card modal-sm">
+      <div class="modal-header">
+        <h3>Upload Knowledge File</h3>
+        <button id="btn-close-upload" class="btn-icon">✕</button>
+      </div>
+      <form id="upload-form">
+        <div class="upload-dropzone" id="dropzone">
+          <input type="file" id="file-input" accept=".md,.txt" />
+          <div class="dropzone-content">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            <p>Click to browse or drag &amp; drop a <strong>.md</strong> or <strong>.txt</strong> file</p>
+            <span id="selected-filename">No file selected</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="btn-cancel-upload" class="btn-secondary">Cancel</button>
+          <button type="submit" id="btn-confirm-upload" class="btn-primary" disabled>Upload &amp; Re-index</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div id="delete-modal" class="modal-overlay hidden">
+    <div class="modal-card modal-sm">
+      <div class="modal-header">
+        <h3 class="text-danger">Confirm Document Deletion</h3>
+        <button id="btn-close-delete" class="btn-icon">✕</button>
+      </div>
+      <p>Are you sure you want to delete <strong id="delete-filename-label"></strong> from the knowledge base? This action will immediately re-index the vector database.</p>
+      <div class="modal-footer">
+        <button type="button" id="btn-cancel-delete" class="btn-secondary">Cancel</button>
+        <button type="button" id="btn-confirm-delete" class="btn-danger">Delete &amp; Re-index</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

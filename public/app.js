@@ -1,321 +1,264 @@
 /**
- * Frontend Application Logic for Colombia Language Academy AI Assistant
+ * Frontend Interactive Controller for Colombia Language Academy Homepage & Floating AI Chat Widget.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Session State
-  let sessionId = sessionStorage.getItem('cla_session_id');
-  if (!sessionId) {
-    sessionId = `sess-${Date.now()}-${Math.random().toString(36).substring(2, 8)}`;
-    sessionStorage.setItem('cla_session_id', sessionId);
-  }
+// State
+let currentSessionId = localStorage.getItem('cla_session_id') || `sess-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
+localStorage.setItem('cla_session_id', currentSessionId);
 
-  // DOM Elements
-  const chatMessages = document.getElementById('chat-messages');
-  const chatForm = document.getElementById('chat-form');
-  const userInput = document.getElementById('user-input');
-  const btnSend = document.getElementById('btn-send');
-  const charCounter = document.getElementById('char-counter');
-  const chipsRow = document.getElementById('chips-row');
-  const btnReindex = document.getElementById('btn-reindex');
+let isWaitingForResponse = false;
+let isChatOpen = false;
 
-  // Escalation Banner Elements
-  const escalationBanner = document.getElementById('escalation-banner');
-  const escalationTicketId = document.getElementById('escalation-ticket-id');
-  const escalationReasonText = document.getElementById('escalation-reason-text');
-  const closeEscalationBanner = document.getElementById('close-escalation-banner');
+// DOM Elements
+const chatLauncher = document.getElementById('chat-widget-launcher');
+const chatDrawer = document.getElementById('chat-widget-drawer');
+const btnMinimizeChat = document.getElementById('btn-minimize-chat');
+const btnHeaderChat = document.getElementById('btn-header-chat');
+const btnHeroChat = document.getElementById('btn-hero-chat');
+const btnMobileMenu = document.getElementById('btn-mobile-menu');
+const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
 
-  // Metrics DOM Elements
-  const metricTotalQueries = document.getElementById('metric-total-queries');
-  const metricEscalationRate = document.getElementById('metric-escalation-rate');
-  const metricAvgLatency = document.getElementById('metric-avg-latency');
-  const metricEstTokens = document.getElementById('metric-est-tokens');
-  const metricEstCost = document.getElementById('metric-est-cost');
-  const recentTicketsList = document.getElementById('recent-tickets-list');
+const chatMessages = document.getElementById('chat-messages');
+const chatForm = document.getElementById('chat-form');
+const userInput = document.getElementById('user-input');
+const btnSend = document.getElementById('btn-send');
+const charCounter = document.getElementById('char-counter');
+const chipsRow = document.getElementById('chips-row');
 
-  let isSending = false;
+// Escalation Banner Elements
+const escalationBanner = document.getElementById('escalation-banner');
+const escalationTicketId = document.getElementById('escalation-ticket-id');
+const escalationReasonText = document.getElementById('escalation-reason-text');
+const closeEscalationBanner = document.getElementById('close-escalation-banner');
 
-  // Auto-resize textarea and update character count
-  userInput.addEventListener('input', () => {
-    userInput.style.height = 'auto';
-    userInput.style.height = `${Math.min(userInput.scrollHeight, 140)}px`;
-    charCounter.textContent = `${userInput.value.length} / 1000`;
+// Mobile Hamburger Menu Toggle
+if (btnMobileMenu && mobileMenuDrawer) {
+  btnMobileMenu.addEventListener('click', () => {
+    mobileMenuDrawer.classList.toggle('hidden');
   });
 
-  // Handle Enter key (without Shift) to submit
-  userInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      if (!isSending && userInput.value.trim().length > 0) {
-        chatForm.dispatchEvent(new Event('submit'));
-      }
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenuDrawer.classList.add('hidden');
+    });
+  });
+}
+
+// Toggle Floating Chat Drawer
+function openChat() {
+  isChatOpen = true;
+  chatDrawer.classList.remove('hidden');
+  chatLauncher.classList.add('hidden');
+  if (mobileMenuDrawer) mobileMenuDrawer.classList.add('hidden');
+  userInput.focus();
+  scrollToBottom();
+}
+
+function closeChat() {
+  isChatOpen = false;
+  chatDrawer.classList.add('hidden');
+  chatLauncher.classList.remove('hidden');
+}
+
+chatLauncher.addEventListener('click', openChat);
+btnMinimizeChat.addEventListener('click', closeChat);
+if (btnHeaderChat) btnHeaderChat.addEventListener('click', openChat);
+if (btnHeroChat) btnHeroChat.addEventListener('click', openChat);
+
+// Card Inquire Buttons
+document.querySelectorAll('.btn-card-inquire').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const query = btn.getAttribute('data-query');
+    openChat();
+    if (query) {
+      userInput.value = query;
+      handleSendMessage(query);
     }
   });
+});
 
-  // Suggestion chips click handler
-  chipsRow.addEventListener('click', (e) => {
-    const chip = e.target.closest('.chip');
-    if (chip && !isSending) {
-      const query = chip.getAttribute('data-query');
-      if (query) {
-        userInput.value = query;
-        userInput.dispatchEvent(new Event('input'));
-        chatForm.dispatchEvent(new Event('submit'));
-      }
-    }
-  });
+// Auto-resize Textarea & Char Counter
+userInput.addEventListener('input', () => {
+  userInput.style.height = 'auto';
+  userInput.style.height = `${Math.min(userInput.scrollHeight, 100)}px`;
+  charCounter.textContent = `${userInput.value.length} / 1000`;
+});
 
-  // Close escalation banner
-  closeEscalationBanner.addEventListener('click', () => {
-    escalationBanner.classList.add('hidden');
-  });
-
-  // Simple Safe Markdown to HTML Formatter
-  function renderMarkdown(text) {
-    if (!text) return '';
-    let html = text
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
-
-    // Bold text **text**
-    html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-
-    // Inline code `code`
-    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
-
-    // Bullet lists
-    const lines = html.split('\n');
-    let inList = false;
-    const formattedLines = [];
-
-    for (let line of lines) {
-      const trimmed = line.trim();
-      if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
-        if (!inList) {
-          formattedLines.push('<ul>');
-          inList = true;
-        }
-        formattedLines.push(`<li>${trimmed.substring(2)}</li>`);
-      } else {
-        if (inList) {
-          formattedLines.push('</ul>');
-          inList = false;
-        }
-        if (trimmed.length > 0) {
-          formattedLines.push(`<p>${line}</p>`);
-        }
-      }
-    }
-    if (inList) {
-      formattedLines.push('</ul>');
-    }
-
-    return formattedLines.join('');
-  }
-
-  // Append a user or assistant message to chat
-  function appendMessage({ role, text, sources = [], suggestedActions = [], ticketId = null, isEscalated = false }) {
-    const msgDiv = document.createElement('div');
-    msgDiv.className = `message ${role}`;
-
-    const avatar = document.createElement('div');
-    avatar.className = 'msg-avatar';
-    avatar.innerHTML = role === 'user' ? '👤' : '🇨🇴';
-
-    const body = document.createElement('div');
-    body.className = 'msg-body';
-    body.innerHTML = renderMarkdown(text);
-
-    // If sources exist, append tags
-    if (sources && sources.length > 0) {
-      const meta = document.createElement('div');
-      meta.className = 'msg-meta';
-      meta.innerHTML = `<span>Grounded via RAG:</span> ${sources.map(s => `<span class="source-tag">${s}</span>`).join(' ')}`;
-      body.appendChild(meta);
-    }
-
-    // If suggested next actions exist, append clickable chips
-    if (suggestedActions && suggestedActions.length > 0) {
-      const actionsContainer = document.createElement('div');
-      actionsContainer.className = 'action-chips';
-      for (const action of suggestedActions) {
-        const btn = document.createElement('button');
-        btn.className = 'action-chip';
-        btn.textContent = action;
-        btn.addEventListener('click', () => {
-          if (!isSending) {
-            userInput.value = action;
-            userInput.dispatchEvent(new Event('input'));
-            chatForm.dispatchEvent(new Event('submit'));
-          }
-        });
-        actionsContainer.appendChild(btn);
-      }
-      body.appendChild(actionsContainer);
-    }
-
-    msgDiv.appendChild(avatar);
-    msgDiv.appendChild(body);
-    chatMessages.appendChild(msgDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-
-    // Show escalation banner if applicable
-    if (isEscalated) {
-      escalationTicketId.textContent = ticketId || 'ESC-PENDING';
-      escalationReasonText.textContent = 'Our Admissions & Support Department has received your priority escalation ticket.';
-      escalationBanner.classList.remove('hidden');
-    }
-  }
-
-  // Create typing indicator
-  function showTypingIndicator() {
-    const indicatorDiv = document.createElement('div');
-    indicatorDiv.id = 'typing-indicator';
-    indicatorDiv.className = 'message assistant';
-    indicatorDiv.innerHTML = `
-      <div class="msg-avatar">🇨🇴</div>
-      <div class="msg-body">
-        <div class="typing-bubble">
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-        </div>
-      </div>
-    `;
-    chatMessages.appendChild(indicatorDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-    return indicatorDiv;
-  }
-
-  function removeTypingIndicator() {
-    const indicator = document.getElementById('typing-indicator');
-    if (indicator) indicator.remove();
-  }
-
-  // Handle Chat Form Submit
-  chatForm.addEventListener('submit', async (e) => {
+// Submit on Enter (Shift+Enter for newline)
+userInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) {
     e.preventDefault();
-    const query = userInput.value.trim();
-    if (!query || isSending) return;
+    chatForm.dispatchEvent(new Event('submit'));
+  }
+});
 
-    isSending = true;
-    btnSend.disabled = true;
+// Close Escalation Banner
+closeEscalationBanner.addEventListener('click', () => {
+  escalationBanner.classList.add('hidden');
+});
 
-    // Add user message to UI
-    appendMessage({ role: 'user', text: query });
+// Suggestion Chips
+chipsRow.addEventListener('click', (e) => {
+  const chip = e.target.closest('.chip');
+  if (chip && !isWaitingForResponse) {
+    const query = chip.getAttribute('data-query') || chip.textContent;
+    handleSendMessage(query);
+  }
+});
 
-    // Clear input
-    userInput.value = '';
-    userInput.style.height = 'auto';
-    charCounter.textContent = '0 / 1000';
+// Format Markdown
+function renderMarkdown(text) {
+  if (!text || typeof text !== 'string') return '';
+  
+  let formatted = text
+    .replace(/^### (.*$)/gim, '<h4>$1</h4>')
+    .replace(/^## (.*$)/gim, '<h3>$1</h3>')
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/\n/g, '<br/>');
 
-    // Show typing animation
-    showTypingIndicator();
-
-    try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: query, sessionId })
-      });
-
-      removeTypingIndicator();
-
-      if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        throw new Error(errData.error || `Server responded with status ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      appendMessage({
-        role: 'assistant',
-        text: data.reply || 'No response returned.',
-        sources: data.sources || [],
-        suggestedActions: data.suggested_actions || [],
-        ticketId: data.ticketId,
-        isEscalated: data.escalate
-      });
-
-      // Refresh metrics immediately
-      fetchMetrics();
-    } catch (error) {
-      removeTypingIndicator();
-      appendMessage({
-        role: 'assistant',
-        text: `⚠️ **Error:** ${error.message}. Please verify that your \`GEMINI_API_KEY\` is configured in \`.env\` and the server is running.`
-      });
-    } finally {
-      isSending = false;
-      btnSend.disabled = false;
-      userInput.focus();
-    }
-  });
-
-  // Fetch Live Operational Metrics
-  async function fetchMetrics() {
-    try {
-      const res = await fetch('/api/metrics');
-      if (!res.ok) return;
-      const json = await res.json();
-      const m = json.data;
-
-      if (metricTotalQueries) metricTotalQueries.textContent = m.totalQueries;
-      if (metricEscalationRate) metricEscalationRate.textContent = `${m.escalationRatePercent}%`;
-      if (metricAvgLatency) metricAvgLatency.textContent = `${m.averageLatencyMs} ms`;
-      if (metricEstTokens) metricEstTokens.textContent = m.tokenUsage.totalEstimatedTokens.toLocaleString();
-      if (metricEstCost) metricEstCost.textContent = m.tokenUsage.estimatedCostUSD;
-
-      // Update recent tickets feed
-      if (recentTicketsList && m.recentEscalations) {
-        if (m.recentEscalations.length === 0) {
-          recentTicketsList.innerHTML = '<div class="no-tickets">No active escalations recorded.</div>';
-        } else {
-          recentTicketsList.innerHTML = m.recentEscalations.map(t => `
-            <div class="ticket-item">
-              <div class="ticket-item-header">
-                <span>${t.reason.substring(0, 24)}...</span>
-                <span>${new Date(t.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-              </div>
-              <div class="ticket-item-reason">${t.leadInfo?.phone || t.leadInfo?.name || t.sessionId}</div>
-            </div>
-          `).join('');
-        }
-      }
-    } catch (e) {
-      // Background poll failure silent handling
-    }
+  // Convert list items
+  formatted = formatted.replace(/(?:<br\/>|\A)\* (.*?)(?=(?:<br\/>|\Z))/g, '<li>$1</li>');
+  if (formatted.includes('<li>')) {
+    formatted = formatted.replace(/(<li>.*?<\/li>)+/g, '<ul>$&</ul>');
   }
 
-  // Re-index button handler
-  btnReindex.addEventListener('click', async () => {
-    if (!confirm('Re-index knowledge base documents into vector store?')) return;
-    
-    btnReindex.disabled = true;
-    btnReindex.innerHTML = '<span>Indexing...</span>';
+  return `<p>${formatted}</p>`;
+}
 
-    try {
-      const res = await fetch('/api/ingest', { method: 'POST' });
-      const data = await res.json();
-      if (res.ok) {
-        alert('Knowledge base re-indexed successfully!');
-      } else {
-        alert(`Ingestion failed: ${data.error || 'Unknown error'}`);
+// Scroll Messages to Bottom
+function scrollToBottom() {
+  setTimeout(() => {
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }, 50);
+}
+
+// Append Message to UI
+function appendMessage(role, text, metadata = {}) {
+  const msgDiv = document.createElement('div');
+  msgDiv.className = `message ${role}`;
+
+  const avatarDiv = document.createElement('div');
+  avatarDiv.className = 'msg-avatar';
+  avatarDiv.textContent = role === 'user' ? '👤' : '🇨🇴';
+
+  const bodyDiv = document.createElement('div');
+  bodyDiv.className = 'msg-body';
+  bodyDiv.innerHTML = role === 'user' ? `<p>${text.replace(/\n/g, '<br/>')}</p>` : renderMarkdown(text);
+
+  // Grounded Sources
+  if (role === 'assistant' && metadata.sources && metadata.sources.length > 0) {
+    const sourcesDiv = document.createElement('div');
+    sourcesDiv.className = 'sources-row';
+    sourcesDiv.innerHTML = `<span>Grounded via RAG:</span> ${metadata.sources.map(s => `<span class="source-tag">${s}</span>`).join(' ')}`;
+    bodyDiv.appendChild(sourcesDiv);
+  }
+
+  // Dynamic Suggested Action Buttons
+  if (role === 'assistant' && Array.isArray(metadata.suggested_actions) && metadata.suggested_actions.length > 0) {
+    const actionsDiv = document.createElement('div');
+    actionsDiv.className = 'suggestions-row';
+    metadata.suggested_actions.forEach(actionText => {
+      const btn = document.createElement('button');
+      btn.className = 'action-chip';
+      btn.textContent = actionText;
+      btn.addEventListener('click', () => {
+        if (!isWaitingForResponse) {
+          handleSendMessage(actionText);
+        }
+      });
+      actionsDiv.appendChild(btn);
+    });
+    bodyDiv.appendChild(actionsDiv);
+  }
+
+  msgDiv.appendChild(avatarDiv);
+  msgDiv.appendChild(bodyDiv);
+  chatMessages.appendChild(msgDiv);
+  scrollToBottom();
+}
+
+// Append Typing Loader
+function appendTypingIndicator() {
+  const typingDiv = document.createElement('div');
+  typingDiv.className = 'message assistant typing-msg';
+  typingDiv.id = 'typing-indicator';
+  typingDiv.innerHTML = `
+    <div class="msg-avatar">🇨🇴</div>
+    <div class="msg-body" style="color: var(--text-muted); font-style: italic;">
+      Consulting academy knowledge base...
+    </div>
+  `;
+  chatMessages.appendChild(typingDiv);
+  scrollToBottom();
+}
+
+function removeTypingIndicator() {
+  const typingDiv = document.getElementById('typing-indicator');
+  if (typingDiv) typingDiv.remove();
+}
+
+// Send Message Handler
+async function handleSendMessage(messageText) {
+  const cleanMsg = typeof messageText === 'string' ? messageText.trim() : userInput.value.trim();
+  if (!cleanMsg || isWaitingForResponse) return;
+
+  // Clear input
+  userInput.value = '';
+  userInput.style.height = 'auto';
+  charCounter.textContent = '0 / 1000';
+
+  // 1. Add User Message
+  appendMessage('user', cleanMsg);
+
+  // 2. Set State
+  isWaitingForResponse = true;
+  btnSend.disabled = true;
+  appendTypingIndicator();
+
+  try {
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: cleanMsg,
+        sessionId: currentSessionId
+      })
+    });
+
+    const data = await response.json();
+    removeTypingIndicator();
+
+    if (response.ok && data.success) {
+      // Handle Escalation Banner
+      if (data.escalate) {
+        escalationTicketId.textContent = data.ticketId || 'ESC-PRIORITY';
+        escalationReasonText.textContent = data.reason || 'Your case has been escalated to academic advisor Daniel.';
+        escalationBanner.classList.remove('hidden');
       }
-    } catch (e) {
-      alert(`Network error triggering re-ingestion: ${e.message}`);
-    } finally {
-      btnReindex.disabled = false;
-      btnReindex.innerHTML = `
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
-        <span>Re-index Docs</span>
-      `;
-      fetchMetrics();
-    }
-  });
 
-  // Initial metrics fetch and recurring interval (every 10 seconds)
-  fetchMetrics();
-  setInterval(fetchMetrics, 10000);
+      // Add Assistant Message
+      appendMessage('assistant', data.reply, {
+        sources: data.sources || [],
+        suggested_actions: data.suggested_actions || []
+      });
+    } else {
+      appendMessage('assistant', `⚠️ ${data.error || 'Unable to connect to admissions service. Please try again.'}`);
+    }
+  } catch (err) {
+    removeTypingIndicator();
+    appendMessage('assistant', '⚠️ Network connection error. Please verify your connection or contact our hotline directly.');
+  } finally {
+    isWaitingForResponse = false;
+    btnSend.disabled = false;
+    userInput.focus();
+  }
+}
+
+// Form Submit Event
+chatForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  handleSendMessage();
 });

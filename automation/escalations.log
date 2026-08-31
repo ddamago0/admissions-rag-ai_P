@@ -1,3 +1,91 @@
 2026-08-31 08:28:39,558 [INFO] Python Automation Orchestrator listening on http://localhost:5000
 2026-08-31 08:28:39,558 [INFO] - Webhook Endpoint: http://localhost:5000/webhook/escalations
 2026-08-31 08:28:39,559 [INFO] - Health Check: http://localhost:5000/health
+2026-08-31 09:56:49,115 [INFO] Python Automation Orchestrator listening on http://localhost:5000
+2026-08-31 09:56:49,116 [INFO] - Webhook Endpoint: http://localhost:5000/webhook/escalations
+2026-08-31 09:56:49,116 [INFO] - Health Check: http://localhost:5000/health
+2026-08-31 10:00:01,682 [INFO] Shutting down automation orchestrator server...
+2026-08-31 10:01:31,611 [INFO] Python Automation Orchestrator listening on http://localhost:5000
+2026-08-31 10:01:31,611 [INFO] - Webhook Endpoint: http://localhost:5000/webhook/escalations
+2026-08-31 10:01:31,611 [INFO] - Health Check: http://localhost:5000/health
+2026-08-31 10:19:26,474 [WARNING] 
+============================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260831-0C0D86
+Timestamp: 2026-08-31T15:19:26.474583+00:00
+Priority: HIGH
+Reason: Billing dispute regarding a duplicate card charge and an explicit customer request for a phone callback.
+Lead Contact: {"name": null, "phone": "3105551234", "email": null, "topic": "Duplicate card charge and callback request"}
+Inquiry: "I was charged twice on my card, call me at 3105551234"
+============================================================
+2026-08-31 10:32:19,024 [WARNING] 
+============================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260831-5F1B81
+Timestamp: 2026-08-31T15:32:19.024594+00:00
+Priority: MEDIUM
+Reason: Duplicate card charge reported; customer requested a telephone callback.
+Lead Contact: {"name": null, "phone": "3105551234", "email": null, "topic": "Duplicate card charge resolution"}
+Inquiry: "I was charged twice on my card, call me at 3105551234"
+============================================================
+2026-08-31 10:41:11,846 [WARNING] 
+============================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260831-81768F
+Timestamp: 2026-08-31T15:41:11.845947+00:00
+Priority: MEDIUM
+Reason: Customer explicitly requested to speak with a human advisor.
+Lead Contact: {"name": null, "phone": "3105551234", "email": null, "topic": "Customer requested to speak directly with a human advisor"}
+Inquiry: "I want to talk to a person"
+============================================================
+2026-08-31 10:44:58,165 [WARNING] 
+============================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260831-0FA4C6
+Timestamp: 2026-08-31T15:44:58.165697+00:00
+Priority: MEDIUM
+Reason: Customer explicitly requested to speak with a human advisor.
+Lead Contact: {"name": "Daniel", "phone": "3014777763", "email": null, "topic": "Request to speak with a human advisor"}
+Inquiry: "I want to speak with a human advisor right now. My name is Daniel and my phone is 3014777763."
+============================================================
+2026-08-31 10:47:27,883 [WARNING] 
+============================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260831-76961A
+Timestamp: 2026-08-31T15:47:27.883873+00:00
+Priority: MEDIUM
+Reason: Customer explicitly requested an immediate callback from a human advisor.
+Lead Contact: {"name": "Daniel", "phone": "3014777763", "email": null, "topic": "Immediate advisor callback request"}
+Inquiry: "I need to speak with an advisor immediately, my name is Daniel and my number is 3014777763"
+============================================================
+2026-08-31 11:03:19,303 [WARNING] 
+============================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260831-CA2F0B
+Timestamp: 2026-08-31T16:03:19.303760+00:00
+Priority: MEDIUM
+Reason: Student requested IELTS preparation course information and provided full contact credentials (Name, Phone, Email).
+Lead Contact: {"name": "Andres", "phone": "3014777763", "email": "andres@gmail.com", "topic": "IELTS Test Preparation Course"}
+Inquiry: "My name is Andres, phone 3014777763, email andres@gmail.com. I want info on IELTS prep."
+============================================================
+2026-08-31 11:14:49,059 [WARNING] 
+============================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260831-72D648
+Timestamp: 2026-08-31T16:14:49.059227+00:00
+Priority: MEDIUM
+Reason: User requested to speak with an advisor and provided full contact information.
+Lead Contact: {"name": "Breyner", "phone": "3247836387", "email": "ddama01@gmail.com", "topic": "General inquiry - requested advisor"}
+Inquiry: "My name is Breyner, phone 3247836387 and email ddama01@gmail.com"
+============================================================
+2026-08-31 11:20:17,048 [WARNING] 
+============================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260831-605865
+Timestamp: 2026-08-31T16:20:17.048813+00:00
+Priority: MEDIUM
+Reason: Customer requested to speak with a superior and provided full contact information (name, phone, email).
+Lead Contact: {"name": "jesus", "phone": "3046062620", "email": "jesus@gmail.com", "topic": "Cursos disponibles"}
+Inquiry: "jesus@gmail.com"
+============================================================
+2026-08-31 11:33:53,148 [WARNING] 
+============================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260831-897513
+Timestamp: 2026-08-31T16:33:53.148734+00:00
+Priority: MEDIUM
+Reason: Inconveniente con doble cobro en tarjeta y solicitud de ayuda financiera reportado por el estudiante.
+Lead Contact: {"name": "Daniel David Martinez Gonzalez", "first_name": "Daniel", "phone": "3014777763", "email": "ddamago0@gmail.com", "topic": "Inconveniente con doble cobro en tarjeta y solicitud de ayuda financiera"}
+Inquiry: "Mi nombre completo es Daniel David Martinez Gonzalez, teléfono 3014777763 y correo ddamago0@gmail.com. Tengo un problema de doble cobro en mi tarjeta y requiero ayuda financiera."
+============================================================

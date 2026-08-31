@@ -28,9 +28,10 @@
     "@langchain/core": "^1.2.9",
     "@langchain/google-genai": "^2.3.0",
     "@langchain/textsplitters": "^1.0.1",
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "express": "^5.2.1",
-    "hnswlib-node": "^3.0.0"
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "hnswlib-node": "^3.0.0",
+    "nodemailer": "^9.1.0"
   }
 }

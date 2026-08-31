@@ -1,5 +1,5 @@
 /**
- * In-memory Metrics and Session State Management Service
+ * In-memory Metrics and Conversational Session State Management Service
  */
 
 const metrics = {
@@ -11,7 +11,7 @@ const metrics = {
     inputTokens: 0,
     outputTokens: 0
   },
-  sessions: new Map(), // sessionId -> Array<{ role: string, content: string, timestamp: string }>
+  sessions: new Map(), // sessionId -> Array<{ role: 'user' | 'assistant', content: string, timestamp: string }>
   escalationLog: [] // Recent escalation events
 };
 
@@ -24,14 +24,15 @@ export function estimateTokens(text = '') {
 }
 
 /**
- * Records a processed query and updates tracking metrics.
+ * Records a processed query, updates telemetry metrics, and maintains conversation memory.
  */
 export function recordQueryMetric({ sessionId, userQuery, reply, isEscalated, latencyMs, reason, leadInfo }) {
   metrics.totalQueries += 1;
   metrics.totalLatencyMs += latencyMs;
 
+  const cleanReply = typeof reply === 'string' ? reply : (reply?.reply || JSON.stringify(reply));
   const estimatedIn = estimateTokens(userQuery);
-  const estimatedOut = estimateTokens(typeof reply === 'string' ? reply : JSON.stringify(reply));
+  const estimatedOut = estimateTokens(cleanReply);
 
   metrics.estimatedTokens.inputTokens += estimatedIn;
   metrics.estimatedTokens.outputTokens += estimatedOut;
@@ -49,24 +50,26 @@ export function recordQueryMetric({ sessionId, userQuery, reply, isEscalated, la
     }
   }
 
-  // Update session history
+  // Update session conversational memory (Sliding window of 12 turns / 6 exchanges)
   if (sessionId) {
     if (!metrics.sessions.has(sessionId)) {
       metrics.sessions.set(sessionId, []);
     }
     const sessionHistory = metrics.sessions.get(sessionId);
     sessionHistory.push({ role: 'user', content: userQuery, timestamp: new Date().toISOString() });
-    sessionHistory.push({ role: 'assistant', content: reply, timestamp: new Date().toISOString() });
+    sessionHistory.push({ role: 'assistant', content: cleanReply, timestamp: new Date().toISOString() });
     
-    // Retain only last 10 turns per session to manage memory
-    if (sessionHistory.length > 20) {
-      metrics.sessions.set(sessionId, sessionHistory.slice(-20));
+    // Maintain sliding window of last 12 messages
+    if (sessionHistory.length > 12) {
+      metrics.sessions.set(sessionId, sessionHistory.slice(-12));
     }
   }
 }
 
 /**
- * Retrieves session history for a given sessionId.
+ * Retrieves conversational history for a given sessionId.
+ * @param {string} sessionId
+ * @returns {Array<{ role: 'user' | 'assistant', content: string, timestamp: string }>}
  */
 export function getSessionHistory(sessionId) {
   if (!sessionId || !metrics.sessions.has(sessionId)) {

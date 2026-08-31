@@ -1,24 +1,39 @@
-import { Router } from 'express';
+import express from 'express';
 import { handleChat, handleGetMetrics, handleIngest } from '../controllers/chatController.js';
+import {
+  handleAdminLogin,
+  handleAdminVerify,
+  handleListDocuments,
+  handleGetDocument,
+  handleCreateDocument,
+  handleUpdateDocument,
+  handleDeleteDocument,
+  handleGetTickets,
+  handleUpdateTicketStatus
+} from '../controllers/adminController.js';
+import { requireAdminAuth } from '../services/authService.js';
 
-const router = Router();
+const router = express.Router();
 
-// Chatbot RAG inquiry endpoint
+// --- Public Endpoints (No authentication required) ---
 router.post('/chat', handleChat);
-
-// Real-time system and operational metrics
 router.get('/metrics', handleGetMetrics);
-
-// Dynamic knowledge base re-ingestion
 router.post('/ingest', handleIngest);
 
-// Health check endpoint
-router.get('/health', (req, res) => {
-  res.status(200).json({
-    status: 'healthy',
-    service: 'Colombia Language Academy Assistant API',
-    timestamp: new Date().toISOString()
-  });
-});
+// --- Admin Authentication ---
+router.post('/admin/login', handleAdminLogin);
+router.get('/admin/verify', requireAdminAuth, handleAdminVerify);
+
+// --- Admin Protected Document CRUD Endpoints ---
+router.get('/admin/documents', requireAdminAuth, handleListDocuments);
+router.get('/admin/documents/:filename', requireAdminAuth, handleGetDocument);
+router.post('/admin/documents', requireAdminAuth, handleCreateDocument);
+router.put('/admin/documents/:filename', requireAdminAuth, handleUpdateDocument);
+router.delete('/admin/documents/:filename', requireAdminAuth, handleDeleteDocument);
+
+// --- Admin Protected Escalation Tickets & Operations ---
+router.get('/admin/tickets', requireAdminAuth, handleGetTickets);
+router.put('/admin/tickets/:ticketId/status', requireAdminAuth, handleUpdateTicketStatus);
+router.post('/admin/reindex', requireAdminAuth, handleIngest);
 
 export default router;

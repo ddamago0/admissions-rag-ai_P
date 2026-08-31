@@ -1,0 +1,176 @@
+[
+  {
+    "ticket_id": "ESC-20260831-0C0D86",
+    "timestamp": "2026-08-31T15:19:26.474583+00:00",
+    "status": "PENDING_HUMAN_REVIEW",
+    "priority": "HIGH",
+    "reason": "Billing dispute regarding a duplicate card charge and an explicit customer request for a phone callback.",
+    "lead_info": {
+      "name": null,
+      "phone": "3105551234",
+      "email": null,
+      "topic": "Duplicate card charge and callback request"
+    },
+    "inquiry": "I was charged twice on my card, call me at 3105551234",
+    "ai_reply": "Hello! I am very sorry to hear about the duplicate charge on your card. I completely understand how concerning this is, and I have immediately escalated your case to our Billing and Finance department as a high-priority ticket.\n\nOne of our advisors will call you directly at 3105551234 during our operating hours (Monday to Friday 7:00 AM – 8:00 PM, Saturday 8:00 AM – 4:00 PM COT) to review the transaction and process your refund swiftly.\n\nIf you have your bank payment receipt handy, you can also send it directly to billing@colombialanguageacademy.edu.co or via our WhatsApp hotline at +57 310 987 6543 so we can resolve this even faster for you.",
+    "sources": [
+      "pricing_and_enrollment.md",
+      "certifications_and_policies.md"
+    ]
+  },
+  {
+    "ticket_id": "ESC-20260831-5F1B81",
+    "timestamp": "2026-08-31T15:32:19.024594+00:00",
+    "status": "PENDING_HUMAN_REVIEW",
+    "priority": "MEDIUM",
+    "reason": "Duplicate card charge reported; customer requested a telephone callback.",
+    "lead_info": {
+      "name": null,
+      "phone": "3105551234",
+      "email": null,
+      "topic": "Duplicate card charge resolution"
+    },
+    "inquiry": "I was charged twice on my card, call me at 3105551234",
+    "ai_reply": "Hello! I am truly sorry for the inconvenience caused by the duplicate charge on your card. I have immediately logged a priority escalation ticket with our Billing and Admissions department. One of our advisors will call you directly at 3105551234 during our operating hours (Monday to Friday 7:00 AM – 8:00 PM, Saturday 8:00 AM – 4:00 PM COT) to review the transaction and ensure your refund is processed as quickly as possible.\n\nIn the meantime, if you have your transaction receipts available, you can also email them directly to billing@colombialanguageacademy.edu.co or send them via WhatsApp to +57 310 987 6543 to speed up the verification process.",
+    "sources": [
+      "pricing_and_enrollment.md",
+      "certifications_and_policies.md"
+    ]
+  },
+  {
+    "ticket_id": "ESC-20260831-81768F",
+    "timestamp": "2026-08-31T15:41:11.845947+00:00",
+    "status": "PENDING_HUMAN_REVIEW",
+    "priority": "MEDIUM",
+    "reason": "Customer explicitly requested to speak with a human advisor.",
+    "lead_info": {
+      "name": null,
+      "phone": "3105551234",
+      "email": null,
+      "topic": "Customer requested to speak directly with a human advisor"
+    },
+    "inquiry": "I want to talk to a person",
+    "ai_reply": "I completely understand and would be delighted to connect you directly with one of our human admissions counselors!\n\nYou can reach us immediately through any of the following direct human support channels during our operating hours (Monday to Friday 7:00 AM – 8:00 PM, Saturday 8:00 AM – 4:00 PM COT):\n\n- **Admissions WhatsApp (Chat & Calls):** +57 310 987 6543\n- **Central PBX Hotline:** +57 (601) 745-9000\n- **Direct Email:** admissions@colombialanguageacademy.edu.co\n\nIf you would like us to call you back directly, please share your preferred phone number and name, and an advisor will contact you as soon as possible!",
+    "sources": [
+      "pricing_and_enrollment.md",
+      "certifications_and_policies.md"
+    ]
+  },
+  {
+    "ticket_id": "ESC-20260831-0FA4C6",
+    "timestamp": "2026-08-31T15:44:58.165697+00:00",
+    "status": "PENDING_HUMAN_REVIEW",
+    "priority": "MEDIUM",
+    "reason": "Customer explicitly requested to speak with a human advisor.",
+    "lead_info": {
+      "name": "Daniel",
+      "phone": "3014777763",
+      "email": null,
+      "topic": "Request to speak with a human advisor"
+    },
+    "inquiry": "I want to speak with a human advisor right now. My name is Daniel and my phone is 3014777763.",
+    "ai_reply": "Hello Daniel, thank you for reaching out to Colombia Language Academy! I have immediately escalated your request to our admissions team. An academic advisor will reach out to you directly at 3014777763 shortly.\n\nIn the meantime, if you prefer to contact us right away, you can reach our Admissions WhatsApp at +57 310 987 6543 or call our central PBX hotline at +57 (601) 745-9000.",
+    "sources": [
+      "certifications_and_policies.md",
+      "pricing_and_enrollment.md"
+    ]
+  },
+  {
+    "ticket_id": "ESC-20260831-76961A",
+    "timestamp": "2026-08-31T15:47:27.883873+00:00",
+    "status": "PENDING_HUMAN_REVIEW",
+    "priority": "MEDIUM",
+    "reason": "Customer explicitly requested an immediate callback from a human advisor.",
+    "lead_info": {
+      "name": "Daniel",
+      "phone": "3014777763",
+      "email": null,
+      "topic": "Immediate advisor callback request"
+    },
+    "inquiry": "I need to speak with an advisor immediately, my name is Daniel and my number is 3014777763",
+    "ai_reply": "Hello Daniel! Thank you for contacting Colombia Language Academy. I have flagged your request as high priority and logged your callback request with our Admissions team. An advisor will reach out to you at 3014777763 as quickly as possible.\n\nIf you need immediate assistance right now, you can also reach our Central PBX Hotline at +57 (601) 745-9000 or message our Admissions team directly on WhatsApp at +57 310 987 6543.",
+    "sources": [
+      "certifications_and_policies.md",
+      "pricing_and_enrollment.md"
+    ]
+  },
+  {
+    "ticket_id": "ESC-20260831-CA2F0B",
+    "timestamp": "2026-08-31T16:03:19.303760+00:00",
+    "status": "PENDING_HUMAN_REVIEW",
+    "priority": "MEDIUM",
+    "reason": "Student requested IELTS preparation course information and provided full contact credentials (Name, Phone, Email).",
+    "lead_info": {
+      "name": "Andres",
+      "phone": "3014777763",
+      "email": "andres@gmail.com",
+      "topic": "IELTS Test Preparation Course"
+    },
+    "inquiry": "My name is Andres, phone 3014777763, email andres@gmail.com. I want info on IELTS prep.",
+    "ai_reply": "Hello Andres! Welcome to Colombia Language Academy.\n\nWe would be delighted to help you achieve your desired band score! We offer dedicated preparation cohorts for both **IELTS Academic** and **IELTS General Training**.\n\nOur IELTS preparation program includes:\n- Tailored test strategies and skill development.\n- **3 full computer-delivered mock tests**.\n- Personalized feedback on your Speaking and Writing performance.\n\nI have created a priority escalation ticket with your details (Phone: 3014777763, Email: andres@gmail.com). Our lead academic advisor, Daniel, has received your request and will contact you directly via WhatsApp/Telegram to discuss course options, start dates, and placement testing. Is there a specific target score or exam date you are aiming for?",
+    "sources": [
+      "certifications_and_policies.md",
+      "pricing_and_enrollment.md",
+      "courses_and_levels.md"
+    ]
+  },
+  {
+    "ticket_id": "ESC-20260831-72D648",
+    "timestamp": "2026-08-31T16:14:49.059227+00:00",
+    "status": "PENDING_HUMAN_REVIEW",
+    "priority": "MEDIUM",
+    "reason": "User requested to speak with an advisor and provided full contact information.",
+    "lead_info": {
+      "name": "Breyner",
+      "phone": "3247836387",
+      "email": "ddama01@gmail.com",
+      "topic": "General inquiry - requested advisor"
+    },
+    "inquiry": "My name is Breyner, phone 3247836387 and email ddama01@gmail.com",
+    "ai_reply": "Thank you, Breyner! I've escalated your request to our lead advisor, Daniel. He has your contact details (Phone: 3247836387, Email: ddama01@gmail.com) and will reach out to you directly via Telegram/WhatsApp shortly to assist you further.",
+    "sources": [
+      "pricing_and_enrollment.md",
+      "certifications_and_policies.md"
+    ]
+  },
+  {
+    "ticket_id": "ESC-20260831-605865",
+    "timestamp": "2026-08-31T16:20:17.048813+00:00",
+    "status": "PENDING_HUMAN_REVIEW",
+    "priority": "MEDIUM",
+    "reason": "Customer requested to speak with a superior and provided full contact information (name, phone, email).",
+    "lead_info": {
+      "name": "jesus",
+      "phone": "3046062620",
+      "email": "jesus@gmail.com",
+      "topic": "Cursos disponibles"
+    },
+    "inquiry": "jesus@gmail.com",
+    "ai_reply": "¡Hola Jesús! Muchas gracias por proporcionar tus datos. He creado un ticket de escalación prioritario con tu información (Jesús, +57 304 606 2620, jesus@gmail.com). Nuestro asesor, Daniel, ha recibido tu solicitud y se pondrá en contacto contigo directamente a través de Telegram/WhatsApp en breve para informarte sobre los cursos disponibles.",
+    "sources": [
+      "certifications_and_policies.md",
+      "courses_and_levels.md"
+    ]
+  },
+  {
+    "ticket_id": "ESC-20260831-897513",
+    "timestamp": "2026-08-31T16:33:53.148734+00:00",
+    "status": "RESOLVED",
+    "priority": "MEDIUM",
+    "reason": "Inconveniente con doble cobro en tarjeta y solicitud de ayuda financiera reportado por el estudiante.",
+    "lead_info": {
+      "name": "Daniel David Martinez Gonzalez",
+      "first_name": "Daniel",
+      "phone": "3014777763",
+      "email": "ddamago0@gmail.com",
+      "topic": "Inconveniente con doble cobro en tarjeta y solicitud de ayuda financiera"
+    },
+    "inquiry": "Mi nombre completo es Daniel David Martinez Gonzalez, teléfono 3014777763 y correo ddamago0@gmail.com. Tengo un problema de doble cobro en mi tarjeta y requiero ayuda financiera.",
+    "ai_reply": "¡Muchas gracias, Daniel! He generado tu ticket de soporte prioritario con tus datos de contacto (+57 301 477 7763, ddamago0@gmail.com). Nuestro asesor principal, Daniel, ha recibido la notificación de tu caso sobre el doble cobro en tu tarjeta y se comunicará contigo directamente por WhatsApp/Telegram para darte solución financiera.",
+    "sources": [
+      "pricing_and_enrollment.md",
+      "certifications_and_policies.md"
+    ],
+    "updatedAt": "2026-08-31T17:15:15.701Z"
+  }
+]

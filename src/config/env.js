@@ -28,14 +28,19 @@ export const config = {
   nodeEnv: process.env.NODE_ENV || 'development',
   gemini: {
     apiKey: process.env.GEMINI_API_KEY || '',
-    embeddingModel: process.env.GEMINI_EMBEDDING_MODEL || 'text-embedding-004',
-    chatModel: process.env.GEMINI_CHAT_MODEL || 'gemini-1.5-flash',
-    temperature: 0.2
+    embeddingModel: process.env.GEMINI_EMBEDDING_MODEL || 'gemini-embedding-001',
+    chatModel: process.env.GEMINI_CHAT_MODEL || 'gemini-2.5-flash-lite',
+    temperature: 0.1
   },
   vectorStore: {
     path: path.resolve(__dirname, '../../', process.env.VECTOR_STORE_PATH || './vectorstore')
   },
   automation: {
     orchestratorUrl: process.env.PYTHON_ORCHESTRATOR_URL || 'http://localhost:5000/webhook/escalations'
+  },
+  admin: {
+    username: process.env.ADMIN_USERNAME || 'admin',
+    password: process.env.ADMIN_PASSWORD || 'admin2026',
+    jwtSecret: process.env.ADMIN_JWT_SECRET || 'cla_super_secret_admin_jwt_key_2026_secure'
   }
 };
