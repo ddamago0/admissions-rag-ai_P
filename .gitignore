@@ -1,0 +1,11 @@
+node_modules/
+.env
+.env.local
+.DS_Store
+vectorstore/
+data/vectorstore/
+automation/venv/
+automation/__pycache__/
+*.zip
+logs/
+npm-debug.log*

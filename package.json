@@ -1,0 +1,36 @@
+{
+  "name": "admissions-rag-ai",
+  "version": "1.0.0",
+  "description": "Intelligent Customer Support Assistant for Colombian Language Academy using Google Gemini, LangChain, RAG and Python Automation",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "rag:ingest": "node src/rag/ingest.js",
+    "ingest": "node src/rag/ingest.js",
+    "test": "node tests/test_flow.js"
+  },
+  "keywords": [
+    "rag",
+    "langchain",
+    "gemini",
+    "google-genai",
+    "chatbot",
+    "customer-support",
+    "automation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/genai": "^2.19.0",
+    "@langchain/community": "^1.1.29",
+    "@langchain/core": "^1.2.9",
+    "@langchain/google-genai": "^2.3.0",
+    "@langchain/textsplitters": "^1.0.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "hnswlib-node": "^3.0.0"
+  }
+}

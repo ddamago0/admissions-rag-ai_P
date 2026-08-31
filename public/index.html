@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Colombia Language Academy - AI Admissions Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Top Navigation Bar -->
+    <header class="top-navbar">
+      <div class="brand-container">
+        <div class="brand-logo">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+            <path d="M6 6h10"/>
+            <path d="M6 10h10"/>
+            <path d="M6 14h7"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">Colombia Language Academy</h1>
+          <p class="brand-subtitle">AI Admissions & Academic Support Assistant</p>
+        </div>
+      </div>
+
+      <div class="header-badges">
+        <div class="status-chip online">
+          <span class="pulse-dot"></span>
+          <span>Gemini 1.5 Flash</span>
+        </div>
+        <div class="status-chip rag-chip">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+          <span>HNSWLib RAG</span>
+        </div>
+        <button id="btn-reindex" class="btn-secondary" title="Re-index Knowledge Base">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+          <span>Re-index Docs</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace Layout -->
+    <main class="main-layout">
+      
+      <!-- Chat Interface Column -->
+      <section class="chat-section">
+        
+        <!-- Human Escalation Alert Banner (Hidden by default) -->
+        <div id="escalation-banner" class="escalation-banner hidden">
+          <div class="escalation-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="escalation-content">
+            <div class="escalation-header">
+              <strong>Human Advisor Escalation Dispatched</strong>
+              <span id="escalation-ticket-id" class="ticket-badge">ESC-000000</span>
+            </div>
+            <p id="escalation-reason-text">Your inquiry has been routed to our Admissions & Support Team.</p>
+            <div class="escalation-actions">
+              <a href="https://wa.me/573109876543" target="_blank" rel="noopener noreferrer" class="contact-link whatsapp">
+                <span>WhatsApp: +57 310 987 6543</span>
+              </a>
+              <a href="tel:+576017459000" class="contact-link phone">
+                <span>PBX: +57 (601) 745-9000</span>
+              </a>
+            </div>
+          </div>
+          <button id="close-escalation-banner" class="btn-icon" aria-label="Dismiss banner">✕</button>
+        </div>
+
+        <!-- Chat Messages Container -->
+        <div id="chat-messages" class="chat-messages">
+          
+          <!-- Welcome Message -->
+          <div class="message assistant welcome-card">
+            <div class="msg-avatar">
+              <span>🇨🇴</span>
+            </div>
+            <div class="msg-body">
+              <h3>Welcome to Colombia Language Academy!</h3>
+              <p>I am your AI admissions assistant grounded in our official academic and pricing policies. How can I help you today?</p>
+              
+              <div class="info-highlights">
+                <div class="highlight-item">
+                  <strong>Languages:</strong> English, French, German, Portuguese, Italian, Spanish
+                </div>
+                <div class="highlight-item">
+                  <strong>Campuses:</strong> Bogotá (Calle 72 & Usaquén), Medellín (El Poblado & Laureles) & Live Online
+                </div>
+                <div class="highlight-item">
+                  <strong>Payment:</strong> PSE, Credit Cards, Addi Financing (All prices in COP)
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Suggestion Chips Row -->
+        <div class="suggestions-container">
+          <span class="suggestion-label">Quick topics:</span>
+          <div id="chips-row" class="chips-row">
+            <button class="chip" data-query="What are the tuition fees and discounts for English courses?">💰 Tuition & Discounts</button>
+            <button class="chip" data-query="What class schedules and modalities are available in Bogotá and Medellín?">🗓️ Schedules & Campuses</button>
+            <button class="chip" data-query="Do you offer official IELTS and DELF certification prep? What is the passing grade?">🎓 IELTS / Certifications</button>
+            <button class="chip" data-query="Can I pay using PSE or Addi financing?">💳 Payment Methods (PSE)</button>
+            <button class="chip" data-query="I have a billing issue and need an advisor to call me at 3101234567.">🚨 Contact Human Advisor</button>
+          </div>
+        </div>
+
+        <!-- Chat Input Form -->
+        <form id="chat-form" class="chat-input-container">
+          <div class="input-wrapper">
+            <textarea 
+              id="user-input" 
+              placeholder="Ask about courses, schedules, COP pricing, refund policies, or request an advisor..." 
+              rows="1"
+              maxlength="1000"
+              required
+            ></textarea>
+            <button type="submit" id="btn-send" class="btn-send" aria-label="Send message">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+          <div class="input-footer">
+            <span class="input-hint">Press <strong>Enter</strong> to send, <strong>Shift + Enter</strong> for newline</span>
+            <span id="char-counter" class="char-counter">0 / 1000</span>
+          </div>
+        </form>
+
+      </section>
+
+      <!-- Real-Time Metrics & Knowledge Sidebar -->
+      <aside class="sidebar-section">
+        
+        <!-- Live Metrics Card -->
+        <div class="card metrics-card">
+          <div class="card-header">
+            <h3>System & Operational Metrics</h3>
+            <span class="live-tag">LIVE</span>
+          </div>
+          
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-val" id="metric-total-queries">0</span>
+              <span class="metric-title">Total Queries</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val" id="metric-escalation-rate">0.0%</span>
+              <span class="metric-title">Escalation Rate</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val" id="metric-avg-latency">0 ms</span>
+              <span class="metric-title">Avg Latency</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val" id="metric-est-tokens">0</span>
+              <span class="metric-title">Est. Tokens</span>
+            </div>
+          </div>
+
+          <div class="metric-cost-row">
+            <span>Estimated API Cost:</span>
+            <strong id="metric-est-cost">$0.000000</strong>
+          </div>
+        </div>
+
+        <!-- Knowledge Base Documents Card -->
+        <div class="card kb-card">
+          <div class="card-header">
+            <h3>Knowledge Base (RAG)</h3>
+            <span class="badge-count">3 Docs</span>
+          </div>
+          <ul class="kb-doc-list">
+            <li class="kb-doc-item">
+              <span class="doc-icon">📄</span>
+              <div class="doc-details">
+                <strong>courses_and_levels.md</strong>
+                <span>6 Languages, A1-C1 CEFR, 4 Tracks</span>
+              </div>
+            </li>
+            <li class="kb-doc-item">
+              <span class="doc-icon">📄</span>
+              <div class="doc-details">
+                <strong>pricing_and_enrollment.md</strong>
+                <span>COP Tuition, PSE, Addi, Refunds</span>
+              </div>
+            </li>
+            <li class="kb-doc-item">
+              <span class="doc-icon">📄</span>
+              <div class="doc-details">
+                <strong>certifications_and_policies.md</strong>
+                <span>IELTS/DELF, 80% Attendance, Escalations</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Python Automation Status Card -->
+        <div class="card automation-card">
+          <div class="card-header">
+            <h3>Python Automation Bridge</h3>
+            <span class="badge-pulse">Webhook Ready</span>
+          </div>
+          <p class="automation-desc">
+            Monitors incoming customer queries and automatically logs urgent tickets to <code>automation/escalations.log</code> upon AI escalation signals.
+          </p>
+          <div class="hotline-box">
+            <div><strong>Central PBX:</strong> +57 (601) 745-9000</div>
+            <div><strong>WhatsApp:</strong> +57 310 987 6543</div>
+            <div><strong>Hours:</strong> Mon-Fri 7am-8pm, Sat 8am-4pm (COT)</div>
+          </div>
+        </div>
+
+        <!-- Recent Escalated Tickets List -->
+        <div class="card tickets-card">
+          <div class="card-header">
+            <h3>Recent Escalations</h3>
+          </div>
+          <div id="recent-tickets-list" class="recent-tickets-list">
+            <div class="no-tickets">No active escalations recorded.</div>
+          </div>
+        </div>
+
+      </aside>
+
+    </main>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
