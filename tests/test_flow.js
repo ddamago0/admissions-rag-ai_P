@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url';
 import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
 import { authenticateAdmin, generateAdminToken, verifyAdminToken } from '../src/services/authService.js';
 import { recordQueryMetric, getSessionHistory, getMetricsSnapshot } from '../src/services/metricsService.js';
+import { config } from '../src/config/env.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -78,8 +79,8 @@ assert(metrics.escalatedQueries >= 1, `Escalated queries metric recorded (Count:
 
 // 3. Admin Authentication & Security
 console.log('\n--- Test Suite 3: Admin Authentication & Security Guardrails ---');
-const validLogin = authenticateAdmin('admin', 'admin2026');
-assert(validLogin === true, 'Admin authentication succeeds with valid credentials (admin/admin2026)');
+const validLogin = authenticateAdmin(config.admin.username, config.admin.password);
+assert(validLogin === true, 'Admin authentication succeeds with valid configured credentials');
 
 const invalidLogin = authenticateAdmin('admin', 'wrongpassword123');
 assert(invalidLogin === false, 'Admin authentication rejects invalid password');

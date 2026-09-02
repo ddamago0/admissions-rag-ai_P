@@ -298,5 +298,30 @@
       "advisor_phone": "+573014777763",
       "whatsapp_action_link": "https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260901-CB96E3%5D%3A%20El%20estudiante%20reporta%20un%20cobro%20doble%20%28problema%20de%20facturaci%C3%B3n/reembolso%29%20y%20ha%20proporcionado%20toda%20su%20informaci%C3%B3n%20de%20contacto%20%28Nombre%20completo%2C%20tel%C3%A9fono%20y%20correo%20electr%C3%B3nico%29%20para%20que%20el%20caso%20sea%20escalado%20al%20departamento%20financiero."
     }
+  },
+  {
+    "ticket_id": "ESC-20260901-28AE0C",
+    "timestamp": "2026-09-02T04:44:37.684995+00:00",
+    "status": "PENDING_HUMAN_REVIEW",
+    "priority": "MEDIUM",
+    "reason": "El usuario ha proporcionado sus datos de contacto y su ubicación (Barranquilla), expresando su interés o solicitud personal al registrarse.",
+    "lead_info": {
+      "name": "Breyner manga",
+      "first_name": "Breyner",
+      "phone": "3247836387",
+      "email": "breynermanga07@gmail.com",
+      "topic": "Interés en cursos desde Barranquilla"
+    },
+    "inquiry": "Breyner manga , 3247836387 , breynermanga07@gmail.com, barranquilla",
+    "ai_reply": "¡Hola, Breyner! Hemos recibido tus datos de contacto correctamente. Como nuestra sede física principal se encuentra en Bogotá y Medellín (y también contamos con clases virtuales en vivo para todo el país), un asesor especializado se pondrá en contacto contigo al correo breynermanga07@gmail.com o a tu número telefónico 3247836387 para guiarte en el proceso de inscripción y resolver cualquier duda sobre nuestros cursos de idiomas.",
+    "sources": [
+      "pricing_and_enrollment.md",
+      "certifications_and_policies.md"
+    ],
+    "assigned_to": {
+      "advisor_email": "ddamago0@gmail.com",
+      "advisor_phone": "+573014777763",
+      "whatsapp_action_link": "https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260901-28AE0C%5D%3A%20El%20usuario%20ha%20proporcionado%20sus%20datos%20de%20contacto%20y%20su%20ubicaci%C3%B3n%20%28Barranquilla%29%2C%20expresando%20su%20inter%C3%A9s%20o%20solicitud%20personal%20al%20registrarse."
+    }
   }
 ]

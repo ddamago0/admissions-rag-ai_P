@@ -14,15 +14,14 @@ export function authenticateAdmin(username, password) {
     return false;
   }
 
-  // Timing-safe comparison to prevent timing attacks
-  const userMatch = crypto.timingSafeEqual(
-    Buffer.from(username.padEnd(64, ' ')),
-    Buffer.from(validUser.padEnd(64, ' '))
-  );
-  const passMatch = crypto.timingSafeEqual(
-    Buffer.from(password.padEnd(64, ' ')),
-    Buffer.from(validPass.padEnd(64, ' '))
-  );
+  // Hash both with SHA-256 to produce fixed 32-byte buffers for timingSafeEqual
+  const userHash = crypto.createHash('sha256').update(String(username)).digest();
+  const validUserHash = crypto.createHash('sha256').update(String(validUser)).digest();
+  const passHash = crypto.createHash('sha256').update(String(password)).digest();
+  const validPassHash = crypto.createHash('sha256').update(String(validPass)).digest();
+
+  const userMatch = crypto.timingSafeEqual(userHash, validUserHash);
+  const passMatch = crypto.timingSafeEqual(passHash, validPassHash);
 
   return userMatch && passMatch;
 }

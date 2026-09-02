@@ -158,3 +158,15 @@ Advisor Notification: ddamago0@gmail.com | WhatsApp: +573014777763
 Direct WhatsApp Link: https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260901-CB96E3%5D%3A%20El%20estudiante%20reporta%20un%20cobro%20doble%20%28problema%20de%20facturaci%C3%B3n/reembolso%29%20y%20ha%20proporcionado%20toda%20su%20informaci%C3%B3n%20de%20contacto%20%28Nombre%20completo%2C%20tel%C3%A9fono%20y%20correo%20electr%C3%B3nico%29%20para%20que%20el%20caso%20sea%20escalado%20al%20departamento%20financiero.
 =================================================================
 2026-09-01 21:14:04,980 [WARNING] [Telegram Alert] Telegram API returned status 400: {"ok":false,"error_code":400,"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 454"}
+2026-09-01 23:44:37,685 [WARNING] 
+=================================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260901-28AE0C
+Timestamp: 2026-09-02T04:44:37.684995+00:00
+Priority: MEDIUM
+Reason: El usuario ha proporcionado sus datos de contacto y su ubicación (Barranquilla), expresando su interés o solicitud personal al registrarse.
+Lead Contact: {"name": "Breyner manga", "first_name": "Breyner", "phone": "3247836387", "email": "breynermanga07@gmail.com", "topic": "Interés en cursos desde Barranquilla"}
+Inquiry: "Breyner manga , 3247836387 , breynermanga07@gmail.com, barranquilla"
+Advisor Notification: ddamago0@gmail.com | WhatsApp: +573014777763
+Direct WhatsApp Link: https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260901-28AE0C%5D%3A%20El%20usuario%20ha%20proporcionado%20sus%20datos%20de%20contacto%20y%20su%20ubicaci%C3%B3n%20%28Barranquilla%29%2C%20expresando%20su%20inter%C3%A9s%20o%20solicitud%20personal%20al%20registrarse.
+=================================================================
+2026-09-01 23:44:38,189 [WARNING] [Telegram Alert] Telegram API returned status 400: {"ok":false,"error_code":400,"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 362"}

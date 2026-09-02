@@ -218,30 +218,26 @@ export async function handleChat(req, res, next) {
         console.warn('Telegram direct dispatch error:', e.message);
       }
 
-      // 2. Send email notification to advisor
-      try {
-        await sendAdvisorEmailAlert({
-          ticketId: generatedTicketId,
-          reason: aiResult.reason,
-          leadInfo: aiResult.lead_info,
-          inquiry: message,
-          reply: aiResult.reply
-        });
-      } catch (e) {
-        console.warn('Email dispatch error:', e.message);
-      }
+      // 2. Send email notification in background (non-blocking)
+      sendAdvisorEmailAlert({
+        ticketId: generatedTicketId,
+        reason: aiResult.reason,
+        leadInfo: aiResult.lead_info,
+        inquiry: message,
+        reply: aiResult.reply
+      }).catch(e => console.warn('Email dispatch error in background:', e.message));
 
-      // 3. Forward to Python automation orchestrator
-      const pythonTicketId = await dispatchPythonEscalation({
+      // 3. Forward to Python automation orchestrator in background (non-blocking)
+      dispatchPythonEscalation({
         ticket_id: generatedTicketId,
         reason: aiResult.reason,
         lead_info: aiResult.lead_info,
         inquiry: message,
         reply: aiResult.reply,
         sources: aiResult.sources || []
-      });
+      }).catch(e => console.warn('Python automation dispatch error in background:', e.message));
 
-      ticketId = pythonTicketId || generatedTicketId;
+      ticketId = generatedTicketId;
     } else {
       // Not escalated: store in dynamic cache to accelerate future identical queries
       setDynamicCachedResponse(message, {

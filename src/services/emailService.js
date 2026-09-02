@@ -3,41 +3,42 @@ import { config } from '../config/env.js';
 
 let transporter = null;
 
-function getTransporter() {
+function createTransporter(targetPort = 465) {
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
   const host = process.env.SMTP_HOST || 'smtp.gmail.com';
-  const port = parseInt(process.env.SMTP_PORT || '587', 10);
+  const isSecure = targetPort === 465;
 
   if (!user || !pass) {
     return null;
   }
 
-  if (!transporter) {
-    transporter = nodemailer.createTransport({
-      host,
-      port,
-      secure: port === 465,
-      auth: { user, pass }
-    });
-  }
-
-  return transporter;
+  return nodemailer.createTransport({
+    host,
+    port: targetPort,
+    secure: isSecure,
+    auth: { user, pass },
+    connectionTimeout: 8000,
+    greetingTimeout: 8000,
+    socketTimeout: 8000
+  });
 }
 
 /**
  * Sends a stylized HTML email alert to the advisor's email address.
+ * Automatically attempts Port 465 (SMTPS) first (optimal for cloud hosts like Render),
+ * and falls back to Port 587 if needed.
  */
 export async function sendAdvisorEmailAlert({ ticketId, reason, leadInfo, inquiry, reply }) {
   const targetEmail = process.env.ADVISOR_EMAIL || 'ddamago0@gmail.com';
-  const client = getTransporter();
+  const senderUser = process.env.SMTP_USER;
+  const senderPass = process.env.SMTP_PASS;
 
-  if (!client) {
-    console.log(`[Email Dispatcher] SMTP credentials not set in .env. To receive email alerts at ${targetEmail}, configure SMTP_USER and SMTP_PASS (e.g. Gmail App Password).`);
+  if (!senderUser || !senderPass) {
+    console.log(`[Email Dispatcher] SMTP credentials not configured. To receive email alerts at ${targetEmail}, add SMTP_USER and SMTP_PASS in environment.`);
     return false;
   }
 
-  const senderUser = process.env.SMTP_USER;
   const leadName = leadInfo?.name || 'Student / Prospect';
   const leadPhone = leadInfo?.phone || 'N/A';
   const leadEmail = leadInfo?.email || 'N/A';
@@ -98,17 +99,31 @@ export async function sendAdvisorEmailAlert({ ticketId, reason, leadInfo, inquir
   </html>
   `;
 
+  const primaryPort = parseInt(process.env.SMTP_PORT || '465', 10);
+  const secondaryPort = primaryPort === 465 ? 587 : 465;
+
+  const mailOptions = {
+    from: `"Colombia Language Academy" <${senderUser}>`,
+    to: targetEmail,
+    subject: `🚨 [Ticket ${ticketId}] Nueva Solicitud de Atención: ${leadName}`,
+    html: htmlContent
+  };
+
   try {
-    const info = await client.sendMail({
-      from: `"Colombia Language Academy" <${senderUser}>`,
-      to: targetEmail,
-      subject: `🚨 [Ticket ${ticketId}] Nueva Solicitud de Atención: ${leadName}`,
-      html: htmlContent
-    });
-    console.log(`[Email Dispatcher] Alert successfully sent to ${targetEmail}: ${info.messageId}`);
+    const primaryClient = createTransporter(primaryPort);
+    const info = await primaryClient.sendMail(mailOptions);
+    console.log(`[Email Dispatcher] Alert successfully sent to ${targetEmail} via port ${primaryPort}: ${info.messageId}`);
     return true;
-  } catch (error) {
-    console.warn(`[Email Dispatcher] Failed to send email via SMTP: ${error.message}`);
-    return false;
+  } catch (errPrimary) {
+    console.warn(`[Email Dispatcher] Port ${primaryPort} dispatch failed (${errPrimary.message}). Retrying via port ${secondaryPort}...`);
+    try {
+      const secondaryClient = createTransporter(secondaryPort);
+      const fallbackInfo = await secondaryClient.sendMail(mailOptions);
+      console.log(`[Email Dispatcher] Alert successfully sent to ${targetEmail} via fallback port ${secondaryPort}: ${fallbackInfo.messageId}`);
+      return true;
+    } catch (errSecondary) {
+      console.warn(`[Email Dispatcher] Fallback port ${secondaryPort} also failed (${errSecondary.message}). Check SMTP host policy.`);
+      return false;
+    }
   }
 }
