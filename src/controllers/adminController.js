@@ -3,6 +3,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { authenticateAdmin, generateAdminToken } from '../services/authService.js';
 import { runIngestion } from '../rag/ingest.js';
+import { clearVectorStoreCache } from '../rag/retriever.js';
+import { flushDynamicCache } from '../services/cacheService.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -177,6 +179,8 @@ export async function handleCreateDocument(req, res) {
     let reindexed = false;
     try {
       await runIngestion();
+      clearVectorStoreCache();
+      flushDynamicCache();
       reindexed = true;
     } catch (ingestErr) {
       console.warn(`[Admin Auto-Ingest Warning]: ${ingestErr.message}`);
@@ -221,6 +225,8 @@ export async function handleUpdateDocument(req, res) {
     let reindexed = false;
     try {
       await runIngestion();
+      clearVectorStoreCache();
+      flushDynamicCache();
       reindexed = true;
     } catch (ingestErr) {
       console.warn(`[Admin Auto-Ingest Warning]: ${ingestErr.message}`);
@@ -269,6 +275,8 @@ export async function handleDeleteDocument(req, res) {
     let reindexed = false;
     try {
       await runIngestion();
+      clearVectorStoreCache();
+      flushDynamicCache();
       reindexed = true;
     } catch (ingestErr) {
       console.warn(`[Admin Auto-Ingest Warning]: ${ingestErr.message}`);

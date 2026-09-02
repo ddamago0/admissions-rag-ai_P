@@ -89,3 +89,72 @@ Reason: Inconveniente con doble cobro en tarjeta y solicitud de ayuda financiera
 Lead Contact: {"name": "Daniel David Martinez Gonzalez", "first_name": "Daniel", "phone": "3014777763", "email": "ddamago0@gmail.com", "topic": "Inconveniente con doble cobro en tarjeta y solicitud de ayuda financiera"}
 Inquiry: "Mi nombre completo es Daniel David Martinez Gonzalez, teléfono 3014777763 y correo ddamago0@gmail.com. Tengo un problema de doble cobro en mi tarjeta y requiero ayuda financiera."
 ============================================================
+2026-09-01 19:21:27,404 [INFO] Python Automation Orchestrator listening on http://localhost:5000
+2026-09-01 19:21:27,404 [INFO] - Target Advisor: ddamago0@gmail.com | WhatsApp/Telegram: +573014777763
+2026-09-01 19:21:27,404 [INFO] - Webhook Endpoint: http://localhost:5000/webhook/escalations
+2026-09-01 19:21:27,404 [INFO] - Health Check: http://localhost:5000/health
+2026-09-01 19:34:34,279 [WARNING] 
+=================================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260901-99C070
+Timestamp: 2026-09-02T00:34:34.278738+00:00
+Priority: MEDIUM
+Reason: El usuario solicita un reembolso por un cobro doble (problema transaccional/financiero que requiere intervención administrativa).
+Lead Contact: {"name": "Moises Cantillo", "first_name": "Moises", "phone": "3046062620", "email": "moise@gmail.com", "topic": "Solicitud de reembolso por cobro doble"}
+Inquiry: "Mi nombre es Moises Cantillo, telefono 3046062620 y correo moise@gmail.com, necesito mi reembolso del cobro doble."
+Advisor Notification: ddamago0@gmail.com | WhatsApp: +573014777763
+Direct WhatsApp Link: https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260901-99C070%5D%3A%20El%20usuario%20solicita%20un%20reembolso%20por%20un%20cobro%20doble%20%28problema%20transaccional/financiero%20que%20requiere%20intervenci%C3%B3n%20administrativa%29.
+=================================================================
+2026-09-01 19:34:34,798 [WARNING] [Telegram Alert] Telegram API returned status 400: {"ok":false,"error_code":400,"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 353"}
+2026-09-01 19:41:04,132 [WARNING] 
+=================================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260901-22D241
+Timestamp: 2026-09-02T00:41:04.130064+00:00
+Priority: MEDIUM
+Reason: El estudiante reporta un cobro doble y solicita el reembolso de su dinero, requiriendo intervención del departamento de facturación.
+Lead Contact: {"name": "Moises Cantillo", "first_name": "Moises", "phone": "3046062620", "email": "moise@gmail.com", "topic": "Inconveniente con cobro doble y solicitud de reembolso"}
+Inquiry: "Mi nombre completo es moises cantillo, mi numeroo es 3046062620 y mi correo es moise@gmail.com, quisiera que me hicieran el reembolso de mi dinero."
+Advisor Notification: ddamago0@gmail.com | WhatsApp: +573014777763
+Direct WhatsApp Link: https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260901-22D241%5D%3A%20El%20estudiante%20reporta%20un%20cobro%20doble%20y%20solicita%20el%20reembolso%20de%20su%20dinero%2C%20requiriendo%20intervenci%C3%B3n%20del%20departamento%20de%20facturaci%C3%B3n.
+=================================================================
+2026-09-01 19:41:04,692 [WARNING] [Telegram Alert] Telegram API returned status 400: {"ok":false,"error_code":400,"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 357"}
+2026-09-01 19:48:24,140 [WARNING] 
+=================================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260901-C72CB2
+Timestamp: 2026-09-02T00:48:24.140261+00:00
+Priority: MEDIUM
+Reason: Conflicto grave entre estudiantes que requiere mediación y posible intervención disciplinaria de la Dirección Académica o Bienestar Estudiantil.
+Lead Contact: {"name": null, "first_name": null, "phone": null, "email": null, "topic": "Consulta sobre consecuencias y mediación por conflicto grave entre estudiantes"}
+Inquiry: "si me peleo gravemente con un compaño del programa dentro de la academia, que consecuencias tengo?"
+Advisor Notification: ddamago0@gmail.com | WhatsApp: +573014777763
+Direct WhatsApp Link: https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260901-C72CB2%5D%3A%20Conflicto%20grave%20entre%20estudiantes%20que%20requiere%20mediaci%C3%B3n%20y%20posible%20intervenci%C3%B3n%20disciplinaria%20de%20la%20Direcci%C3%B3n%20Acad%C3%A9mica%20o%20Bienestar%20Estudiantil.
+=================================================================
+2026-09-01 19:48:24,660 [WARNING] [Telegram Alert] Telegram API returned status 400: {"ok":false,"error_code":400,"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 358"}
+2026-09-01 20:07:14,076 [INFO] Shutting down automation orchestrator server...
+2026-09-01 20:07:22,006 [INFO] Python Automation Orchestrator listening on http://localhost:5000
+2026-09-01 20:07:22,006 [INFO] - Target Advisor: ddamago0@gmail.com | WhatsApp/Telegram: +573014777763
+2026-09-01 20:07:22,007 [INFO] - Webhook Endpoint: http://localhost:5000/webhook/escalations
+2026-09-01 20:07:22,007 [INFO] - Health Check: http://localhost:5000/health
+2026-09-01 20:46:54,643 [WARNING] 
+=================================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260901-FA982D
+Timestamp: 2026-09-02T01:46:54.643059+00:00
+Priority: MEDIUM
+Reason: El estudiante reporta un cobro duplicado y solicita un reembolso, proporcionando sus datos de contacto completos para asignación de caso con facturación.
+Lead Contact: {"name": "Camilo Torres", "first_name": "Camilo", "phone": "3014777763", "email": "camilo.torres@gmail.com", "topic": "Reclamo por cobro duplicado y solicitud de reembolso"}
+Inquiry: "Mi nombre es Camilo Torres, mi teléfono es 3014777763 y mi correo es camilo.torres@gmail.com, por favor ayúdenme con el reembolso."
+Advisor Notification: ddamago0@gmail.com | WhatsApp: +573014777763
+Direct WhatsApp Link: https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260901-FA982D%5D%3A%20El%20estudiante%20reporta%20un%20cobro%20duplicado%20y%20solicita%20un%20reembolso%2C%20proporcionando%20sus%20datos%20de%20contacto%20completos%20para%20asignaci%C3%B3n%20de%20caso%20con%20facturaci%C3%B3n.
+=================================================================
+2026-09-01 20:46:55,300 [WARNING] [Telegram Alert] Telegram API returned status 400: {"ok":false,"error_code":400,"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 376"}
+2026-09-01 21:14:04,478 [WARNING] 
+=================================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260901-CB96E3
+Timestamp: 2026-09-02T02:14:04.477632+00:00
+Priority: MEDIUM
+Reason: El estudiante reporta un cobro doble (problema de facturación/reembolso) y ha proporcionado toda su información de contacto (Nombre completo, teléfono y correo electrónico) para que el caso sea escalado al departamento financiero.
+Lead Contact: {"name": "Shalen Sofia", "first_name": "Shalen", "phone": "3046062620", "email": "shalen@gmail.com", "topic": "Reporte de cobro doble y solicitud de reembolso"}
+Inquiry: "mi nombre es shalen sofia, mi numero es 3046062620 y mi correo es shalen@gmail.com"
+Advisor Notification: ddamago0@gmail.com | WhatsApp: +573014777763
+Direct WhatsApp Link: https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260901-CB96E3%5D%3A%20El%20estudiante%20reporta%20un%20cobro%20doble%20%28problema%20de%20facturaci%C3%B3n/reembolso%29%20y%20ha%20proporcionado%20toda%20su%20informaci%C3%B3n%20de%20contacto%20%28Nombre%20completo%2C%20tel%C3%A9fono%20y%20correo%20electr%C3%B3nico%29%20para%20que%20el%20caso%20sea%20escalado%20al%20departamento%20financiero.
+=================================================================
+2026-09-01 21:14:04,980 [WARNING] [Telegram Alert] Telegram API returned status 400: {"ok":false,"error_code":400,"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 454"}

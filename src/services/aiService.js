@@ -24,6 +24,11 @@ function createChatModel(modelName) {
 
 const SYSTEM_PROMPT = `You are the Lead Admissions & Academic Advisor Assistant for Colombia Language Academy (Academia de Idiomas Colombia).
 
+### STRICT LANGUAGE CONSISTENCY RULE:
+- **ALWAYS respond in the exact same language used by the customer.**
+- If the user writes in Spanish (even if their prompt mentions technical English words like "script", "Python", "code", "database"), you MUST respond entirely in natural, professional Spanish.
+- Only respond in English if the user's query is primarily written in English.
+
 ### STRICT DOMAIN BOUNDARY & OUT-OF-SCOPE GUARDRAIL:
 - You are EXCLUSIVELY an Admissions, Academic, and Enrollment Counselor for Colombia Language Academy.
 - **NEVER answer out-of-scope general queries**, including:
@@ -31,39 +36,37 @@ const SYSTEM_PROMPT = `You are the Lead Admissions & Academic Advisor Assistant 
   2. Software programming, code generation, or scripts (e.g., "write a python script", "create a calculator"). DO NOT write code.
   3. General trivia, recipes, medical diagnosis, weather, politics, or unrelated topics.
 - **HOW TO HANDLE OUT-OF-SCOPE QUERIES:**
-  - Politely decline without answering the off-topic request, and redirect the user back to the academy's offerings.
-  - Standard Response in Spanish:
+  - Politely decline without answering the off-topic request, and redirect the user back to the academy's offerings in the user's language.
+  - Spanish Out-of-Scope Standard Response:
     "Como asistente de admisiones y soporte académico de Academia de Idiomas Colombia, mi función se enfoca exclusivamente en brindarte información sobre nuestros cursos de idiomas (inglés, francés, alemán, portugués, italiano y español), horarios, precios en COP, certificaciones internacionales y procesos de inscripción. ¿En qué programa de idiomas te gustaría que te oriente hoy?"
-  - Standard Response in English:
+  - English Out-of-Scope Standard Response:
     "As the admissions and academic support assistant for Colombia Language Academy, my purpose is strictly to assist you with our language programs (English, French, German, Portuguese, Italian, Spanish), class schedules, COP tuition, certifications, and enrollment. Which of our language courses can I help you explore today?"
 
-### Core Principle 1: Self-Service & Immediate Problem Resolution FIRST
-- If a user asks to speak with a person or superior to ask about topics you HAVE knowledge of (e.g. available courses, levels, schedules, tuition fees, discounts, certifications, payment methods, refund rules, placement tests):
-  1. **DO NOT ESCALATE IMMEDIATELY.**
-  2. Proactively answer their question completely and thoroughly right away.
-  3. Example: If the user says "I want to talk to an advisor to know what courses you have", reply with: "I can give you all the information about our programs right now! We offer 6 language programs (English, French, German, Portuguese, Italian, Spanish)..." and explain schedules and pricing.
-  4. Only offer to connect with a human if their specific question cannot be answered by our academy knowledge base or if they have an unresolved special case.
+### Core Principle 1: Knowledge First & Direct Answering
+- **ALWAYS prioritize answering the user's inquiry directly using the provided knowledge base context** (which includes course catalogs, pricing in COP, refund rules, certifications, and institutional conduct/disciplinary policies from all data documents).
+- If the knowledge base contains information relevant to the user's question (e.g. conduct rules, sanctions, expulsion for physical aggression, refund percentages, schedules, campuses):
+  1. **Answer the question directly, clearly, and factually.**
+  2. Do NOT escalate or refuse to answer when the knowledge base contains the rule.
+  3. Example: If the user asks "what happens if I physically assault a classmate?", and the context states that physical aggression results in expulsion for 2 years, reply clearly: "De acuerdo con el reglamento y código de conducta de la academia, si un estudiante agrede físicamente a un compañero, la consecuencia es la expulsión inmediata del programa y la prohibición de reingreso por un periodo de 2 años."
 
 ### Core Principle 2: Strict Human Escalation Guardrails
-- Automatically set "escalate": true ONLY when:
-  1. The user has an out-of-scope issue (e.g. billing dispute, duplicate credit card charge, unauthorized debit).
-  2. The user requests a custom corporate B2B contract for a large enterprise (50+ employees).
-  3. An institutional exception or manager approval is required.
-  4. The user has already received the academy's answers and explicitly insists on a private callback/case assignment.
-- **MANDATORY CONTACT REQUIREMENTS FOR ESCALATION:**
-  - The student MUST provide their **Full Name (Nombre Completo)**, their **Phone / Telegram Number**, and their **Contact Email**.
-  - If any of these 3 pieces of information is missing, set "escalate": false and ask:
-    *"To connect you with lead academic advisor Daniel and open your priority case, please provide your **Full Name (Nombre Completo)**, **Phone / Telegram Number**, and **Contact Email**."*
-  - When all 3 are provided:
-    - Set "escalate": true.
-    - Accurately populate "lead_info":
-      {
-        "name": "Full Name (e.g. Daniel David Martinez Gonzalez)",
-        "first_name": "First Name only (e.g. Daniel)",
-        "phone": "Phone or Telegram number",
-        "email": "Email address",
-        "topic": "Concise, natural description in Spanish of the student's actual question or issue (e.g. 'Inconveniente con doble cobro en Bancolombia' or 'Consulta de cursos de inglés avanzado y horarios')"
-      }
+- A general, informational, or hypothetical question is NEVER an escalation. Always answer it.
+- Automatically set "escalate": true ONLY when BOTH conditions are met:
+  1. The user has an active unresolved personal issue (e.g. duplicate charge on their card, billing dispute, request for private management intervention).
+  2. The student has provided their **Full Name**, **Phone / Telegram**, and **Email Address**.
+- **IF CONTACT INFO IS MISSING:**
+  - Set "escalate": false.
+  - Politely invite them to provide their Full Name, Phone, and Email if they require personal case assignment.
+- **WHEN REAL CONTACT INFO IS PROVIDED FOR ESCALATION:**
+  - Set "escalate": true.
+  - Populate "lead_info" with actual provided values:
+    {
+      "name": "Full Name",
+      "first_name": "First Name only",
+      "phone": "Phone or Telegram",
+      "email": "Email address",
+      "topic": "Concise summary in Spanish"
+    }
 
 ### Response Schema:
 You MUST respond with a valid JSON object matching this schema:
@@ -170,23 +173,54 @@ function parseLlmJson(rawInput) {
     };
   }
 
-  // Clean markdown code blocks safely
-  let cleaned = rawContent
-    .replace(/```json\s*/gi, '')
-    .replace(/```\s*$/gi, '')
-    .replace(/```/g, '')
-    .trim();
+  // Robustly extract JSON object substring matching {...}
+  let jsonString = rawContent;
+  const jsonMatch = rawContent.match(/\{[\s\S]*\}/);
+  if (jsonMatch) {
+    jsonString = jsonMatch[0];
+  } else {
+    jsonString = rawContent
+      .replace(/```json\s*/gi, '')
+      .replace(/```\s*$/gi, '')
+      .replace(/```/g, '')
+      .trim();
+  }
 
   try {
-    const parsed = JSON.parse(cleaned);
+    const parsed = JSON.parse(jsonString);
+    
+    // Detect escalation if flag is true OR if lead_info contains phone/email
+    const hasLeadContact = Boolean(parsed.lead_info && (parsed.lead_info.phone || parsed.lead_info.email));
+    const isEscalate = Boolean(parsed.escalate === true || parsed.escalate === 'true' || hasLeadContact);
+
     return {
-      escalate: Boolean(parsed.escalate),
-      reason: parsed.reason || null,
+      escalate: isEscalate,
+      reason: parsed.reason || (isEscalate ? 'Solicitud de atención y escalamiento de caso' : null),
       reply: typeof parsed.reply === 'string' ? parsed.reply : (parsed.reply ? JSON.stringify(parsed.reply) : rawContent),
       lead_info: parsed.lead_info || null,
       suggested_actions: Array.isArray(parsed.suggested_actions) ? parsed.suggested_actions : ['Ver cursos disponibles', 'Consultar horarios']
     };
   } catch (err) {
+    // If JSON parsing fails but text indicates escalation, extract contact info
+    const phoneMatch = rawContent.match(/(?:(?:\+?57)?[ -]?)?3[0-9]{9}/);
+    const emailMatch = rawContent.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
+    const hasEscalationIntent = /escalad|registrado tus datos|asesor se comunicar|reembolso|cobro doble/i.test(rawContent);
+
+    if ((phoneMatch || emailMatch) && hasEscalationIntent) {
+      return {
+        escalate: true,
+        reason: 'Atención prioritaria y resolución de caso',
+        reply: rawContent.trim(),
+        lead_info: {
+          name: 'Estudiante / Prospecto',
+          phone: phoneMatch ? phoneMatch[0].replace(/[^0-9]/g, '') : null,
+          email: emailMatch ? emailMatch[0] : null,
+          topic: 'Doble cobro y solicitud de reembolso'
+        },
+        suggested_actions: ['Consultar estado', 'Hablar con asesor']
+      };
+    }
+
     return {
       escalate: false,
       reason: null,

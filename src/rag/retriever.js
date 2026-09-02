@@ -8,6 +8,13 @@ import { config, validateEnv } from '../config/env.js';
 let cachedVectorStore = null;
 
 /**
+ * Clears the in-memory cached vector store instance so subsequent queries reload the updated index.
+ */
+export function clearVectorStoreCache() {
+  cachedVectorStore = null;
+}
+
+/**
  * Initializes or retrieves the cached HNSWLib vector store.
  * @returns {Promise<HNSWLib>}
  */

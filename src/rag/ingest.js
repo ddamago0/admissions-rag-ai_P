@@ -6,6 +6,7 @@ import { TaskType } from '@google/generative-ai';
 import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
 import { HNSWLib } from '@langchain/community/vectorstores/hnswlib';
 import { Document } from '@langchain/core/documents';
+import { clearVectorStoreCache } from './retriever.js';
 import { config, validateEnv } from '../config/env.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -75,6 +76,7 @@ async function runIngestion() {
 
   const vectorStore = await HNSWLib.fromDocuments(chunks, embeddings);
   await vectorStore.save(vectorStoreDir);
+  clearVectorStoreCache();
 
   console.log('====================================================');
   console.log('Ingestion Completed Successfully!');

@@ -42,5 +42,9 @@ export const config = {
     username: process.env.ADMIN_USERNAME || 'admin',
     password: process.env.ADMIN_PASSWORD || 'admin2026',
     jwtSecret: process.env.ADMIN_JWT_SECRET || 'cla_super_secret_admin_jwt_key_2026_secure'
+  },
+  telegram: {
+    botToken: process.env.TELEGRAM_BOT_TOKEN || '8609383146:AAE48K-XTABoA_3JuAbxESGthxYXAZ0KGUU',
+    chatId: process.env.TELEGRAM_CHAT_ID || '7679504689'
   }
 };

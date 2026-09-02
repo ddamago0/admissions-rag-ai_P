@@ -235,7 +235,7 @@ async function handleSendMessage(messageText) {
       // Handle Escalation Banner
       if (data.escalate) {
         escalationTicketId.textContent = data.ticketId || 'ESC-PRIORITY';
-        escalationReasonText.textContent = data.reason || 'Your case has been escalated to academic advisor Daniel.';
+        escalationReasonText.textContent = 'Hemos registrado tus datos exitosamente. Nuestro asesor académico se pondrá en contacto directo contigo a la mayor brevedad.';
         escalationBanner.classList.remove('hidden');
       }
 
