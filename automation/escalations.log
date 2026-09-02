@@ -170,3 +170,15 @@ Advisor Notification: ddamago0@gmail.com | WhatsApp: +573014777763
 Direct WhatsApp Link: https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260901-28AE0C%5D%3A%20El%20usuario%20ha%20proporcionado%20sus%20datos%20de%20contacto%20y%20su%20ubicaci%C3%B3n%20%28Barranquilla%29%2C%20expresando%20su%20inter%C3%A9s%20o%20solicitud%20personal%20al%20registrarse.
 =================================================================
 2026-09-01 23:44:38,189 [WARNING] [Telegram Alert] Telegram API returned status 400: {"ok":false,"error_code":400,"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 362"}
+2026-09-02 00:26:53,300 [WARNING] 
+=================================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260902-3824BC
+Timestamp: 2026-09-02T05:26:53.300619+00:00
+Priority: MEDIUM
+Reason: El usuario ha proporcionado sus datos de contacto completos (nombre, teléfono y correo electrónico) y ha expresado una necesidad de soporte para resolver un problema de facturación (cobro duplicado de un módulo). Esto cumple las condiciones para escalar el caso a un asesor.
+Lead Contact: {"name": "daniel martinez", "first_name": "daniel", "phone": "3014777763", "email": "ddamago0@gmail.com", "topic": "Cobro duplicado de módulo y solicitud de comunicación con asesor."}
+Inquiry: "mi nombre es daniel martinez, mi numero es 3014777763 y mi correo es ddamago0@gmail.com"
+Advisor Notification: ddamago0@gmail.com | WhatsApp: +573014777763
+Direct WhatsApp Link: https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260902-3824BC%5D%3A%20El%20usuario%20ha%20proporcionado%20sus%20datos%20de%20contacto%20completos%20%28nombre%2C%20tel%C3%A9fono%20y%20correo%20electr%C3%B3nico%29%20y%20ha%20expresado%20una%20necesidad%20de%20soporte%20para%20resolver%20un%20problema%20de%20facturaci%C3%B3n%20%28cobro%20duplicado%20de%20un%20m%C3%B3dulo%29.%20Esto%20cumple%20las%20condiciones%20para%20escalar%20el%20caso%20a%20un%20asesor.
+=================================================================
+2026-09-02 00:26:53,802 [WARNING] [Telegram Alert] Telegram API returned status 400: {"ok":false,"error_code":400,"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 501"}

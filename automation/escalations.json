@@ -323,5 +323,30 @@
       "advisor_phone": "+573014777763",
       "whatsapp_action_link": "https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260901-28AE0C%5D%3A%20El%20usuario%20ha%20proporcionado%20sus%20datos%20de%20contacto%20y%20su%20ubicaci%C3%B3n%20%28Barranquilla%29%2C%20expresando%20su%20inter%C3%A9s%20o%20solicitud%20personal%20al%20registrarse."
     }
+  },
+  {
+    "ticket_id": "ESC-20260902-3824BC",
+    "timestamp": "2026-09-02T05:26:53.300619+00:00",
+    "status": "PENDING_HUMAN_REVIEW",
+    "priority": "MEDIUM",
+    "reason": "El usuario ha proporcionado sus datos de contacto completos (nombre, teléfono y correo electrónico) y ha expresado una necesidad de soporte para resolver un problema de facturación (cobro duplicado de un módulo). Esto cumple las condiciones para escalar el caso a un asesor.",
+    "lead_info": {
+      "name": "daniel martinez",
+      "first_name": "daniel",
+      "phone": "3014777763",
+      "email": "ddamago0@gmail.com",
+      "topic": "Cobro duplicado de módulo y solicitud de comunicación con asesor."
+    },
+    "inquiry": "mi nombre es daniel martinez, mi numero es 3014777763 y mi correo es ddamago0@gmail.com",
+    "ai_reply": "Gracias por proporcionarnos tus datos, Daniel Martínez. Hemos registrado tu caso sobre el cobro duplicado del módulo. Tu solicitud ha sido derivada al departamento de facturación y soporte financiero. Un asesor se comunicará contigo a través de tu correo electrónico (ddamago0@gmail.com) o teléfono (3014777763) a la mayor brevedad posible para verificar la transacción y gestionar la solución o reembolso correspondiente. Agradecemos tu paciencia.",
+    "sources": [
+      "pricing_and_enrollment.md",
+      "courses_and_levels.md"
+    ],
+    "assigned_to": {
+      "advisor_email": "ddamago0@gmail.com",
+      "advisor_phone": "+573014777763",
+      "whatsapp_action_link": "https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260902-3824BC%5D%3A%20El%20usuario%20ha%20proporcionado%20sus%20datos%20de%20contacto%20completos%20%28nombre%2C%20tel%C3%A9fono%20y%20correo%20electr%C3%B3nico%29%20y%20ha%20expresado%20una%20necesidad%20de%20soporte%20para%20resolver%20un%20problema%20de%20facturaci%C3%B3n%20%28cobro%20duplicado%20de%20un%20m%C3%B3dulo%29.%20Esto%20cumple%20las%20condiciones%20para%20escalar%20el%20caso%20a%20un%20asesor."
+    }
   }
 ]
