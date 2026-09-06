@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Portal - Colombia Language Academy</title>
+  <title>Panel de Administración - Colombia Language Academy</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="admin.css" />
 </head>
 <body>
@@ -16,29 +17,29 @@
     <div class="auth-card">
       <div class="auth-brand">
         <div class="auth-logo">⚙️</div>
-        <h2>Admin Management Portal</h2>
-        <p>Colombia Language Academy AI System</p>
+        <h2>Panel de Administración</h2>
+        <p>Sistema de Admisiones &amp; RAG AI • Colombia Language Academy</p>
       </div>
 
       <div id="auth-error-msg" class="alert-error hidden"></div>
 
       <form id="admin-login-form" class="auth-form">
         <div class="form-group">
-          <label for="admin-user">Administrator Username</label>
-          <input type="text" id="admin-user" placeholder="Enter username (e.g. admin)" required autocomplete="username" />
+          <label for="admin-user">Usuario Administrador</label>
+          <input type="text" id="admin-user" placeholder="Ingresa tu usuario (ej. admin)" required autocomplete="username" />
         </div>
 
         <div class="form-group">
-          <label for="admin-pass">Security Password</label>
-          <input type="password" id="admin-pass" placeholder="Enter password" required autocomplete="current-password" />
+          <label for="admin-pass">Contraseña de Seguridad</label>
+          <input type="password" id="admin-pass" placeholder="Ingresa tu contraseña" required autocomplete="current-password" />
         </div>
 
         <button type="submit" id="btn-login" class="btn-primary-block">
-          <span>Secure Sign In</span>
+          <span>Iniciar Sesión Segura</span>
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
 
-        <a href="index.html" class="back-link">← Return to Public Student Chat</a>
+        <a href="index.html" class="back-link">← Volver al Chat Público de Estudiantes</a>
       </form>
     </div>
   </div>
@@ -51,22 +52,38 @@
       <div class="nav-brand">
         <div class="nav-icon">⚙️</div>
         <div>
-          <h1>Administration Dashboard</h1>
-          <p>Knowledge Base Documents (CRUD) & Escalations Manager</p>
+          <h1>Panel de Control &amp; Telemetría</h1>
+          <p>Gestión Documental (RAG CRUD), Leads de Admisiones y Telemetría</p>
         </div>
       </div>
 
       <div class="nav-actions">
-        <a href="index.html" class="btn-secondary" target="_blank">
+        <button id="btn-theme-toggle" class="btn-theme-toggle" title="Cambiar modo Claro / Oscuro" aria-label="Cambiar tema">
+          <svg id="theme-icon-sun" class="theme-icon hidden" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg id="theme-icon-moon" class="theme-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+        <a href="https://admissions-rag-ai.onrender.com" class="btn-secondary" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
-          <span>Open Public Chat</span>
+          <span>Abrir Web Pública</span>
         </a>
-        <button id="btn-reindex-all" class="btn-primary" title="Re-index vector database">
+        <button id="btn-reindex-all" class="btn-primary" title="Re-indexar base vectorial">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
-          <span>Re-index Vector Store</span>
+          <span>Re-indexar RAG</span>
         </button>
         <button id="btn-logout" class="btn-danger-outline">
-          <span>Sign Out</span>
+          <span>Cerrar Sesión</span>
         </button>
       </div>
     </header>
@@ -77,13 +94,13 @@
     <!-- Main Container -->
     <main class="dashboard-main">
       
-      <!-- Stats Overview Cards -->
+      <!-- Stats Overview Cards (Bento Style) -->
       <section class="stats-grid">
         <div class="stat-card">
           <div class="stat-icon docs">📄</div>
           <div class="stat-data">
             <span class="stat-num" id="stat-docs-count">0</span>
-            <span class="stat-label">Active Knowledge Docs</span>
+            <span class="stat-label">Documentos RAG Activos</span>
           </div>
         </div>
 
@@ -91,7 +108,7 @@
           <div class="stat-icon tickets">🚨</div>
           <div class="stat-data">
             <span class="stat-num" id="stat-tickets-count">0</span>
-            <span class="stat-label">Escalated Leads</span>
+            <span class="stat-label">Leads / Casos Escalados</span>
           </div>
         </div>
 
@@ -99,7 +116,7 @@
           <div class="stat-icon queries">💬</div>
           <div class="stat-data">
             <span class="stat-num" id="stat-queries-count">0</span>
-            <span class="stat-label">Total Student Queries</span>
+            <span class="stat-label">Consultas Totales</span>
           </div>
         </div>
 
@@ -107,7 +124,7 @@
           <div class="stat-icon cost">⚡</div>
           <div class="stat-data">
             <span class="stat-num" id="stat-cost-val">$0.0000</span>
-            <span class="stat-label">Estimated Gemini Cost</span>
+            <span class="stat-label">Costo Estimado Gemini</span>
           </div>
         </div>
       </section>
@@ -115,13 +132,13 @@
       <!-- Navigation Tabs -->
       <div class="tabs-bar">
         <button class="tab-btn active" data-tab="docs-tab">
-          <span>📄 Knowledge Base Documents (CRUD)</span>
+          <span>📄 Gestión de Documentos (CRUD)</span>
         </button>
         <button class="tab-btn" data-tab="tickets-tab">
-          <span>🚨 Escalated Tickets & Leads</span>
+          <span>🚨 Tickets &amp; Leads de Admisiones</span>
         </button>
         <button class="tab-btn" data-tab="telemetry-tab">
-          <span>📊 Live System Telemetry</span>
+          <span>📊 Telemetría &amp; Salud del Sistema</span>
         </button>
       </div>
 
@@ -129,17 +146,17 @@
       <section id="docs-tab" class="tab-content active">
         <div class="section-header">
           <div>
-            <h2>Knowledge Base Documents (RAG)</h2>
-            <p>Upload, create, edit, and delete curriculum, pricing, and policy markdown files indexed in the vector store.</p>
+            <h2>Documentos de la Base de Conocimiento (RAG)</h2>
+            <p>Sube, crea, edita y elimina archivos Markdown de planes de estudio, precios y reglamentos indexados vectorialmente.</p>
           </div>
           <div class="section-actions">
             <button id="btn-open-upload" class="btn-secondary">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
-              <span>Upload .md File</span>
+              <span>Subir Archivo .md</span>
             </button>
             <button id="btn-open-create" class="btn-primary">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-              <span>New Document</span>
+              <span>Crear Documento</span>
             </button>
           </div>
         </div>
@@ -149,16 +166,16 @@
           <table class="data-table">
             <thead>
               <tr>
-                <th>Document File</th>
-                <th>Size</th>
-                <th>Lines</th>
-                <th>Words</th>
-                <th>Last Modified</th>
-                <th class="text-right">Actions</th>
+                <th>Archivo</th>
+                <th>Tamaño</th>
+                <th>Líneas</th>
+                <th>Palabras</th>
+                <th>Última Modificación</th>
+                <th class="text-right">Acciones</th>
               </tr>
             </thead>
             <tbody id="docs-table-body">
-              <tr><td colspan="6" class="loading-td">Loading knowledge base files...</td></tr>
+              <tr><td colspan="6" class="loading-td">Cargando base de conocimiento...</td></tr>
             </tbody>
           </table>
         </div>
@@ -168,17 +185,17 @@
       <section id="tickets-tab" class="tab-content">
         <div class="section-header">
           <div>
-            <h2>Priority Escalation Tickets</h2>
-            <p>Direct leads captured by AI requiring advisor human intervention.</p>
+            <h2>Tickets de Atención Prioritaria &amp; Leads</h2>
+            <p>Prospectos calificados y casos especiales que requieren contacto directo de un asesor humano.</p>
           </div>
           <div class="section-actions">
-            <button id="btn-purge-resolved" class="btn-secondary" title="Eliminar definitivamente todos los tickets con estado Resuelto">
+            <button id="btn-purge-resolved" class="btn-danger-outline" title="Eliminar definitivamente todos los tickets resueltos">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6"/></svg>
-              <span>Purge Resolved</span>
+              <span>Purgar Resueltos</span>
             </button>
             <button id="btn-refresh-tickets" class="btn-secondary">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
-              <span>Refresh Tickets</span>
+              <span>Actualizar</span>
             </button>
           </div>
         </div>
@@ -187,20 +204,20 @@
         <div class="filter-toolbar">
           <div class="search-box">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            <input type="text" id="ticket-search-input" placeholder="Search by student name, phone, email, or Ticket ID..." />
+            <input type="text" id="ticket-search-input" placeholder="Buscar por nombre, teléfono, correo o Ticket ID..." />
           </div>
 
           <div class="filter-selects">
             <select id="ticket-status-filter" class="filter-dropdown">
-              <option value="ALL">All Statuses</option>
-              <option value="PENDING">⏳ Pending Only</option>
-              <option value="RESOLVED">✓ Resolved Only</option>
+              <option value="ALL">Todos los Estados</option>
+              <option value="PENDING">⏳ Solo Pendientes</option>
+              <option value="RESOLVED">✓ Solo Resueltos</option>
             </select>
 
             <select id="ticket-priority-filter" class="filter-dropdown">
-              <option value="ALL">All Priorities</option>
-              <option value="HIGH">🔥 High Priority</option>
-              <option value="MEDIUM">⚡ Medium Priority</option>
+              <option value="ALL">Todas las Prioridades</option>
+              <option value="HIGH">🔥 Prioridad Alta</option>
+              <option value="MEDIUM">⚡ Prioridad Media</option>
             </select>
           </div>
         </div>
@@ -211,46 +228,161 @@
             <thead>
               <tr>
                 <th>Ticket ID</th>
-                <th>Priority</th>
-                <th>Student Full Name</th>
-                <th>Phone / Telegram</th>
-                <th>Email</th>
-                <th>Inquiry / Topic</th>
-                <th>Status</th>
-                <th>Date</th>
-                <th class="text-right">Quick Contact</th>
+                <th>Prioridad</th>
+                <th>Nombre del Estudiante</th>
+                <th>Teléfono / WhatsApp</th>
+                <th>Correo Electrónico</th>
+                <th>Asunto / Inquietud</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+                <th class="text-right">Contacto Rápido</th>
               </tr>
             </thead>
             <tbody id="tickets-table-body">
-              <tr><td colspan="9" class="loading-td">Loading escalation records...</td></tr>
+              <tr><td colspan="9" class="loading-td">Cargando registros de escalación...</td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <!-- TAB 3: Telemetry -->
+      <!-- TAB 3: Visual Telemetry Dashboard -->
       <section id="telemetry-tab" class="tab-content">
         <div class="section-header">
           <div>
-            <h2>System & API Telemetry</h2>
-            <p>Live operational performance metrics from the admissions assistant.</p>
+            <h2>Telemetría &amp; Salud Operativa del Sistema</h2>
+            <p>Monitoreo visual en tiempo real de modelos LLM, latencia, índice vectorial y ahorro de cuota.</p>
           </div>
         </div>
 
-        <div class="telemetry-grid">
-          <div class="telemetry-box">
-            <h3>Latency & Speed</h3>
-            <div class="telemetry-item"><span>Average Response Time:</span> <strong id="tel-latency">0 ms</strong></div>
-            <div class="telemetry-item"><span>Active User Sessions:</span> <strong id="tel-sessions">0</strong></div>
-            <div class="telemetry-item"><span>Vector Store Status:</span> <strong class="text-green">HNSWLib Ready</strong></div>
+        <!-- Visual Health Cards Grid -->
+        <div class="telemetry-dashboard-grid">
+          
+          <!-- Card 1: Active Services Status -->
+          <div class="telemetry-card">
+            <div class="telemetry-card-header">
+              <span class="telemetry-icon">🟢</span>
+              <h3>Estado de Motores y Servicios</h3>
+            </div>
+            <div class="services-status-list">
+              <div class="service-item">
+                <div class="service-name">
+                  <span class="status-indicator online"></span>
+                  <strong>Google Gemini Gateway</strong>
+                </div>
+                <span class="service-tag">Primario • Activo</span>
+              </div>
+              <div class="service-item">
+                <div class="service-name">
+                  <span class="status-indicator online"></span>
+                  <strong>Vector Store HNSWLib</strong>
+                </div>
+                <span class="service-tag">Indexado en RAM</span>
+              </div>
+              <div class="service-item">
+                <div class="service-name">
+                  <span class="status-indicator online"></span>
+                  <strong>Inverted Token FAQ Cache</strong>
+                </div>
+                <span class="service-tag">&lt; 3ms • O(1)</span>
+              </div>
+              <div class="service-item">
+                <div class="service-name">
+                  <span class="status-indicator standby"></span>
+                  <strong>Groq Engine Fail-Safe</strong>
+                </div>
+                <span class="service-tag">Standby • Nivel 4</span>
+              </div>
+            </div>
           </div>
 
-          <div class="telemetry-box">
-            <h3>Token Usage & Cost</h3>
-            <div class="telemetry-item"><span>Estimated Tokens Processed:</span> <strong id="tel-tokens">0</strong></div>
-            <div class="telemetry-item"><span>Gemini Model:</span> <strong>gemini-2.5-flash-lite</strong></div>
-            <div class="telemetry-item"><span>Total Estimated Cost:</span> <strong id="tel-cost">$0.0000</strong></div>
+          <!-- Card 2: Tiered Model Pool Hierarchy -->
+          <div class="telemetry-card">
+            <div class="telemetry-card-header">
+              <span class="telemetry-icon">⚡</span>
+              <h3>Pool de Modelos Escalonado (Fallback)</h3>
+            </div>
+            <div class="model-pool-matrix">
+              <div class="pool-step active">
+                <div class="pool-step-badge">Nivel 1</div>
+                <div class="pool-step-info">
+                  <strong>gemini-3.5-flash-lite</strong>
+                  <span>Mínima latencia &bull; 5.000ms timeout</span>
+                </div>
+                <span class="pill-badge green">Principal</span>
+              </div>
+              <div class="pool-step">
+                <div class="pool-step-badge">Nivel 2</div>
+                <div class="pool-step-info">
+                  <strong>gemini-2.5-flash-lite</strong>
+                  <span>Fallback económico &bull; 5.000ms timeout</span>
+                </div>
+                <span class="pill-badge blue">Económico</span>
+              </div>
+              <div class="pool-step">
+                <div class="pool-step-badge">Nivel 3</div>
+                <div class="pool-step-info">
+                  <strong>gemini-3.5-flash / 2.5-flash</strong>
+                  <span>Resiliencia y potencia &bull; 6.000ms timeout</span>
+                </div>
+                <span class="pill-badge purple">Potencia</span>
+              </div>
+              <div class="pool-step">
+                <div class="pool-step-badge">Nivel 4</div>
+                <div class="pool-step-info">
+                  <strong>openai/gpt-oss-120b (Groq)</strong>
+                  <span>Fail-safe externo ante saturación total</span>
+                </div>
+                <span class="pill-badge amber">Groq</span>
+              </div>
+            </div>
           </div>
+
+          <!-- Card 3: Latency & Speed Analytics -->
+          <div class="telemetry-card">
+            <div class="telemetry-card-header">
+              <span class="telemetry-icon">⏱️</span>
+              <h3>Rendimiento y Velocidad</h3>
+            </div>
+            <div class="speed-metrics">
+              <div class="speed-box">
+                <span class="speed-label">Latencia Promedio</span>
+                <strong class="speed-value text-green" id="tel-latency">0 ms</strong>
+                <span class="speed-sub">Tiempo de respuesta</span>
+              </div>
+              <div class="speed-box">
+                <span class="speed-label">Sesiones Activas</span>
+                <strong class="speed-value text-cyan" id="tel-sessions">0</strong>
+                <span class="speed-sub">Estudiantes en línea</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Tokens & Cost Optimization -->
+          <div class="telemetry-card">
+            <div class="telemetry-card-header">
+              <span class="telemetry-icon">💰</span>
+              <h3>Control de Tokens &amp; Costos</h3>
+            </div>
+            <div class="token-analytics-list">
+              <div class="token-row">
+                <span>Tokens Totales Procesados:</span>
+                <strong id="tel-tokens">0</strong>
+              </div>
+              <div class="token-row">
+                <span>Límite de Tokens por Salida:</span>
+                <strong class="text-green">600 max_output_tokens</strong>
+              </div>
+              <div class="token-row">
+                <span>Costo Estimado de Facturación:</span>
+                <strong class="text-emerald" id="tel-cost">$0.0000 USD</strong>
+              </div>
+              <div class="token-row">
+                <span>Ahorro por Caché y Guardrails:</span>
+                <strong class="text-cyan">~65% de llamadas evitadas</strong>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -262,22 +394,22 @@
   <div id="doc-modal" class="modal-overlay hidden">
     <div class="modal-card">
       <div class="modal-header">
-        <h3 id="modal-title">Create Knowledge Document</h3>
+        <h3 id="modal-title">Crear Documento de Conocimiento</h3>
         <button id="btn-close-modal" class="btn-icon">✕</button>
       </div>
       <form id="doc-form">
         <div class="form-group">
-          <label for="doc-filename">Document Filename (e.g. scholarships_and_discounts.md)</label>
-          <input type="text" id="doc-filename" placeholder="scholarships_and_discounts.md" required />
+          <label for="doc-filename">Nombre del Archivo (ej. becas_y_convenios.md)</label>
+          <input type="text" id="doc-filename" placeholder="becas_y_convenios.md" required />
         </div>
         <div class="form-group">
-          <label for="doc-content">Document Content (Markdown format)</label>
-          <textarea id="doc-content" rows="14" placeholder="# Write your institutional knowledge content here..." required></textarea>
+          <label for="doc-content">Contenido del Documento (Formato Markdown)</label>
+          <textarea id="doc-content" rows="14" placeholder="# Escribe aquí el contenido oficial de la academia..." required></textarea>
         </div>
         <div class="modal-footer">
-          <button type="button" id="btn-cancel-doc" class="btn-secondary">Cancel</button>
+          <button type="button" id="btn-cancel-doc" class="btn-secondary">Cancelar</button>
           <button type="submit" id="btn-save-doc" class="btn-primary">
-            <span>Save &amp; Re-index Vector Store</span>
+            <span>Guardar &amp; Re-indexar Vector Store</span>
           </button>
         </div>
       </form>
@@ -288,7 +420,7 @@
   <div id="upload-modal" class="modal-overlay hidden">
     <div class="modal-card modal-sm">
       <div class="modal-header">
-        <h3>Upload Knowledge File</h3>
+        <h3>Subir Archivo de Conocimiento</h3>
         <button id="btn-close-upload" class="btn-icon">✕</button>
       </div>
       <form id="upload-form">
@@ -296,13 +428,13 @@
           <input type="file" id="file-input" accept=".md,.txt" />
           <div class="dropzone-content">
             <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
-            <p>Click to browse or drag &amp; drop a <strong>.md</strong> or <strong>.txt</strong> file</p>
-            <span id="selected-filename">No file selected</span>
+            <p>Haz clic para examinar o arrastra un archivo <strong>.md</strong> o <strong>.txt</strong></p>
+            <span id="selected-filename">Ningún archivo seleccionado</span>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" id="btn-cancel-upload" class="btn-secondary">Cancel</button>
-          <button type="submit" id="btn-confirm-upload" class="btn-primary" disabled>Upload &amp; Re-index</button>
+          <button type="button" id="btn-cancel-upload" class="btn-secondary">Cancelar</button>
+          <button type="submit" id="btn-confirm-upload" class="btn-primary" disabled>Subir &amp; Re-indexar</button>
         </div>
       </form>
     </div>
@@ -312,13 +444,13 @@
   <div id="delete-modal" class="modal-overlay hidden">
     <div class="modal-card modal-sm">
       <div class="modal-header">
-        <h3 class="text-danger">Confirm Document Deletion</h3>
+        <h3 class="text-danger">Confirmar Eliminación</h3>
         <button id="btn-close-delete" class="btn-icon">✕</button>
       </div>
-      <p>Are you sure you want to delete <strong id="delete-filename-label"></strong> from the knowledge base? This action will immediately re-index the vector database.</p>
+      <p>¿Estás seguro de que deseas eliminar <strong id="delete-filename-label"></strong> de la base de conocimiento? Esta acción re-indexará de inmediato la base vectorial.</p>
       <div class="modal-footer">
-        <button type="button" id="btn-cancel-delete" class="btn-secondary">Cancel</button>
-        <button type="button" id="btn-confirm-delete" class="btn-danger">Delete &amp; Re-index</button>
+        <button type="button" id="btn-cancel-delete" class="btn-secondary">Cancelar</button>
+        <button type="button" id="btn-confirm-delete" class="btn-danger">Eliminar &amp; Re-indexar</button>
       </div>
     </div>
   </div>

@@ -16,6 +16,34 @@ const authErrorMsg = document.getElementById('auth-error-msg');
 const btnLogout = document.getElementById('btn-logout');
 const toastBanner = document.getElementById('toast-banner');
 
+// Theme Management (Dark Mode Default vs Light Mode)
+const btnThemeToggle = document.getElementById('btn-theme-toggle');
+const themeIconSun = document.getElementById('theme-icon-sun');
+const themeIconMoon = document.getElementById('theme-icon-moon');
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('cla_theme', theme);
+  if (theme === 'light') {
+    if (themeIconSun) themeIconSun.classList.add('hidden');
+    if (themeIconMoon) themeIconMoon.classList.remove('hidden');
+  } else {
+    if (themeIconSun) themeIconSun.classList.remove('hidden');
+    if (themeIconMoon) themeIconMoon.classList.add('hidden');
+  }
+}
+
+const savedTheme = localStorage.getItem('cla_theme') || 'dark';
+applyTheme(savedTheme);
+
+if (btnThemeToggle) {
+  btnThemeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(newTheme);
+  });
+}
+
 const docsTableBody = document.getElementById('docs-table-body');
 const ticketsTableBody = document.getElementById('tickets-table-body');
 
@@ -535,11 +563,11 @@ async function loadTelemetry() {
     if (json.success && json.data) {
       const d = json.data;
       statQueriesCount.textContent = d.totalQueries || 0;
-      statCostVal.textContent = `$${(d.estimatedCostUsd || 0).toFixed(4)}`;
+      statCostVal.textContent = d.tokenUsage?.estimatedCostUSD || '$0.0000';
       document.getElementById('tel-latency').textContent = `${d.averageLatencyMs || 0} ms`;
       document.getElementById('tel-sessions').textContent = d.activeSessionsCount || 0;
-      document.getElementById('tel-tokens').textContent = d.estimatedTotalTokens || 0;
-      document.getElementById('tel-cost').textContent = `$${(d.estimatedCostUsd || 0).toFixed(6)}`;
+      document.getElementById('tel-tokens').textContent = (d.tokenUsage?.totalEstimatedTokens || 0).toLocaleString();
+      document.getElementById('tel-cost').textContent = `${d.tokenUsage?.estimatedCostUSD || '$0.0000'} USD`;
     }
   } catch (err) {
     console.warn('Telemetry load error:', err);

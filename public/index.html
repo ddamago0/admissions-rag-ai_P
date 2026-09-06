@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>Colombia Language Academy - Academic Excellence &amp; Language Immersion</title>
+  <title>Colombia Language Academy - Excelencia Académica e Inmersión Lingüística</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <!-- Top Sticky Navigation Bar -->
   <header class="main-navbar">
-    <div class="nav-container">
+    <div class="container nav-container">
       <a href="#" class="brand-logo">
         <div class="brand-badge">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
             <path d="M6 6h10M6 10h10M6 14h7"/>
           </svg>
@@ -29,26 +30,42 @@
 
       <!-- Desktop Navigation Menu -->
       <nav id="desktop-nav" class="nav-links">
-        <a href="#programs">Programs</a>
-        <a href="#modalities">Schedules &amp; Tuition</a>
-        <a href="#certifications">Certifications</a>
-        <a href="#campuses">Campuses</a>
-        <a href="#financials">Financing</a>
+        <a href="#programs">Programas</a>
+        <a href="#modalities">Horarios y Precios</a>
+        <a href="#certifications">Certificaciones</a>
+        <a href="#campuses">Sedes</a>
+        <a href="#financials">Financiación</a>
       </nav>
 
       <!-- Header Action Buttons -->
       <div class="nav-actions">
-        <button id="btn-header-chat" class="btn-chat-trigger" aria-label="Open Admissions AI Chat">
+        <button id="btn-theme-toggle" class="btn-theme-toggle" title="Cambiar modo Claro / Oscuro" aria-label="Cambiar tema">
+          <svg id="theme-icon-sun" class="theme-icon hidden" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg id="theme-icon-moon" class="theme-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+        <button id="btn-header-chat" class="btn-chat-trigger" aria-label="Abrir Asistente IA">
           <span class="pulse-dot"></span>
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          <span class="btn-text-full">Ask Admissions AI</span>
-          <span class="btn-text-short">AI Chat</span>
+          <span class="btn-text-full">Asesor IA</span>
+          <span class="btn-text-short">Chat IA</span>
         </button>
         <a href="admin.html" class="btn-admin-nav" title="Portal de Administración">
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
           <span class="btn-text-full">Admin</span>
         </a>
-        <button id="btn-mobile-menu" class="btn-mobile-hamburger" aria-label="Toggle Navigation Menu">
+        <button id="btn-mobile-menu" class="btn-mobile-hamburger" aria-label="Menú">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -60,11 +77,11 @@
 
     <!-- Mobile Dropdown Navigation Menu -->
     <div id="mobile-menu-drawer" class="mobile-nav-dropdown hidden">
-      <a href="#programs" class="mobile-nav-link">📚 Academic Programs</a>
-      <a href="#modalities" class="mobile-nav-link">⏱️ Schedules &amp; Tuition</a>
-      <a href="#certifications" class="mobile-nav-link">🎓 Certifications (IELTS/DELF)</a>
-      <a href="#campuses" class="mobile-nav-link">📍 Campuses &amp; Virtual</a>
-      <a href="#financials" class="mobile-nav-link">💳 Financing &amp; Discounts</a>
+      <a href="#programs" class="mobile-nav-link">📚 Programas Académicos</a>
+      <a href="#modalities" class="mobile-nav-link">⏱️ Horarios y Tarifas COP</a>
+      <a href="#certifications" class="mobile-nav-link">🎓 Certificaciones (IELTS/DELF)</a>
+      <a href="#campuses" class="mobile-nav-link">📍 Sedes Bogotá y Medellín</a>
+      <a href="#financials" class="mobile-nav-link">💳 Financiación PSE y Addi</a>
     </div>
   </header>
 
@@ -74,46 +91,61 @@
     <div class="hero-glow hero-glow-2"></div>
     <div class="container hero-container">
       <div class="hero-badge">
-        <span>🇨🇴 Official Colombian Ministry of Education Accreditations</span>
+        <span>🇨🇴 Acreditación Oficial Secretaría de Educación de Colombia</span>
       </div>
       <h1 class="hero-title">
-        Master World Languages with <span class="gradient-text">Academic Distinction</span>
+        Domina Idiomas del Mundo con <span class="text-gradient">Distinción Académica</span>
       </h1>
       <p class="hero-subtitle">
-        Accelerate your fluency in <strong>English, French, German, Portuguese, Italian, and Spanish</strong>. Certified CEFR (A1–C1) curriculum with in-person campuses in Bogotá and Medellín, plus 100% live interactive online cohorts.
+        Acelera tu fluidez en <strong>Inglés, Francés, Alemán, Portugués, Italiano y Español</strong>. Currículo marco MCER (A1–C1) con sedes presenciales en Bogotá y Medellín, y clases virtuales 100% en vivo.
       </p>
 
+      <!-- Primary Action Buttons -->
       <div class="hero-actions">
         <button id="btn-hero-chat" class="btn-primary-hero">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          <span>Talk to AI Admissions Advisor</span>
+          <span>Consultar al Asesor de Admisiones IA</span>
         </button>
         <a href="#programs" class="btn-secondary-hero">
-          <span>Browse Academic Programs</span>
+          <span>Ver Programas Académicos</span>
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
 
-      <!-- Quick Metrics Ribbon -->
+      <!-- Quick Interactive Prompt Pills -->
+      <div class="hero-prompt-pills">
+        <span class="prompt-pill-label">Consultas rápidas:</span>
+        <button class="prompt-pill" data-query="¿Tienen becas para deportistas y cuánto es el descuento?">
+          <span>🏆</span> Becas deportivas (40% desc.)
+        </button>
+        <button class="prompt-pill" data-query="¿Cuáles son los precios y horarios de los cursos de inglés en Bogotá?">
+          <span>💵</span> Precios de inglés en COP
+        </button>
+        <button class="prompt-pill" data-query="¿Cómo es el curso de preparación para IELTS y TOEFL y qué porcentaje de aprobación tienen?">
+          <span>🎓</span> Certificaciones IELTS &amp; TOEFL
+        </button>
+        <button class="prompt-pill" data-query="¿Dónde quedan las sedes en Medellín y Bogotá?">
+          <span>📍</span> Sedes y Laboratorios
+        </button>
+      </div>
+
+      <!-- Metrics Ribbon -->
       <div class="hero-metrics-bar">
         <div class="metric-card">
           <strong class="metric-val">6</strong>
-          <span class="metric-sub">Global Languages</span>
+          <span class="metric-sub">Idiomas Globales</span>
         </div>
-        <div class="metric-divider"></div>
         <div class="metric-card">
           <strong class="metric-val">98.4%</strong>
-          <span class="metric-sub">IELTS &amp; DELF Pass Rate</span>
+          <span class="metric-sub">Aprobación IELTS &amp; DELF</span>
         </div>
-        <div class="metric-divider"></div>
         <div class="metric-card">
           <strong class="metric-val">4</strong>
-          <span class="metric-sub">Bogotá &amp; Medellín Campuses</span>
+          <span class="metric-sub">Sedes Bogotá &amp; Medellín</span>
         </div>
-        <div class="metric-divider"></div>
         <div class="metric-card">
           <strong class="metric-val">12k+</strong>
-          <span class="metric-sub">Graduated Alumni</span>
+          <span class="metric-sub">Egresados Certificados</span>
         </div>
       </div>
     </div>
@@ -123,97 +155,120 @@
   <section id="programs" class="section-padding bg-surface">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">CURRICULAR OFFERINGS</span>
-        <h2 class="section-title">Explore Our Academic Language Programs</h2>
+        <span class="section-tag">OFERTA ACADÉMICA</span>
+        <h2 class="section-title">Programas de Idiomas con Estándar Internacional</h2>
         <p class="section-desc">
-          Structured according to the Common European Framework of Reference for Languages (CEFR A1–C1) with certified native and bilingual faculty.
+          Estructurados según el Marco Común Europeo de Referencia (MCER A1–C1) con docentes nativos y bilingües certificados.
         </p>
       </div>
 
       <div class="programs-grid">
         
-        <!-- Program 1: English -->
+        <!-- English -->
         <div class="program-card highlight">
-          <div class="program-flag">🇬🇧 / 🇺🇸</div>
-          <div class="program-badge">Most Popular</div>
-          <h3 class="program-name">English Mastery</h3>
-          <p class="program-desc">General English, Business English for Executives, Kids &amp; Teens, and specialized IELTS / TOEFL iBT preparation tracks.</p>
-          <div class="program-details">
-            <div class="detail-item"><strong>Levels:</strong> A1, A2, B1, B2, C1 (CEFR)</div>
-            <div class="detail-item"><strong>Starting At:</strong> $480,000 COP / module</div>
+          <div class="program-top-row">
+            <span class="program-flag">🇬🇧 / 🇺🇸</span>
+            <span class="program-badge">Más Popular</span>
           </div>
-          <button class="btn-card-inquire" data-query="Tell me about the English program levels, schedules and pricing.">
-            Ask AI about English →
+          <h3 class="program-name">Inglés Integral &amp; Negocios</h3>
+          <p class="program-desc">Inglés general, inglés de negocios para ejecutivos, niños/jóvenes y módulos intensivos de preparación IELTS y TOEFL iBT.</p>
+          <div class="program-details">
+            <div class="detail-item"><span>Niveles:</span> <strong>A1, A2, B1, B2, C1 (MCER)</strong></div>
+            <div class="detail-item"><span>Desde:</span> <strong>$480.000 COP / módulo</strong></div>
+          </div>
+          <button class="btn-card-inquire" data-query="Cuéntame sobre los niveles, horarios y precios de los cursos de inglés.">
+            <span>Preguntar a la IA sobre Inglés</span>
+            <span>→</span>
           </button>
         </div>
 
-        <!-- Program 2: French -->
+        <!-- French -->
         <div class="program-card">
-          <div class="program-flag">🇫🇷</div>
-          <h3 class="program-name">French Immersion</h3>
-          <p class="program-desc">Academic and conversational French. Specialized training for DELF (A1–B2) and DALF (C1) international certifications.</p>
-          <div class="program-details">
-            <div class="detail-item"><strong>Levels:</strong> A1 through B2+</div>
-            <div class="detail-item"><strong>Starting At:</strong> $480,000 COP / module</div>
+          <div class="program-top-row">
+            <span class="program-flag">🇫🇷</span>
+            <span class="program-badge">Inmersión</span>
           </div>
-          <button class="btn-card-inquire" data-query="What are the French course schedules and DELF certification details?">
-            Ask AI about French →
+          <h3 class="program-name">Francés Académico</h3>
+          <p class="program-desc">Francés comunicativo e inmersión cultural. Entrenamiento especializado para las certificaciones oficiales DELF (A1–B2) y DALF (C1).</p>
+          <div class="program-details">
+            <div class="detail-item"><span>Niveles:</span> <strong>A1 hasta B2+</strong></div>
+            <div class="detail-item"><span>Desde:</span> <strong>$480.000 COP / módulo</strong></div>
+          </div>
+          <button class="btn-card-inquire" data-query="¿Cuáles son los horarios y precios del curso de francés y certificación DELF?">
+            <span>Preguntar a la IA sobre Francés</span>
+            <span>→</span>
           </button>
         </div>
 
-        <!-- Program 3: German -->
+        <!-- German -->
         <div class="program-card">
-          <div class="program-flag">🇩🇪</div>
-          <h3 class="program-name">German for Professionals</h3>
-          <p class="program-desc">Structured for university exchange students, engineers, and technical work visas (Goethe-Zertifikat &amp; TestDaF).</p>
-          <div class="program-details">
-            <div class="detail-item"><strong>Levels:</strong> A1, A2, B1, B2</div>
-            <div class="detail-item"><strong>Starting At:</strong> $480,000 COP / module</div>
+          <div class="program-top-row">
+            <span class="program-flag">🇩🇪</span>
+            <span class="program-badge">Profesional</span>
           </div>
-          <button class="btn-card-inquire" data-query="How does the German program work and what are the start dates in Bogota?">
-            Ask AI about German →
+          <h3 class="program-name">Alemán Profesional</h3>
+          <p class="program-desc">Diseñado para ingenieros, becas de intercambio y visas de trabajo en Alemania (Goethe-Zertifikat y TestDaF).</p>
+          <div class="program-details">
+            <div class="detail-item"><span>Niveles:</span> <strong>A1, A2, B1, B2</strong></div>
+            <div class="detail-item"><span>Desde:</span> <strong>$480.000 COP / módulo</strong></div>
+          </div>
+          <button class="btn-card-inquire" data-query="¿Cómo funciona el programa de alemán y qué fechas de inicio hay?">
+            <span>Preguntar a la IA sobre Alemán</span>
+            <span>→</span>
           </button>
         </div>
 
-        <!-- Program 4: Portuguese -->
+        <!-- Portuguese -->
         <div class="program-card">
-          <div class="program-flag">🇧🇷</div>
-          <h3 class="program-name">Brazilian Portuguese</h3>
-          <p class="program-desc">Fast-track immersion for Latin American business, tourism, and CELPE-Bras academic qualification.</p>
-          <div class="program-details">
-            <div class="detail-item"><strong>Levels:</strong> A1 through B2</div>
-            <div class="detail-item"><strong>Starting At:</strong> $480,000 COP / module</div>
+          <div class="program-top-row">
+            <span class="program-flag">🇧🇷</span>
+            <span class="program-badge">Negocios</span>
           </div>
-          <button class="btn-card-inquire" data-query="What are the Portuguese course options and weekend intensive schedules?">
-            Ask AI about Portuguese →
+          <h3 class="program-name">Portugués de Brasil</h3>
+          <p class="program-desc">Inmersión acelerada para negocios en Latinoamérica, turismo y preparación oficial CELPE-Bras.</p>
+          <div class="program-details">
+            <div class="detail-item"><span>Niveles:</span> <strong>A1 hasta B2</strong></div>
+            <div class="detail-item"><span>Desde:</span> <strong>$480.000 COP / módulo</strong></div>
+          </div>
+          <button class="btn-card-inquire" data-query="¿Cuáles son los horarios de portugués y la modalidad de sábados intensivo?">
+            <span>Preguntar a la IA sobre Portugués</span>
+            <span>→</span>
           </button>
         </div>
 
-        <!-- Program 5: Italian -->
+        <!-- Italian -->
         <div class="program-card">
-          <div class="program-flag">🇮🇹</div>
-          <h3 class="program-name">Italian &amp; Culture</h3>
-          <p class="program-desc">Dynamic language modules integrated with Italian culture, literature, gastronomy, and CILS certification prep.</p>
-          <div class="program-details">
-            <div class="detail-item"><strong>Levels:</strong> A1 through B2</div>
-            <div class="detail-item"><strong>Starting At:</strong> $480,000 COP / module</div>
+          <div class="program-top-row">
+            <span class="program-flag">🇮🇹</span>
+            <span class="program-badge">Cultura</span>
           </div>
-          <button class="btn-card-inquire" data-query="Can you share the Italian course schedule and tuition details?">
-            Ask AI about Italian →
+          <h3 class="program-name">Italiano &amp; Cultura</h3>
+          <p class="program-desc">Módulos dinámicos integrados con gastronomía, arte y preparación para el certificado oficial CILS.</p>
+          <div class="program-details">
+            <div class="detail-item"><span>Niveles:</span> <strong>A1 hasta B2</strong></div>
+            <div class="detail-item"><span>Desde:</span> <strong>$480.000 COP / módulo</strong></div>
+          </div>
+          <button class="btn-card-inquire" data-query="¿Tienen cursos de italiano disponibles y cuáles son sus precios?">
+            <span>Preguntar a la IA sobre Italiano</span>
+            <span>→</span>
           </button>
         </div>
 
-        <!-- Program 6: Spanish for Foreigners -->
+        <!-- Spanish for Foreigners -->
         <div class="program-card">
-          <div class="program-flag">🇨🇴</div>
-          <h3 class="program-name">Spanish Immersion</h3>
-          <p class="program-desc">Comprehensive Latin American Spanish for expatriates, digital nomads, and university researchers in Colombia.</p>
-          <div class="program-details">
-            <div class="detail-item"><strong>Levels:</strong> Beginner to Advanced C1</div>
-            <div class="detail-item"><strong>Starting At:</strong> $480,000 COP / module</div>
+          <div class="program-top-row">
+            <span class="program-flag">🇨🇴</span>
+            <span class="program-badge">Extranjeros</span>
           </div>
-          <button class="btn-card-inquire" data-query="I am a foreigner interested in learning Spanish in Medellin or Bogota.">
-            Ask AI about Spanish →
+          <h3 class="program-name">Español para Extranjeros</h3>
+          <p class="program-desc">Español para nómadas digitales, investigadores y expatriados con inmersión en la cultura colombiana.</p>
+          <div class="program-details">
+            <div class="detail-item"><span>Niveles:</span> <strong>Inicial hasta C1</strong></div>
+            <div class="detail-item"><span>Desde:</span> <strong>$480.000 COP / módulo</strong></div>
+          </div>
+          <button class="btn-card-inquire" data-query="Soy extranjero y deseo aprender español en Bogotá o Medellín.">
+            <span>Preguntar a la IA sobre Español</span>
+            <span>→</span>
           </button>
         </div>
 
@@ -225,56 +280,56 @@
   <section id="modalities" class="section-padding">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">FLEXIBLE LEARNING TRACKS</span>
-        <h2 class="section-title">Schedule Tracks Tailored to Your Life</h2>
-        <p class="section-desc">Choose the pace that matches your schedule. All tracks include conversation club access and digital workbooks.</p>
+        <span class="section-tag">FLEXIBILIDAD HORARIA</span>
+        <h2 class="section-title">Modalidades Adaptadas a Tu Rutina</h2>
+        <p class="section-desc">Elige el ritmo que mejor se ajuste a tu tiempo. Todas las modalidades incluyen club de conversación ilimitado.</p>
       </div>
 
       <div class="tracks-grid">
         
         <div class="track-card">
           <div class="track-header">
-            <h3>Standard Track</h3>
-            <span class="track-price">$480,000 COP</span>
-            <span class="track-period">per 40h module (5 weeks)</span>
+            <h3>Modalidad Estándar</h3>
+            <span class="track-price">$480.000 COP</span>
+            <span class="track-period">por módulo de 40 horas (5 semanas)</span>
           </div>
           <ul class="track-features">
-            <li>✓ Monday to Thursday (8 hours / week)</li>
-            <li>✓ Mornings: 7:00 AM – 9:00 AM</li>
-            <li>✓ Midday: 12:00 PM – 2:00 PM</li>
-            <li>✓ Evenings: 6:30 PM – 8:30 PM</li>
-            <li>✓ Max 12 students per group</li>
+            <li>✓ Lunes a Jueves (8 horas / semana)</li>
+            <li>✓ Mañanas: 7:00 AM – 9:00 AM</li>
+            <li>✓ Mediodía: 12:00 PM – 2:00 PM</li>
+            <li>✓ Noches: 6:30 PM – 8:30 PM</li>
+            <li>✓ Grupos reducidos (máx. 12 estudiantes)</li>
           </ul>
         </div>
 
         <div class="track-card highlight-track">
-          <div class="track-badge">Fastest Progress</div>
+          <div class="track-badge">Mayor Progreso</div>
           <div class="track-header">
-            <h3>Super Intensive</h3>
-            <span class="track-price">$690,000 COP</span>
-            <span class="track-period">per 40h module (2.5 weeks)</span>
+            <h3>Súper Intensivo</h3>
+            <span class="track-price">$690.000 COP</span>
+            <span class="track-period">por módulo de 40 horas (2.5 semanas)</span>
           </div>
           <ul class="track-features">
-            <li>✓ Monday to Friday (15 hours / week)</li>
-            <li>✓ Morning Shift: 8:00 AM – 11:00 AM</li>
-            <li>✓ Evening Shift: 6:00 PM – 9:00 PM</li>
-            <li>✓ Rapid sub-level completion</li>
-            <li>✓ Free unlimited conversation club</li>
+            <li>✓ Lunes a Viernes (15 horas / semana)</li>
+            <li>✓ Jornada Mañana: 8:00 AM – 11:00 AM</li>
+            <li>✓ Jornada Noche: 6:00 PM – 9:00 PM</li>
+            <li>✓ Avance ultra-rápido de subniveles</li>
+            <li>✓ Club de conversación gratis ilimitado</li>
           </ul>
         </div>
 
         <div class="track-card">
           <div class="track-header">
-            <h3>Saturday Intensive</h3>
-            <span class="track-price">$350,000 COP</span>
-            <span class="track-period">per month (20h / month)</span>
+            <h3>Sábados Intensivo</h3>
+            <span class="track-price">$350.000 COP</span>
+            <span class="track-period">por mes (20 horas / mes)</span>
           </div>
           <ul class="track-features">
-            <li>✓ Saturdays (5 hours / week)</li>
-            <li>✓ Morning Block: 8:00 AM – 1:00 PM</li>
-            <li>✓ Afternoon Block: 1:30 PM – 6:30 PM</li>
-            <li>✓ Ideal for full-time workers</li>
-            <li>✓ Hybrid live-virtual option</li>
+            <li>✓ Sábados (5 horas / semana)</li>
+            <li>✓ Bloque Mañana: 8:00 AM – 1:00 PM</li>
+            <li>✓ Bloque Tarde: 1:30 PM – 6:30 PM</li>
+            <li>✓ Ideal para profesionales que trabajan</li>
+            <li>✓ Opción híbrida presencial o virtual en vivo</li>
           </ul>
         </div>
 
@@ -283,12 +338,12 @@
   </section>
 
   <!-- International Certifications Section -->
-  <section id="certifications" class="section-padding">
+  <section id="certifications" class="section-padding bg-surface">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">OFFICIAL EXAM PREPARATION</span>
-        <h2 class="section-title">International Language Certifications</h2>
-        <p class="section-desc">Specialized preparation tracks with a <strong>98.4% official pass rate</strong>, computerized mock tests, and expert examiner feedback.</p>
+        <span class="section-tag">EXÁMENES OFICIALES</span>
+        <h2 class="section-title">Certificaciones Internacionales de Idiomas</h2>
+        <p class="section-desc">Entrenamiento de alto rendimiento con <strong>98.4% de tasa de aprobación</strong>, simulacros computarizados y retroalimentación de examinadores.</p>
       </div>
 
       <div class="tracks-grid">
@@ -296,52 +351,55 @@
         <div class="track-card">
           <div class="track-header">
             <h3>IELTS &amp; TOEFL iBT</h3>
-            <span class="track-price">English Global</span>
-            <span class="track-period">Academic &amp; General Training</span>
+            <span class="track-price">Inglés Global</span>
+            <span class="track-period">Académico &amp; General</span>
           </div>
           <ul class="track-features">
-            <li>✓ 40 hours intensive strategy &amp; timing drills</li>
-            <li>✓ 3 full-length computerized mock exams</li>
-            <li>✓ 1-on-1 Speaking &amp; Writing scoring analysis</li>
-            <li>✓ Minimum target: IELTS 7.0+ / TOEFL 95+</li>
+            <li>✓ 40 horas de estrategias y tiempos de examen</li>
+            <li>✓ 3 simulacros computarizados completos</li>
+            <li>✓ Análisis 1 a 1 de Speaking y Writing</li>
+            <li>✓ Meta garantizada: IELTS 7.0+ / TOEFL 95+</li>
           </ul>
-          <button class="btn-card-inquire" data-query="How does the IELTS and TOEFL preparation course work and what is the schedule?">
-            Ask AI about IELTS/TOEFL →
+          <button class="btn-card-inquire" data-query="¿Cómo funciona el curso de preparación para IELTS y TOEFL y qué horarios tienen?">
+            <span>Consultar IELTS / TOEFL</span>
+            <span>→</span>
           </button>
         </div>
 
         <div class="track-card highlight-track">
-          <div class="track-badge">POPULAR FOR VISAS</div>
+          <div class="track-badge">Ideal para Visas</div>
           <div class="track-header">
             <h3>DELF / DALF &amp; Goethe</h3>
-            <span class="track-price">French &amp; German</span>
-            <span class="track-period">CEFR A1 through C1 Official</span>
+            <span class="track-price">Francés &amp; Alemán</span>
+            <span class="track-period">Niveles MCER A1 a C1</span>
           </div>
           <ul class="track-features">
-            <li>✓ Preparation for French DELF (A1–B2) &amp; DALF (C1)</li>
-            <li>✓ Goethe-Zertifikat &amp; TestDaF for German work visas</li>
-            <li>✓ Official certified examiner mentors</li>
-            <li>✓ Includes audio simulation labs &amp; materials</li>
+            <li>✓ Preparación DELF (A1–B2) y DALF (C1)</li>
+            <li>✓ Goethe-Zertifikat y TestDaF para visas de trabajo</li>
+            <li>✓ Mentores con certificación oficial de examinador</li>
+            <li>✓ Laboratorios de audio y material de examen</li>
           </ul>
-          <button class="btn-card-inquire" data-query="What are the details of the DELF French and Goethe German exam preparation?">
-            Ask AI about DELF / Goethe →
+          <button class="btn-card-inquire" data-query="¿Qué detalles tienen de la preparación para DELF de francés y Goethe de alemán?">
+            <span>Consultar DELF / Goethe</span>
+            <span>→</span>
           </button>
         </div>
 
         <div class="track-card">
           <div class="track-header">
             <h3>CELPE-Bras &amp; DELE / SIELE</h3>
-            <span class="track-price">Portuguese &amp; Spanish</span>
-            <span class="track-period">International Validation</span>
+            <span class="track-price">Portugués &amp; Español</span>
+            <span class="track-period">Validación Internacional</span>
           </div>
           <ul class="track-features">
-            <li>✓ Brazilian CELPE-Bras academic qualification</li>
-            <li>✓ Official DELE and SIELE Spanish for foreigners</li>
-            <li>✓ Oral fluency and written synthesis workshops</li>
-            <li>✓ Flexible morning and weekend options</li>
+            <li>✓ Calificación académica CELPE-Bras de Brasil</li>
+            <li>✓ Certificado DELE y SIELE en español</li>
+            <li>✓ Talleres de fluidez oral y síntesis escrita</li>
+            <li>✓ Horarios flexibles entre semana y sábados</li>
           </ul>
-          <button class="btn-card-inquire" data-query="Tell me about the CELPE-Bras Portuguese and DELE Spanish certification courses.">
-            Ask AI about CELPE-Bras/DELE →
+          <button class="btn-card-inquire" data-query="Cuéntame sobre los cursos de certificación CELPE-Bras y DELE.">
+            <span>Consultar CELPE / DELE</span>
+            <span>→</span>
           </button>
         </div>
 
@@ -350,12 +408,12 @@
   </section>
 
   <!-- Campuses Section -->
-  <section id="campuses" class="section-padding bg-surface">
+  <section id="campuses" class="section-padding">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">LOCATIONS &amp; INFRASTRUCTURE</span>
-        <h2 class="section-title">Our Campuses &amp; Virtual Platform</h2>
-        <p class="section-desc">Modern multimedia language laboratories in prime metropolitan hubs across Colombia.</p>
+        <span class="section-tag">SEDES &amp; VIRTUALIDAD</span>
+        <h2 class="section-title">Nuestras Sedes Presenciales y Plataforma Virtual</h2>
+        <p class="section-desc">Instalaciones de primer nivel en las principales zonas de Bogotá y Medellín.</p>
       </div>
 
       <div class="campuses-grid">
@@ -363,35 +421,35 @@
           <div class="campus-icon">📍</div>
           <h3>Bogotá - Chapinero</h3>
           <p class="campus-address">Calle 72 # 11-86, Zona Financiera</p>
-          <span class="campus-feat">14 Smart Classrooms • Conversation Lounge • Coffee Bar</span>
+          <span class="campus-feat">14 Aulas Smart • Conversation Lounge • Coffee Bar</span>
         </div>
 
         <div class="campus-card">
           <div class="campus-icon">📍</div>
           <h3>Bogotá - Usaquén</h3>
           <p class="campus-address">Carrera 7 # 120-20, Centro Empresarial</p>
-          <span class="campus-feat">Executive Language Suites • Parking On-site</span>
+          <span class="campus-feat">Suites Ejecutivas • Parqueadero Privado</span>
         </div>
 
         <div class="campus-card">
           <div class="campus-icon">📍</div>
           <h3>Medellín - El Poblado</h3>
           <p class="campus-address">Carrera 43A # 1-50, San Fernando Plaza</p>
-          <span class="campus-feat">Modern Terrace Labs • Metro Access (Poblado Station)</span>
+          <span class="campus-feat">Laboratorios en Terraza • Conexión Metro Poblado</span>
         </div>
 
         <div class="campus-card">
           <div class="campus-icon">📍</div>
           <h3>Medellín - Laureles</h3>
           <p class="campus-address">Avenida Nutibara # 70-45, Segundo Parque</p>
-          <span class="campus-feat">Interactive Media Center • Study Lounges</span>
+          <span class="campus-feat">Centro Multimedia Interactivo • Zonas de Estudio</span>
         </div>
 
         <div class="campus-card full-span-campus">
           <div class="campus-icon">🌐</div>
           <div>
-            <h3>100% Live Interactive Virtual Platform</h3>
-            <p class="campus-address">Access live teacher-led classes with students from anywhere in Colombia and abroad.</p>
+            <h3>Plataforma Virtual 100% en Vivo</h3>
+            <p class="campus-address">Clases interactivas con profesores en tiempo real y compañeros de cualquier ciudad de Colombia y el exterior.</p>
           </div>
         </div>
       </div>
@@ -399,36 +457,36 @@
   </section>
 
   <!-- Financials and Payment Methods -->
-  <section id="financials" class="section-padding">
+  <section id="financials" class="section-padding bg-surface">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">TUITION &amp; PAYMENT</span>
-        <h2 class="section-title">Transparent Pricing &amp; Flexible Financing</h2>
-        <p class="section-desc">Zero hidden fees. All initial tuition quotes include student access and digital materials.</p>
+        <span class="section-tag">MATRÍCULA &amp; FACILIDADES</span>
+        <h2 class="section-title">Tarifas Transparentes y Facilidades de Pago</h2>
+        <p class="section-desc">Sin cobros ocultos. Todas las cotizaciones iniciales incluyen acceso al campus digital.</p>
       </div>
 
       <div class="financials-layout">
         <div class="finance-box">
-          <h3>💰 Tuition Discounts</h3>
+          <h3>💰 Descuentos y Becas</h3>
           <ul class="finance-list">
-            <li><strong>10% Upfront Discount:</strong> When paying 3 modules in advance.</li>
-            <li><strong>15% Full Level Discount:</strong> When enrolling in a complete CEFR level (e.g. Full B1 or B2).</li>
-            <li><strong>One-time Registration Fee:</strong> $80,000 COP for new students.</li>
-            <li><strong>Textbook &amp; Platform Access:</strong> $120,000 COP (covers 2 sub-levels).</li>
+            <li><strong>10% de Descuento:</strong> Por pago anticipado de 3 módulos.</li>
+            <li><strong>15% de Descuento Nivel Completo:</strong> Al matricular un nivel MCER completo (ej. Todo B1 o B2).</li>
+            <li><strong>40% Beca Deportiva:</strong> Para atletas y deportistas con certificado federado.</li>
+            <li><strong>Matrícula única:</strong> $80.000 COP para estudiantes nuevos.</li>
           </ul>
         </div>
 
         <div class="finance-box">
-          <h3>💳 Accepted Payment Methods</h3>
+          <h3>💳 Métodos de Pago Aceptados</h3>
           <div class="payment-badges">
-            <span class="pay-chip">PSE (All Colombian Banks)</span>
-            <span class="pay-chip">Bancolombia QR &amp; Transfers</span>
+            <span class="pay-chip">PSE (Todos los Bancos)</span>
+            <span class="pay-chip">QR y Transferencias Bancolombia</span>
             <span class="pay-chip">Visa / Mastercard / Amex</span>
-            <span class="pay-chip">Addi (0% Interest Financing)</span>
+            <span class="pay-chip">Addi (0% Interés)</span>
             <span class="pay-chip">Sistecrédito</span>
           </div>
           <p class="refund-note">
-            <em>Refund policy: 100% refund (minus 10% admin fee) if requested at least 3 business days before cohort start.</em>
+            <em>Política de reembolso: Reembolso del 80% (20% retención administrativa) si se solicita antes del inicio de clases.</em>
           </p>
         </div>
       </div>
@@ -439,27 +497,26 @@
   <footer class="main-footer">
     <div class="container footer-container">
       <div class="footer-col brand-col">
-        <div class="brand-badge-sm">🇨🇴</div>
-        <strong>Colombia Language Academy</strong>
-        <p>Institutional quality in foreign language education and international certification since 2012.</p>
+        <strong>Academia de Idiomas Colombia</strong>
+        <p>Calidad institucional en enseñanza de lenguas extranjeras y preparación para certificaciones internacionales desde 2012.</p>
       </div>
 
       <div class="footer-col">
-        <h4>Direct Contact</h4>
-        <p>Central PBX: +57 (601) 745-9000</p>
-        <p>WhatsApp Admissions: +57 301 477 7763</p>
-        <p>Email: admissions@colombialanguageacademy.edu.co</p>
+        <h4>Contacto Directo</h4>
+        <p>PBX Central: +57 (601) 745-9000</p>
+        <p>WhatsApp Admisiones: +57 301 477 7763</p>
+        <p>Email: admisiones@colombialanguageacademy.edu.co</p>
       </div>
 
       <div class="footer-col">
-        <h4>Hours of Operation</h4>
-        <p>Monday – Friday: 7:00 AM – 8:00 PM COT</p>
-        <p>Saturdays: 8:00 AM – 4:00 PM COT</p>
-        <p>Sundays &amp; Holidays: Closed</p>
+        <h4>Horarios de Atención</h4>
+        <p>Lunes a Viernes: 7:00 AM – 8:00 PM COT</p>
+        <p>Sábados: 8:00 AM – 4:00 PM COT</p>
+        <p>Domingos y Festivos: Cerrado</p>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 Academia de Idiomas Colombia. All rights reserved. • Powered by Google Gemini AI &amp; HNSWLib RAG.</p>
+      <p>&copy; 2026 Academia de Idiomas Colombia. Todos los derechos reservados. • Powered by Google Gemini AI &amp; HNSWLib RAG.</p>
     </div>
   </footer>
 
@@ -468,14 +525,13 @@
   <!-- ============================================================= -->
 
   <!-- Floating Launcher Button (Bottom Right) -->
-  <div id="chat-widget-launcher" class="chat-launcher" title="Open AI Admissions Assistant">
-    <div class="launcher-pulse"></div>
+  <div id="chat-widget-launcher" class="chat-launcher" title="Abrir Asistente de Admisiones IA">
     <div class="launcher-icon">
-      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2">
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
       </svg>
     </div>
-    <span class="launcher-label">Chat with Admissions AI</span>
+    <span class="launcher-label">Chatear con Asesor IA</span>
     <span class="launcher-badge">1</span>
   </div>
 
@@ -490,13 +546,13 @@
           <span class="avatar-status-dot"></span>
         </div>
         <div>
-          <h3 class="drawer-title">Admissions &amp; Academic AI</h3>
-          <span class="drawer-status">Grounded with Academy Knowledge Base</span>
+          <h3 class="drawer-title">Asesor de Admisiones IA</h3>
+          <span class="drawer-status">En línea • Respuestas Oficiales</span>
         </div>
       </div>
       
       <div class="drawer-controls">
-        <button id="btn-minimize-chat" class="btn-drawer-ctrl" title="Minimize chat">
+        <button id="btn-minimize-chat" class="btn-drawer-ctrl" title="Minimizar chat">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
@@ -512,7 +568,7 @@
         </div>
         <p id="escalation-reason-text">Hemos registrado tus datos. Nuestro asesor académico revisará tu caso y se pondrá en contacto directo contigo a la mayor brevedad.</p>
       </div>
-      <button id="close-escalation-banner" class="btn-icon" aria-label="Dismiss banner">✕</button>
+      <button id="close-escalation-banner" class="btn-icon" aria-label="Cerrar alerta">✕</button>
     </div>
 
     <!-- Messages Scrollable Body -->
@@ -522,8 +578,11 @@
       <div class="message assistant welcome-card">
         <div class="msg-avatar">🇨🇴</div>
         <div class="msg-body">
-          <h4>Welcome to Colombia Language Academy!</h4>
-          <p>I am your AI admissions counselor. Ask me anything about our 6 language programs, class schedules, COP pricing, PSE payment, or certification prep.</p>
+          <h4>¡Hola! Te damos la bienvenida a Academia de Idiomas Colombia</h4>
+          <p>Soy tu asesor virtual de admisiones. Pregúntame sobre nuestros 6 programas de idiomas, horarios, precios en COP, becas deportivas, o procesos de matrícula con PSE y Addi.</p>
+          <div class="telemetry-pill fast-cache">
+            <span>⚡</span> Sub-milisegundo • RAG Oficial
+          </div>
         </div>
       </div>
 
@@ -531,35 +590,42 @@
 
     <!-- Suggestions Chips Row -->
     <div class="suggestions-container">
-      <span class="suggestion-label">Quick topics:</span>
+      <span class="suggestion-label">Preguntas frecuentes:</span>
       <div id="chips-row" class="chips-row">
-        <button class="chip" data-query="What are the tuition fees and discounts for English courses?">💰 Tuition &amp; Discounts</button>
-        <button class="chip" data-query="What class schedules and modalities are available in Bogotá and Medellín?">🗓️ Schedules &amp; Campuses</button>
-        <button class="chip" data-query="Do you offer official IELTS and DELF certification prep? What is the passing grade?">🎓 IELTS / Certifications</button>
-        <button class="chip" data-query="Can I pay using PSE or Addi financing?">💳 Payment (PSE)</button>
-        <button class="chip" data-query="I have a special case and need an advisor to contact me.">🚨 Contact Human Advisor</button>
+        <button class="chip" data-query="¿Cuáles son los precios y descuentos para los cursos de inglés?">💰 Precios y Descuentos</button>
+        <button class="chip" data-query="¿Qué horarios y sedes tienen disponibles en Bogotá y Medellín?">🗓️ Horarios y Sedes</button>
+        <button class="chip" data-query="¿Tienen becas para deportistas y de cuánto es el descuento?">🏆 Becas Deportivas</button>
+        <button class="chip" data-query="¿Ofrecen preparación oficial para IELTS y DELF?">🎓 Certificaciones IELTS/DELF</button>
+        <button class="chip" data-query="¿Cómo puedo pagar por PSE o financiar con Addi?">💳 Métodos de Pago</button>
       </div>
     </div>
 
-    <!-- Chat Input Form -->
+    <!-- Chat Input Form with Microphone Dictation -->
     <form id="chat-form" class="drawer-input-form">
       <div class="input-wrapper">
         <textarea 
           id="user-input" 
-          placeholder="Ask about courses, schedules, COP pricing, refund policies..." 
+          placeholder="Pregunta sobre cursos, horarios, precios en COP..." 
           rows="1"
           maxlength="1000"
           required
         ></textarea>
-        <button type="submit" id="btn-send" class="btn-send" aria-label="Send message">
+        <button type="button" id="btn-voice-input" class="btn-mic" title="Dictar mensaje por voz" aria-label="Dictar por voz">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="22"/>
+          </svg>
+        </button>
+        <button type="submit" id="btn-send" class="btn-send" aria-label="Enviar mensaje">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
             <line x1="22" y1="2" x2="11" y2="13"></line>
             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
           </svg>
         </button>
       </div>
       <div class="input-footer">
-        <span class="input-hint">Enter to send • Shift+Enter newline</span>
+        <span class="input-hint">Enter para enviar • Shift+Enter nueva línea</span>
         <span id="char-counter" class="char-counter">0 / 1000</span>
       </div>
     </form>

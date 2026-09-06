@@ -2,12 +2,14 @@
  * Frontend Interactive Controller for Colombia Language Academy Homepage & Floating AI Chat Widget.
  */
 
-// State
+// Session state
 let currentSessionId = localStorage.getItem('cla_session_id') || `sess-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
 localStorage.setItem('cla_session_id', currentSessionId);
 
 let isWaitingForResponse = false;
 let isChatOpen = false;
+let speechRecognition = null;
+let isRecordingVoice = false;
 
 // DOM Elements
 const chatLauncher = document.getElementById('chat-widget-launcher');
@@ -22,6 +24,7 @@ const chatMessages = document.getElementById('chat-messages');
 const chatForm = document.getElementById('chat-form');
 const userInput = document.getElementById('user-input');
 const btnSend = document.getElementById('btn-send');
+const btnVoiceInput = document.getElementById('btn-voice-input');
 const charCounter = document.getElementById('char-counter');
 const chipsRow = document.getElementById('chips-row');
 
@@ -31,7 +34,38 @@ const escalationTicketId = document.getElementById('escalation-ticket-id');
 const escalationReasonText = document.getElementById('escalation-reason-text');
 const closeEscalationBanner = document.getElementById('close-escalation-banner');
 
-// Mobile Hamburger Menu Toggle
+// Theme Management (Dark Mode Default vs Light Mode)
+const btnThemeToggle = document.getElementById('btn-theme-toggle');
+const themeIconSun = document.getElementById('theme-icon-sun');
+const themeIconMoon = document.getElementById('theme-icon-moon');
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('cla_theme', theme);
+  if (theme === 'light') {
+    if (themeIconSun) themeIconSun.classList.add('hidden');
+    if (themeIconMoon) themeIconMoon.classList.remove('hidden');
+  } else {
+    if (themeIconSun) themeIconSun.classList.remove('hidden');
+    if (themeIconMoon) themeIconMoon.classList.add('hidden');
+  }
+}
+
+const savedTheme = localStorage.getItem('cla_theme') || 'dark';
+applyTheme(savedTheme);
+
+if (btnThemeToggle) {
+  btnThemeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(newTheme);
+  });
+}
+
+// ============================================================================
+// NAVIGATION & CHAT LAUNCHER CONTROLS
+// ============================================================================
+
 if (btnMobileMenu && mobileMenuDrawer) {
   btnMobileMenu.addEventListener('click', () => {
     mobileMenuDrawer.classList.toggle('hidden');
@@ -44,7 +78,6 @@ if (btnMobileMenu && mobileMenuDrawer) {
   });
 }
 
-// Toggle Floating Chat Drawer
 function openChat() {
   isChatOpen = true;
   chatDrawer.classList.remove('hidden');
@@ -77,6 +110,18 @@ document.querySelectorAll('.btn-card-inquire').forEach(btn => {
   });
 });
 
+// Hero Quick Prompt Pills
+document.querySelectorAll('.prompt-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const query = btn.getAttribute('data-query');
+    openChat();
+    if (query) {
+      userInput.value = query;
+      handleSendMessage(query);
+    }
+  });
+});
+
 // Auto-resize Textarea & Char Counter
 userInput.addEventListener('input', () => {
   userInput.style.height = 'auto';
@@ -93,9 +138,11 @@ userInput.addEventListener('keydown', (e) => {
 });
 
 // Close Escalation Banner
-closeEscalationBanner.addEventListener('click', () => {
-  escalationBanner.classList.add('hidden');
-});
+if (closeEscalationBanner) {
+  closeEscalationBanner.addEventListener('click', () => {
+    escalationBanner.classList.add('hidden');
+  });
+}
 
 // Suggestion Chips
 chipsRow.addEventListener('click', (e) => {
@@ -106,7 +153,57 @@ chipsRow.addEventListener('click', (e) => {
   }
 });
 
-// Format Markdown
+// ============================================================================
+// VOICE INPUT / SPEECH RECOGNITION (WEB SPEECH API)
+// ============================================================================
+
+if (btnVoiceInput) {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (SpeechRecognition) {
+    speechRecognition = new SpeechRecognition();
+    speechRecognition.continuous = false;
+    speechRecognition.interimResults = false;
+    speechRecognition.lang = 'es-CO';
+
+    speechRecognition.onstart = () => {
+      isRecordingVoice = true;
+      btnVoiceInput.classList.add('recording');
+      btnVoiceInput.title = 'Escuchando... habla ahora';
+    };
+
+    speechRecognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      userInput.value = transcript;
+      userInput.dispatchEvent(new Event('input'));
+    };
+
+    speechRecognition.onerror = () => {
+      isRecordingVoice = false;
+      btnVoiceInput.classList.remove('recording');
+    };
+
+    speechRecognition.onend = () => {
+      isRecordingVoice = false;
+      btnVoiceInput.classList.remove('recording');
+      btnVoiceInput.title = 'Dictar mensaje por voz';
+    };
+
+    btnVoiceInput.addEventListener('click', () => {
+      if (isRecordingVoice) {
+        speechRecognition.stop();
+      } else {
+        speechRecognition.start();
+      }
+    });
+  } else {
+    btnVoiceInput.style.display = 'none'; // Hide if browser lacks support
+  }
+}
+
+// ============================================================================
+// MARKDOWN RENDERING & HELPERS
+// ============================================================================
+
 function renderMarkdown(text) {
   if (!text || typeof text !== 'string') return '';
   
@@ -128,14 +225,29 @@ function renderMarkdown(text) {
   return `<p>${formatted}</p>`;
 }
 
-// Scroll Messages to Bottom
 function scrollToBottom() {
   setTimeout(() => {
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }, 50);
 }
 
-// Append Message to UI
+function formatTelemetryLabel(tier, modelUsed, latencyMs) {
+  if (tier === 'TIER_0_LOCAL_GUARDRAIL') {
+    return { class: 'guardrail', text: `⚡ ${latencyMs}ms • Guardrail Local ($0 tokens)` };
+  }
+  if (tier === 'TIER_0_CACHE' || latencyMs <= 5) {
+    return { class: 'fast-cache', text: `⚡ ${latencyMs}ms • Caché RAM Sub-milisegundo` };
+  }
+  if (tier === 'TIER_4_EXTERNAL_GROQ') {
+    return { class: 'llm-gateway', text: `⚡ ${latencyMs}ms • Groq ${modelUsed}` };
+  }
+  return { class: 'llm-gateway', text: `⚡ ${latencyMs}ms • ${modelUsed || 'Gemini 3.5 Flash Lite'}` };
+}
+
+// ============================================================================
+// MESSAGE CREATION & RENDERING
+// ============================================================================
+
 function appendMessage(role, text, metadata = {}) {
   const msgDiv = document.createElement('div');
   msgDiv.className = `message ${role}`;
@@ -148,30 +260,55 @@ function appendMessage(role, text, metadata = {}) {
   bodyDiv.className = 'msg-body';
   bodyDiv.innerHTML = role === 'user' ? `<p>${text.replace(/\n/g, '<br/>')}</p>` : renderMarkdown(text);
 
-  // Grounded Sources
-  if (role === 'assistant' && metadata.sources && metadata.sources.length > 0) {
-    const sourcesDiv = document.createElement('div');
-    sourcesDiv.className = 'sources-row';
-    sourcesDiv.innerHTML = `<span>Grounded via RAG:</span> ${metadata.sources.map(s => `<span class="source-tag">${s}</span>`).join(' ')}`;
-    bodyDiv.appendChild(sourcesDiv);
+  // Assistant Telemetry & Grounding Pill
+  if (role === 'assistant') {
+    const latency = metadata.latencyMs || 2;
+    const tier = metadata.tier || (latency <= 5 ? 'TIER_0_CACHE' : 'TIER_1_PRIMARY');
+    const tele = formatTelemetryLabel(tier, metadata.modelUsed, latency);
+    const metaRow = document.createElement('div');
+    metaRow.className = 'msg-meta-row';
+    metaRow.style.display = 'flex';
+    metaRow.style.flexWrap = 'wrap';
+    metaRow.style.alignItems = 'center';
+    metaRow.style.gap = '6px';
+    metaRow.style.marginTop = '8px';
+
+    const pillDiv = document.createElement('div');
+    pillDiv.className = `telemetry-pill ${tele.class}`;
+    pillDiv.innerHTML = tele.text;
+    metaRow.appendChild(pillDiv);
+
+    // Copy message button
+    const btnCopy = document.createElement('button');
+    btnCopy.className = 'btn-msg-copy';
+    btnCopy.innerHTML = '📋 Copiar';
+    btnCopy.addEventListener('click', () => {
+      navigator.clipboard.writeText(text);
+      btnCopy.innerHTML = '✓ Copiado';
+      setTimeout(() => { btnCopy.innerHTML = '📋 Copiar'; }, 2000);
+    });
+    metaRow.appendChild(btnCopy);
+    bodyDiv.appendChild(metaRow);
   }
 
   // Dynamic Suggested Action Buttons
   if (role === 'assistant' && Array.isArray(metadata.suggested_actions) && metadata.suggested_actions.length > 0) {
-    const actionsDiv = document.createElement('div');
-    actionsDiv.className = 'suggestions-row';
+    const suggestionsRow = document.createElement('div');
+    suggestionsRow.className = 'chips-row';
+    suggestionsRow.style.marginTop = '10px';
+    
     metadata.suggested_actions.forEach(actionText => {
       const btn = document.createElement('button');
-      btn.className = 'action-chip';
+      btn.className = 'chip';
       btn.textContent = actionText;
       btn.addEventListener('click', () => {
         if (!isWaitingForResponse) {
           handleSendMessage(actionText);
         }
       });
-      actionsDiv.appendChild(btn);
+      suggestionsRow.appendChild(btn);
     });
-    bodyDiv.appendChild(actionsDiv);
+    bodyDiv.appendChild(suggestionsRow);
   }
 
   msgDiv.appendChild(avatarDiv);
@@ -180,7 +317,6 @@ function appendMessage(role, text, metadata = {}) {
   scrollToBottom();
 }
 
-// Append Typing Loader
 function appendTypingIndicator() {
   const typingDiv = document.createElement('div');
   typingDiv.className = 'message assistant typing-msg';
@@ -188,7 +324,7 @@ function appendTypingIndicator() {
   typingDiv.innerHTML = `
     <div class="msg-avatar">🇨🇴</div>
     <div class="msg-body" style="color: var(--text-muted); font-style: italic;">
-      Consulting academy knowledge base...
+      Consultando el catálogo institucional...
     </div>
   `;
   chatMessages.appendChild(typingDiv);
@@ -200,7 +336,10 @@ function removeTypingIndicator() {
   if (typingDiv) typingDiv.remove();
 }
 
-// Send Message Handler
+// ============================================================================
+// SEND MESSAGE FLOW
+// ============================================================================
+
 async function handleSendMessage(messageText) {
   const cleanMsg = typeof messageText === 'string' ? messageText.trim() : userInput.value.trim();
   if (!cleanMsg || isWaitingForResponse) return;
@@ -234,22 +373,25 @@ async function handleSendMessage(messageText) {
     if (response.ok && data.success) {
       // Handle Escalation Banner
       if (data.escalate) {
-        escalationTicketId.textContent = data.ticketId || 'ESC-PRIORITY';
+        escalationTicketId.textContent = data.ticketId || 'ESC-PRIORITARIO';
         escalationReasonText.textContent = 'Hemos registrado tus datos exitosamente. Nuestro asesor académico se pondrá en contacto directo contigo a la mayor brevedad.';
         escalationBanner.classList.remove('hidden');
       }
 
-      // Add Assistant Message
+      // Add Assistant Message with rich telemetry
       appendMessage('assistant', data.reply, {
         sources: data.sources || [],
-        suggested_actions: data.suggested_actions || []
+        suggested_actions: data.suggested_actions || [],
+        latencyMs: data.latencyMs,
+        tier: data.tier,
+        modelUsed: data.modelUsed
       });
     } else {
-      appendMessage('assistant', `⚠️ ${data.error || 'Unable to connect to admissions service. Please try again.'}`);
+      appendMessage('assistant', `⚠️ ${data.error || 'No fue posible procesar tu solicitud. Por favor intenta de nuevo.'}`);
     }
   } catch (err) {
     removeTypingIndicator();
-    appendMessage('assistant', '⚠️ Network connection error. Please verify your connection or contact our hotline directly.');
+    appendMessage('assistant', '⚠️ Error de conexión con el servidor. Por favor verifica tu red.');
   } finally {
     isWaitingForResponse = false;
     btnSend.disabled = false;

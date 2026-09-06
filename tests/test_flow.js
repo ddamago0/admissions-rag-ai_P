@@ -123,7 +123,7 @@ assert(!fs.existsSync(testDocPath), 'Document deletion verified successfully');
 // 5. Frontend Assets Integrity
 console.log('\n--- Test Suite 5: Frontend Assets & Admin UI Integrity ---');
 const publicDir = path.resolve(__dirname, '../public');
-const assets = ['index.html', 'style.css', 'app.js', 'admin.html', 'admin.css', 'admin.js'];
+const assets = ['index.html', 'style.css', 'app.js', 'admin.html', 'admin.css', 'admin.js', 'favicon.svg'];
 const allAssetsExist = assets.every(file => {
   const p = path.join(publicDir, file);
   return fs.existsSync(p) && fs.statSync(p).size > 0;
