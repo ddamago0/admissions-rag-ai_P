@@ -295,6 +295,23 @@ export async function handleDeleteDocument(req, res) {
 }
 
 /**
+ * Purges tickets that have been marked as RESOLVED for longer than maxAgeHours.
+ */
+function purgeExpiredResolvedTickets(tickets, maxAgeHours = 24) {
+  const maxAgeMs = maxAgeHours * 60 * 60 * 1000;
+  const now = Date.now();
+  return tickets.filter(t => {
+    if (t.status === 'RESOLVED') {
+      const resolvedTime = new Date(t.updatedAt || t.timestamp).getTime();
+      if (!isNaN(resolvedTime) && (now - resolvedTime) > maxAgeMs) {
+        return false; // Expired, remove
+      }
+    }
+    return true; // Keep
+  });
+}
+
+/**
  * GET /api/admin/tickets
  */
 export async function handleGetTickets(req, res) {
@@ -306,6 +323,13 @@ export async function handleGetTickets(req, res) {
       tickets = JSON.parse(rawData);
     } catch {
       tickets = [];
+    }
+
+    // Auto-clean expired resolved tickets (24h TTL)
+    const initialCount = tickets.length;
+    tickets = purgeExpiredResolvedTickets(tickets, 24);
+    if (tickets.length !== initialCount) {
+      await fs.writeFile(ESCALATIONS_FILE, JSON.stringify(tickets, null, 2), 'utf-8');
     }
 
     // Sort descending by timestamp
@@ -359,6 +383,39 @@ export async function handleUpdateTicketStatus(req, res) {
     });
   } catch (error) {
     console.error('[Update Ticket Status Error]:', error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
+}
+
+/**
+ * DELETE /api/admin/tickets/resolved
+ * Purges all resolved tickets immediately on request.
+ */
+export async function handlePurgeResolvedTickets(req, res) {
+  try {
+    let tickets = [];
+    try {
+      const rawData = await fs.readFile(ESCALATIONS_FILE, 'utf-8');
+      tickets = JSON.parse(rawData);
+    } catch {
+      tickets = [];
+    }
+
+    const beforeCount = tickets.length;
+    tickets = tickets.filter(t => t.status !== 'RESOLVED');
+    const purgedCount = beforeCount - tickets.length;
+
+    await fs.writeFile(ESCALATIONS_FILE, JSON.stringify(tickets, null, 2), 'utf-8');
+    console.log(`[Admin] Purged ${purgedCount} resolved tickets. Remaining: ${tickets.length}`);
+
+    return res.status(200).json({
+      success: true,
+      message: `Successfully purged ${purgedCount} resolved ticket(s).`,
+      purgedCount,
+      remainingCount: tickets.length
+    });
+  } catch (error) {
+    console.error('[Purge Resolved Tickets Error]:', error);
     return res.status(500).json({ success: false, error: error.message });
   }
 }

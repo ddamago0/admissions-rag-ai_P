@@ -1,0 +1,311 @@
+[
+  {
+    "id": "faq-becas-01",
+    "document": "becas_deportivas.md",
+    "title": "Becas de Excelencia Deportiva",
+    "keywords": [
+      "beca",
+      "becas",
+      "deporte",
+      "deportes",
+      "deportista",
+      "deportistas",
+      "torneo",
+      "torneos",
+      "federacion",
+      "descuento"
+    ],
+    "patterns": [
+      "tienen becas para deportistas",
+      "cuanto es el descuento para deportistas",
+      "beca de excelencia deportiva",
+      "descuento por deportes",
+      "como aplicar a la beca deportiva",
+      "descuento deportistas colombia"
+    ],
+    "reply": "¡Sí! En Academia de Idiomas Colombia contamos con **Becas de Excelencia Deportiva**:\n\n🏆 **Beneficio:**\n- **40% de descuento directo** en cualquier programa de idiomas (inglés, francés, alemán, portugués, italiano o español).\n\n📋 **Requisitos para Aplicar:**\n- Ser estudiante o deportista activo que represente a Colombia en torneos nacionales o internacionales.\n- Radicar la carta oficial de tu federación o liga deportiva antes del **15 de cada mes**.\n\n¿Te gustaría conocer los requisitos de matrícula para algún idioma en específico?",
+    "sources": [
+      "becas_deportivas.md"
+    ],
+    "suggested_actions": [
+      "Ver cursos disponibles",
+      "Horarios de clase",
+      "Hablar con un asesor"
+    ]
+  },
+  {
+    "id": "faq-courses-01",
+    "document": "courses_and_levels.md",
+    "title": "Idiomas y Niveles Ofrecidos",
+    "keywords": [
+      "idioma",
+      "idiomas",
+      "curso",
+      "cursos",
+      "programa",
+      "programas",
+      "oferta",
+      "ingles",
+      "frances",
+      "aleman",
+      "portugues",
+      "italiano",
+      "espanol",
+      "cefr",
+      "niveles"
+    ],
+    "patterns": [
+      "que idiomas enseñan",
+      "cuales son los cursos de idiomas",
+      "que programas tienen",
+      "niveles de idiomas",
+      "oferta academica"
+    ],
+    "reply": "En Academia de Idiomas Colombia impartimos formación en **6 idiomas globales** bajo el Marco Común Europeo de Referencia (CEFR A1–C1):\n\n1. 🇬🇧/🇺🇸 **Inglés:** General, Business English, Kids & Teens y preparación IELTS/TOEFL.\n2. 🇫🇷 **Francés:** General, académico y preparación DELF/DALF.\n3. 🇩🇪 **Alemán:** General, técnico/visas de trabajo y preparación Goethe/TestDaF.\n4. 🇧🇷 **Portugués:** Portugués brasileño para profesionales y CELPE-Bras.\n5. 🇮🇹 **Italiano:** Italiano conversacional e integración cultural (CILS).\n6. 🇨🇴 **Español para Extranjeros:** Inmersión cultural para expatriados.\n\n¿Sobre cuál idioma te gustaría consultar horarios y sedes?",
+    "sources": [
+      "courses_and_levels.md"
+    ],
+    "suggested_actions": [
+      "Consultar precios",
+      "Horarios y sedes",
+      "Descuentos disponibles"
+    ]
+  },
+  {
+    "id": "faq-courses-02",
+    "document": "courses_and_levels.md",
+    "title": "Sedes y Modalidades en Bogotá y Medellín",
+    "keywords": [
+      "sede",
+      "sedes",
+      "bogota",
+      "medellin",
+      "chapinero",
+      "usaquen",
+      "poblado",
+      "laureles",
+      "presencial",
+      "virtual",
+      "horario",
+      "horarios",
+      "modalidad",
+      "modalidades"
+    ],
+    "patterns": [
+      "donde quedan las sedes",
+      "que horarios tienen en bogota",
+      "sedes de medellin",
+      "modalidades de estudio",
+      "horarios de clases",
+      "tienen clases virtuales"
+    ],
+    "reply": "Contamos con sedes presenciales de primer nivel en Bogotá y Medellín, además de nuestra plataforma virtual en vivo:\n\n📍 **Sedes Presenciales:**\n- **Bogotá:** Calle 72 # 10-34 (Chapinero) y Carrera 7 # 120-20 (Usaquén).\n- **Medellín:** Carrera 43A # 5A-113 (El Poblado) y Circular 73 # 39B-05 (Laureles).\n\n⏱️ **Horarios y Modalidades:**\n1. **Estándar (Lunes a Jueves - 8h/sem):** Mañana (7:00 AM - 9:00 AM), Mediodía (12:00 PM - 2:00 PM), Noche (6:30 PM - 8:30 PM).\n2. **Súper Intensivo (Lunes a Viernes - 15h/sem):** 8:00 AM - 11:00 AM o 6:00 PM - 9:00 PM.\n3. **Sábados Intensivo (5h/sem):** 8:00 AM - 1:00 PM o 1:30 PM - 6:30 PM.\n4. **100% Virtual en Vivo:** Clases en tiempo real con docentes bilingües/nativos.\n\n¿Qué horario o modalidad se ajusta mejor a tu disponibilidad?",
+    "sources": [
+      "courses_and_levels.md"
+    ],
+    "suggested_actions": [
+      "Ver precios en COP",
+      "Inscribirme en virtual",
+      "Sedes de Bogotá"
+    ]
+  },
+  {
+    "id": "faq-pricing-01",
+    "document": "pricing_and_enrollment.md",
+    "title": "Precios y Tarifas en Pesos Colombianos (COP)",
+    "keywords": [
+      "precio",
+      "precios",
+      "costo",
+      "costos",
+      "cuanto cuesta",
+      "valor",
+      "tarifa",
+      "tarifas",
+      "matricula",
+      "cop"
+    ],
+    "patterns": [
+      "cuanto cuesta el curso",
+      "cuales son los precios",
+      "valor de la matricula",
+      "precios por modulo",
+      "costo mensual"
+    ],
+    "reply": "Nuestras tarifas oficiales en pesos colombianos (COP) son:\n\n💰 **Precios por Módulo (40 horas):**\n- **Modalidad Estándar:** $480,000 COP por módulo (5 semanas).\n- **Súper Intensivo:** $690,000 COP por módulo (2.5 semanas).\n- **Sábados Intensivo:** $350,000 COP por mes (20 horas/mes).\n\n🏷️ **Costos Adicionales:**\n- **Matrícula única:** $80,000 COP (nuevos estudiantes).\n- **Material y plataforma digital:** $120,000 COP (cubre 2 módulos).\n- **Examen de nivelación:** $50,000 COP (gratis en jornadas de inscripción anticipada).\n\n¿Deseas conocer los descuentos por pronto pago o métodos de financiación?",
+    "sources": [
+      "pricing_and_enrollment.md"
+    ],
+    "suggested_actions": [
+      "Descuentos pronto pago",
+      "Pagar con PSE o Addi",
+      "Horarios de clase"
+    ]
+  },
+  {
+    "id": "faq-pricing-02",
+    "document": "pricing_and_enrollment.md",
+    "title": "Descuentos y Promociones por Pronto Pago",
+    "keywords": [
+      "descuento",
+      "descuentos",
+      "promocion",
+      "promociones",
+      "pronto pago",
+      "nivel completo",
+      "rebaja",
+      "oferta"
+    ],
+    "patterns": [
+      "que descuentos tienen",
+      "tienen promociones",
+      "descuento por pagar varios modulos",
+      "descuento por nivel completo",
+      "promocion de matricula"
+    ],
+    "reply": "Ofrecemos atractivos descuentos por pronto pago e inscripción anticipada:\n\n✨ **1. Descuento del 10%:** Al cancelar 3 módulos académicos en un solo pago por adelantado.\n✨ **2. Descuento del 15%:** Al matricular un nivel CEFR completo (ej. todo el nivel B1 o B2).\n✨ **3. Examen de Nivelación Gratuito:** 100% de descuento en la prueba de clasificación ($50,000 COP) al inscribirte en preventa.\n\n*(Nota: Si eres deportista de torneo nacional, cuentas con la Beca Deportiva del 40%).*\n\n¿Te gustaría cotizar un nivel completo con descuento?",
+    "sources": [
+      "pricing_and_enrollment.md",
+      "becas_deportivas.md"
+    ],
+    "suggested_actions": [
+      "Pagar con PSE",
+      "Becas para deportistas",
+      "Ver horarios"
+    ]
+  },
+  {
+    "id": "faq-pricing-03",
+    "document": "pricing_and_enrollment.md",
+    "title": "Medios de Pago y Financiación (PSE / Addi / Bancolombia)",
+    "keywords": [
+      "pago",
+      "pagos",
+      "pse",
+      "addi",
+      "tarjeta",
+      "credito",
+      "debito",
+      "bancolombia",
+      "financiar",
+      "financiacion",
+      "cuotas",
+      "sistecredito"
+    ],
+    "patterns": [
+      "como puedo pagar",
+      "reciben pse",
+      "puedo pagar con addi",
+      "metodos de pago",
+      "opciones de financiacion",
+      "pago con tarjeta"
+    ],
+    "reply": "Disponemos de múltiples canales de pago seguros y opciones de financiación inmediata:\n\n💳 **Medios de Pago Directos:**\n- **PSE:** Pagos electrónicos desde cualquier banco en Colombia.\n- **Bancolombia:** Transferencias y código QR institucional.\n- **Tarjetas Débito y Crédito:** Visa, Mastercard, American Express.\n\n⚡ **Financiación a Cuotas sin Intereses:**\n- **Addi:** Paga en hasta 3 cuotas con **0% de interés** y aprobación 100% digital en 2 minutos.\n- **Sistecrédito:** Crédito educativo para cuotas mensuales flexibles.\n\n¿Requieres el enlace de pago por PSE o deseas validar tu cupo con Addi?",
+    "sources": [
+      "pricing_and_enrollment.md"
+    ],
+    "suggested_actions": [
+      "Ver precios de cursos",
+      "Políticas de reembolso",
+      "Horarios disponibles"
+    ]
+  },
+  {
+    "id": "faq-policies-01",
+    "document": "certifications_and_policies.md",
+    "title": "Certificaciones Internacionales (IELTS / DELF / TOEFL)",
+    "keywords": [
+      "certificacion",
+      "certificaciones",
+      "ielts",
+      "toefl",
+      "delf",
+      "dalf",
+      "goethe",
+      "testdaf",
+      "celpe",
+      "examen",
+      "simulacro"
+    ],
+    "patterns": [
+      "preparan para ielts",
+      "cursos de preparacion toefl",
+      "certificaciones oficiales",
+      "examen delf frances",
+      "simulacros de examen"
+    ],
+    "reply": "Impartimos cursos intensivos de preparación para exámenes internacionales oficiales con un **98.4% de tasa de aprobación**:\n\n🎓 **Certificaciones Disponibles:**\n- **Inglés:** IELTS (Academic & General) y TOEFL iBT.\n- **Francés:** DELF (A1–B2) y DALF (C1).\n- **Alemán:** Goethe-Zertifikat (A1–B2) y TestDaF.\n- **Portugués:** CELPE-Bras.\n- **Español:** DELE y SIELE.\n\n📋 **Incluye:** 40 horas de entrenamiento, técnicas de examen, 3 simulacros reales por computador y retroalimentación personalizada de Speaking y Writing.\n\n¿Para cuál examen o fecha necesitas prepararte?",
+    "sources": [
+      "certifications_and_policies.md"
+    ],
+    "suggested_actions": [
+      "Precios de preparación",
+      "Fechas de simulacros",
+      "Hablar con un asesor"
+    ]
+  },
+  {
+    "id": "faq-policies-02",
+    "document": "certifications_and_policies.md",
+    "title": "Políticas de Reembolso y Congelación",
+    "keywords": [
+      "reembolso",
+      "devolucion",
+      "congelar",
+      "cancelar",
+      "cancelacion",
+      "retiro",
+      "plataforma"
+    ],
+    "patterns": [
+      "como pedir un reembolso",
+      "politica de devoluciones",
+      "puedo congelar mi curso",
+      "cancelar mi matricula",
+      "me devuelven el dinero"
+    ],
+    "reply": "Nuestra política institucional de reembolsos y congelaciones establece:\n\n📋 **Condiciones:**\n- **100% de reembolso** (menos el 10% de gastos administrativos) si se radica por escrito con al menos **3 días hábiles de anticipación** a la fecha de inicio del curso.\n- Una vez iniciado el módulo, no se realizan reembolsos en dinero, pero puedes solicitar la **congelación de tu saldo** o transferirlo como bono educativo para otro periodo o familiar.\n\n¿Requieres asistencia para radicar una solicitud formal con admisiones?",
+    "sources": [
+      "certifications_and_policies.md",
+      "pricing_and_enrollment.md"
+    ],
+    "suggested_actions": [
+      "Hablar con un asesor",
+      "Ver métodos de pago",
+      "Consultar horarios"
+    ]
+  },
+  {
+    "id": "faq-policies-03",
+    "document": "certifications_and_policies.md",
+    "title": "Reglamento de Conducta y Sanciones Disciplinarias",
+    "keywords": [
+      "reglamento",
+      "conducta",
+      "sancion",
+      "sanciones",
+      "pelea",
+      "peleo",
+      "agresion",
+      "falta",
+      "expulsion",
+      "disciplina"
+    ],
+    "patterns": [
+      "que pasa si hay una pelea",
+      "sanciones por agresion fisica",
+      "reglamento estudiantil",
+      "motivos de expulsion",
+      "faltas disciplinarias"
+    ],
+    "reply": "De acuerdo con el Reglamento Académico y de Convivencia de Academia de Idiomas Colombia:\n\n⚖️ **Faltas Graves y Sanciones:**\n- **Cero Tolerancia a la Violencia:** La agresión física, verbal, acoso o porte de sustancias prohibidas conlleva la **expulsión inmediata y definitiva** de la institución sin derecho a reembolso.\n- **Fraude Académico:** Suplantación o copia en exámenes conlleva la anulación de la prueba y suspensión por un periodo académico.\n- Toda falta disciplinaria grave es reportada al comité directivo y registrada en el historial del estudiante.\n\n¿Deseas consultar algún otro aspecto del reglamento o bienestar estudiantil?",
+    "sources": [
+      "certifications_and_policies.md"
+    ],
+    "suggested_actions": [
+      "Ver cursos disponibles",
+      "Horarios de clase",
+      "Hablar con un asesor"
+    ]
+  }
+]

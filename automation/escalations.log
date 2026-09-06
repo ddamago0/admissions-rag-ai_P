@@ -182,3 +182,66 @@ Advisor Notification: ddamago0@gmail.com | WhatsApp: +573014777763
 Direct WhatsApp Link: https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260902-3824BC%5D%3A%20El%20usuario%20ha%20proporcionado%20sus%20datos%20de%20contacto%20completos%20%28nombre%2C%20tel%C3%A9fono%20y%20correo%20electr%C3%B3nico%29%20y%20ha%20expresado%20una%20necesidad%20de%20soporte%20para%20resolver%20un%20problema%20de%20facturaci%C3%B3n%20%28cobro%20duplicado%20de%20un%20m%C3%B3dulo%29.%20Esto%20cumple%20las%20condiciones%20para%20escalar%20el%20caso%20a%20un%20asesor.
 =================================================================
 2026-09-02 00:26:53,802 [WARNING] [Telegram Alert] Telegram API returned status 400: {"ok":false,"error_code":400,"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 501"}
+2026-09-02 00:53:04,622 [WARNING] 
+=================================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260902-DFC75F
+Timestamp: 2026-09-02T05:53:04.622098+00:00
+Priority: MEDIUM
+Reason: El usuario reporta un cobro doble de un programa y ha proporcionado su nombre completo, teléfono y correo electrónico para que un asesor de facturación y soporte financiero se comunique con él.
+Lead Contact: {"name": "David", "first_name": "David", "phone": "3007260408", "email": "danieldavid@gmail.com", "topic": "Cobro doble de programa"}
+Inquiry: "mi nombre es david, mi numero es 3007260408 y mi correo es danieldavid@gmail.com"
+Advisor Notification: ddamago0@gmail.com | WhatsApp: +573014777763
+Direct WhatsApp Link: https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260902-DFC75F%5D%3A%20El%20usuario%20reporta%20un%20cobro%20doble%20de%20un%20programa%20y%20ha%20proporcionado%20su%20nombre%20completo%2C%20tel%C3%A9fono%20y%20correo%20electr%C3%B3nico%20para%20que%20un%20asesor%20de%20facturaci%C3%B3n%20y%20soporte%20financiero%20se%20comunique%20con%20%C3%A9l.
+=================================================================
+2026-09-02 00:53:05,188 [WARNING] [Telegram Alert] Telegram API returned status 400: {"ok":false,"error_code":400,"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 410"}
+2026-09-02 06:50:19,811 [INFO] Python Automation Orchestrator listening on http://localhost:5000
+2026-09-02 06:50:19,816 [INFO] - Target Advisor: ddamago0@gmail.com | WhatsApp/Telegram: +573014777763
+2026-09-02 06:50:19,818 [INFO] - Webhook Endpoint: http://localhost:5000/webhook/escalations
+2026-09-02 06:50:19,818 [INFO] - Health Check: http://localhost:5000/health
+2026-09-02 07:09:12,881 [WARNING] 
+=================================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260902-C818D8
+Timestamp: 2026-09-02T12:09:12.881485+00:00
+Priority: MEDIUM
+Reason: El usuario reporta un cobro doble y ha proporcionado su nombre completo, número de teléfono y correo electrónico, cumpliendo los criterios para escalamiento a un asesor de facturación.
+Lead Contact: {"name": "Daniel martinez", "first_name": "Daniel", "phone": "3014777763", "email": "ddamago0@gmail.com", "topic": "Reporte de cobro doble en inscripción a programa."}
+Inquiry: "Mi nombre completo es Daniel martinez, mi numero es 3014777763 y mi correo es ddamago0@gmail.com"
+Advisor Notification: ddamago0@gmail.com | WhatsApp: +573014777763
+Direct WhatsApp Link: https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260902-C818D8%5D%3A%20El%20usuario%20reporta%20un%20cobro%20doble%20y%20ha%20proporcionado%20su%20nombre%20completo%2C%20n%C3%BAmero%20de%20tel%C3%A9fono%20y%20correo%20electr%C3%B3nico%2C%20cumpliendo%20los%20criterios%20para%20escalamiento%20a%20un%20asesor%20de%20facturaci%C3%B3n.
+=================================================================
+2026-09-02 07:09:13,410 [WARNING] [Telegram Alert] Telegram API returned status 400: {"ok":false,"error_code":400,"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 411"}
+2026-09-02 07:09:15,500 [INFO] [Email Alert] Successfully sent escalation notification to ddamago0@gmail.com
+2026-09-03 06:18:00,455 [INFO] Python Automation Orchestrator listening on http://localhost:5000
+2026-09-03 06:18:00,460 [INFO] - Target Advisor: ddamago0@gmail.com | WhatsApp/Telegram: +573014777763
+2026-09-03 06:18:00,460 [INFO] - Webhook Endpoint: http://localhost:5000/webhook/escalations
+2026-09-03 06:18:00,460 [INFO] - Health Check: http://localhost:5000/health
+2026-09-03 06:50:48,731 [WARNING] 
+=================================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260903-9B68A9
+Timestamp: 2026-09-03T11:50:48.731500+00:00
+Priority: MEDIUM
+Reason: El usuario reporta un cobro doble y ha proporcionado sus datos de contacto completos (nombre, teléfono y correo electrónico) para que su caso sea escalado al área de facturación y cobros.
+Lead Contact: {"name": "Daniel Martinez", "first_name": "Daniel", "phone": "3014777763", "email": "ddamago0@gmail.com", "topic": "Reporte de cobro doble en tarjeta de Addi"}
+Inquiry: "mi nombre es daniel martinez, mi numero es 3014777763 y mi correo es ddamago0@gmail.com"
+Advisor Notification: ddamago0@gmail.com | WhatsApp: +573014777763
+Direct WhatsApp Link: https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260903-9B68A9%5D%3A%20El%20usuario%20reporta%20un%20cobro%20doble%20y%20ha%20proporcionado%20sus%20datos%20de%20contacto%20completos%20%28nombre%2C%20tel%C3%A9fono%20y%20correo%20electr%C3%B3nico%29%20para%20que%20su%20caso%20sea%20escalado%20al%20%C3%A1rea%20de%20facturaci%C3%B3n%20y%20cobros.
+=================================================================
+2026-09-03 06:50:49,239 [WARNING] [Telegram Alert] Telegram API returned status 400: {"ok":false,"error_code":400,"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 414"}
+2026-09-03 06:50:51,502 [INFO] [Email Alert] Successfully sent escalation notification to ddamago0@gmail.com
+2026-09-03 12:08:33,423 [WARNING] 
+=================================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260903-B58094
+Timestamp: 2026-09-03T17:08:33.418225+00:00
+Priority: MEDIUM
+Reason: El usuario reporta un cobro duplicado y ha proporcionado sus datos de contacto completos (nombre, teléfono y correo electrónico) para que su caso sea escalado al área de facturación y cobros.
+Lead Contact: {"name": "daniel martinez", "first_name": "daniel", "phone": "3014777763", "email": "ddamago0@gmail.com", "topic": "Cobro duplicado en programa"}
+Inquiry: "mi nombre es daniel martinez, mi numero es 3014777763 y mi correo es ddamago0@gmail.com"
+Advisor Notification: ddamago0@gmail.com | WhatsApp: +573014777763
+Direct WhatsApp Link: https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260903-B58094%5D%3A%20El%20usuario%20reporta%20un%20cobro%20duplicado%20y%20ha%20proporcionado%20sus%20datos%20de%20contacto%20completos%20%28nombre%2C%20tel%C3%A9fono%20y%20correo%20electr%C3%B3nico%29%20para%20que%20su%20caso%20sea%20escalado%20al%20%C3%A1rea%20de%20facturaci%C3%B3n%20y%20cobros.
+=================================================================
+2026-09-03 12:08:34,068 [WARNING] [Telegram Alert] Telegram API returned status 400: {"ok":false,"error_code":400,"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 418"}
+2026-09-03 12:08:36,105 [INFO] [Email Alert] Successfully sent escalation notification to ddamago0@gmail.com
+2026-09-05 22:14:40,285 [INFO] Python Automation Orchestrator listening on http://localhost:5000
+2026-09-05 22:14:40,286 [INFO] - Target Advisor: ddamago0@gmail.com | WhatsApp/Telegram: +573014777763
+2026-09-05 22:14:40,286 [INFO] - Webhook Endpoint: http://localhost:5000/webhook/escalations
+2026-09-05 22:14:40,287 [INFO] - Health Check: http://localhost:5000/health

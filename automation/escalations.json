@@ -348,5 +348,106 @@
       "advisor_phone": "+573014777763",
       "whatsapp_action_link": "https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260902-3824BC%5D%3A%20El%20usuario%20ha%20proporcionado%20sus%20datos%20de%20contacto%20completos%20%28nombre%2C%20tel%C3%A9fono%20y%20correo%20electr%C3%B3nico%29%20y%20ha%20expresado%20una%20necesidad%20de%20soporte%20para%20resolver%20un%20problema%20de%20facturaci%C3%B3n%20%28cobro%20duplicado%20de%20un%20m%C3%B3dulo%29.%20Esto%20cumple%20las%20condiciones%20para%20escalar%20el%20caso%20a%20un%20asesor."
     }
+  },
+  {
+    "ticket_id": "ESC-20260902-DFC75F",
+    "timestamp": "2026-09-02T05:53:04.622098+00:00",
+    "status": "PENDING_HUMAN_REVIEW",
+    "priority": "MEDIUM",
+    "reason": "El usuario reporta un cobro doble de un programa y ha proporcionado su nombre completo, teléfono y correo electrónico para que un asesor de facturación y soporte financiero se comunique con él.",
+    "lead_info": {
+      "name": "David",
+      "first_name": "David",
+      "phone": "3007260408",
+      "email": "danieldavid@gmail.com",
+      "topic": "Cobro doble de programa"
+    },
+    "inquiry": "mi nombre es david, mi numero es 3007260408 y mi correo es danieldavid@gmail.com",
+    "ai_reply": "¡Muchas gracias por proporcionarnos tus datos, David! Hemos registrado tu caso sobre el cobro doble. Tu solicitud ha sido derivada al departamento de facturación y soporte financiero. Un asesor se pondrá en contacto contigo a través de tu correo electrónico (danieldavid@gmail.com) o teléfono (3007260408) a la mayor brevedad posible para revisar la transacción y gestionar la solución o reembolso correspondiente.",
+    "sources": [
+      "pricing_and_enrollment.md",
+      "certifications_and_policies.md"
+    ],
+    "assigned_to": {
+      "advisor_email": "ddamago0@gmail.com",
+      "advisor_phone": "+573014777763",
+      "whatsapp_action_link": "https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260902-DFC75F%5D%3A%20El%20usuario%20reporta%20un%20cobro%20doble%20de%20un%20programa%20y%20ha%20proporcionado%20su%20nombre%20completo%2C%20tel%C3%A9fono%20y%20correo%20electr%C3%B3nico%20para%20que%20un%20asesor%20de%20facturaci%C3%B3n%20y%20soporte%20financiero%20se%20comunique%20con%20%C3%A9l."
+    }
+  },
+  {
+    "ticket_id": "ESC-20260902-C818D8",
+    "timestamp": "2026-09-02T12:09:12.881485+00:00",
+    "status": "PENDING_HUMAN_REVIEW",
+    "priority": "MEDIUM",
+    "reason": "El usuario reporta un cobro doble y ha proporcionado su nombre completo, número de teléfono y correo electrónico, cumpliendo los criterios para escalamiento a un asesor de facturación.",
+    "lead_info": {
+      "name": "Daniel martinez",
+      "first_name": "Daniel",
+      "phone": "3014777763",
+      "email": "ddamago0@gmail.com",
+      "topic": "Reporte de cobro doble en inscripción a programa."
+    },
+    "inquiry": "Mi nombre completo es Daniel martinez, mi numero es 3014777763 y mi correo es ddamago0@gmail.com",
+    "ai_reply": "Gracias, Daniel. Hemos recibido tu información y tu caso ha sido escalado a nuestro equipo de facturación. Un asesor se pondrá en contacto contigo a la brevedad posible a través del número de teléfono o correo electrónico que nos proporcionaste para resolver el inconveniente del cobro doble. Agradecemos tu paciencia.",
+    "sources": [
+      "pricing_and_enrollment.md",
+      "courses_and_levels.md"
+    ],
+    "assigned_to": {
+      "advisor_email": "ddamago0@gmail.com",
+      "advisor_phone": "+573014777763",
+      "whatsapp_action_link": "https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260902-C818D8%5D%3A%20El%20usuario%20reporta%20un%20cobro%20doble%20y%20ha%20proporcionado%20su%20nombre%20completo%2C%20n%C3%BAmero%20de%20tel%C3%A9fono%20y%20correo%20electr%C3%B3nico%2C%20cumpliendo%20los%20criterios%20para%20escalamiento%20a%20un%20asesor%20de%20facturaci%C3%B3n."
+    }
+  },
+  {
+    "ticket_id": "ESC-20260903-9B68A9",
+    "timestamp": "2026-09-03T11:50:48.731500+00:00",
+    "status": "PENDING_HUMAN_REVIEW",
+    "priority": "MEDIUM",
+    "reason": "El usuario reporta un cobro doble y ha proporcionado sus datos de contacto completos (nombre, teléfono y correo electrónico) para que su caso sea escalado al área de facturación y cobros.",
+    "lead_info": {
+      "name": "Daniel Martinez",
+      "first_name": "Daniel",
+      "phone": "3014777763",
+      "email": "ddamago0@gmail.com",
+      "topic": "Reporte de cobro doble en tarjeta de Addi"
+    },
+    "inquiry": "mi nombre es daniel martinez, mi numero es 3014777763 y mi correo es ddamago0@gmail.com",
+    "ai_reply": "Gracias, Daniel. Hemos recibido tus datos y tu reporte sobre el cobro doble. En breve, nuestro equipo de facturación y cobros se pondrá en contacto contigo a través de tu correo electrónico (ddamago0@gmail.com) o tu número de teléfono (3014777763) para revisar tu caso y ofrecerte una solución. Agradecemos tu paciencia mientras gestionamos esto.",
+    "sources": [
+      "pricing_and_enrollment.md",
+      "courses_and_levels.md"
+    ],
+    "assigned_to": {
+      "advisor_email": "ddamago0@gmail.com",
+      "advisor_phone": "+573014777763",
+      "whatsapp_action_link": "https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260903-9B68A9%5D%3A%20El%20usuario%20reporta%20un%20cobro%20doble%20y%20ha%20proporcionado%20sus%20datos%20de%20contacto%20completos%20%28nombre%2C%20tel%C3%A9fono%20y%20correo%20electr%C3%B3nico%29%20para%20que%20su%20caso%20sea%20escalado%20al%20%C3%A1rea%20de%20facturaci%C3%B3n%20y%20cobros."
+    }
+  },
+  {
+    "ticket_id": "ESC-20260903-B58094",
+    "timestamp": "2026-09-03T17:08:33.418225+00:00",
+    "status": "PENDING_HUMAN_REVIEW",
+    "priority": "MEDIUM",
+    "reason": "El usuario reporta un cobro duplicado y ha proporcionado sus datos de contacto completos (nombre, teléfono y correo electrónico) para que su caso sea escalado al área de facturación y cobros.",
+    "lead_info": {
+      "name": "daniel martinez",
+      "first_name": "daniel",
+      "phone": "3014777763",
+      "email": "ddamago0@gmail.com",
+      "topic": "Cobro duplicado en programa"
+    },
+    "inquiry": "mi nombre es daniel martinez, mi numero es 3014777763 y mi correo es ddamago0@gmail.com",
+    "ai_reply": "Gracias, Daniel. Hemos recibido tus datos y tu reporte sobre el cobro duplicado. Hemos escalado tu caso al área de facturación y cobros para que lo revisen a la brevedad y te contacten para solucionarlo. Agradecemos tu paciencia.",
+    "sources": [
+      "pricing_and_enrollment.md",
+      "courses_and_levels.md"
+    ],
+    "assigned_to": {
+      "advisor_email": "ddamago0@gmail.com",
+      "advisor_phone": "+573014777763",
+      "whatsapp_action_link": "https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260903-B58094%5D%3A%20El%20usuario%20reporta%20un%20cobro%20duplicado%20y%20ha%20proporcionado%20sus%20datos%20de%20contacto%20completos%20%28nombre%2C%20tel%C3%A9fono%20y%20correo%20electr%C3%B3nico%29%20para%20que%20su%20caso%20sea%20escalado%20al%20%C3%A1rea%20de%20facturaci%C3%B3n%20y%20cobros."
+    },
+    "updatedAt": "2026-09-03T17:11:41.789Z"
   }
 ]

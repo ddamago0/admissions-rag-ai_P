@@ -9,7 +9,8 @@ import {
   handleUpdateDocument,
   handleDeleteDocument,
   handleGetTickets,
-  handleUpdateTicketStatus
+  handleUpdateTicketStatus,
+  handlePurgeResolvedTickets
 } from '../controllers/adminController.js';
 import { requireAdminAuth } from '../services/authService.js';
 
@@ -34,6 +35,7 @@ router.delete('/admin/documents/:filename', requireAdminAuth, handleDeleteDocume
 // --- Admin Protected Escalation Tickets & Operations ---
 router.get('/admin/tickets', requireAdminAuth, handleGetTickets);
 router.put('/admin/tickets/:ticketId/status', requireAdminAuth, handleUpdateTicketStatus);
+router.delete('/admin/tickets/resolved', requireAdminAuth, handlePurgeResolvedTickets);
 router.post('/admin/reindex', requireAdminAuth, handleIngest);
 
 export default router;

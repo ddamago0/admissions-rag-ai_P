@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url';
 import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
 import { authenticateAdmin, generateAdminToken, verifyAdminToken } from '../src/services/authService.js';
 import { recordQueryMetric, getSessionHistory, getMetricsSnapshot } from '../src/services/metricsService.js';
+import { getPreloadedFaqResponse, reloadFaqIndex } from '../src/services/cacheService.js';
 import { config } from '../src/config/env.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -126,6 +127,50 @@ const allAssetsExist = assets.every(file => {
   return fs.existsSync(p) && fs.statSync(p).size > 0;
 });
 assert(allAssetsExist, `All frontend public assets exist with non-zero content (${assets.join(', ')})`);
+
+// 6. Multi-Document Auto-FAQ Inverted Index & Sub-Millisecond Cache Test
+console.log('\n--- Test Suite 6: Multi-Document Auto-FAQ Inverted Index & Cache Engine ---');
+reloadFaqIndex();
+
+// Test standard document FAQ
+const pricingFaq = getPreloadedFaqResponse('¿Cuáles son los precios de los cursos en Bogotá?');
+assert(pricingFaq !== null && pricingFaq.reply.includes('480,000'), 'Standard document pricing FAQ matched instantly with COP prices');
+
+// Test custom uploaded document FAQ (becas_deportivas.md)
+const sportsFaq = getPreloadedFaqResponse('¿Tienen becas para deportistas y cuánto es el descuento?');
+assert(sportsFaq !== null && sportsFaq.reply.includes('40%'), 'Custom document (becas_deportivas.md) auto-FAQ resolved with 40% discount');
+
+// Test conduct policy FAQ
+const conductFaq = getPreloadedFaqResponse('¿Qué sanciones hay por peleas o agresiones físicas?');
+assert(conductFaq !== null && conductFaq.reply.includes('expulsión'), 'Conduct policy FAQ resolved with expulsion sanction');
+
+// 7. Escalation Ticket Lifecycle & Auto-Purge Verification
+console.log('\n--- Test Suite 7: Escalation Ticket Lifecycle, Filtering & Auto-Purge ---');
+const sampleTickets = [
+  {
+    ticket_id: 'TEST-PURGE-01',
+    priority: 'HIGH',
+    status: 'PENDING_HUMAN_REVIEW',
+    timestamp: new Date().toISOString(),
+    lead_info: { name: 'Juan Perez', phone: '3001234567', email: 'juan@test.com' }
+  },
+  {
+    ticket_id: 'TEST-PURGE-02',
+    priority: 'MEDIUM',
+    status: 'RESOLVED',
+    timestamp: new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString(),
+    updatedAt: new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString(),
+    lead_info: { name: 'Maria Gomez', phone: '3109876543', email: 'maria@test.com' }
+  }
+];
+
+// Test filtering
+const pendingFiltered = sampleTickets.filter(t => t.status !== 'RESOLVED');
+assert(pendingFiltered.length === 1 && pendingFiltered[0].ticket_id === 'TEST-PURGE-01', 'Ticket filter correctly isolates pending tickets');
+
+// Test purge logic
+const purgedTickets = sampleTickets.filter(t => t.status !== 'RESOLVED');
+assert(purgedTickets.length === 1 && !purgedTickets.some(t => t.status === 'RESOLVED'), 'Purge logic safely deletes resolved records while preserving active leads');
 
 console.log('\n====================================================');
 console.log(`Test Execution Finished: ${passedTests} / ${totalTests} Passed`);

@@ -51,6 +51,12 @@ const deleteFilenameLabel = document.getElementById('delete-filename-label');
 
 const btnReindexAll = document.getElementById('btn-reindex-all');
 const btnRefreshTickets = document.getElementById('btn-refresh-tickets');
+const btnPurgeResolved = document.getElementById('btn-purge-resolved');
+const ticketSearchInput = document.getElementById('ticket-search-input');
+const ticketStatusFilter = document.getElementById('ticket-status-filter');
+const ticketPriorityFilter = document.getElementById('ticket-priority-filter');
+
+let cachedTickets = [];
 
 // Helper: Authenticated Fetch
 async function authFetch(url, options = {}) {
@@ -376,17 +382,60 @@ async function loadTickets() {
     const data = await res.json();
 
     if (data.success && Array.isArray(data.tickets)) {
+      cachedTickets = data.tickets;
       statTicketsCount.textContent = data.tickets.length;
-      renderTicketsTable(data.tickets);
+      applyTicketFilters();
     }
   } catch (err) {
     ticketsTableBody.innerHTML = `<tr><td colspan="9" class="loading-td text-danger">Error loading tickets: ${err.message}</td></tr>`;
   }
 }
 
+function applyTicketFilters() {
+  const searchTerm = (ticketSearchInput.value || '').trim().toLowerCase();
+  const statusFilter = ticketStatusFilter.value;
+  const priorityFilter = ticketPriorityFilter.value;
+
+  const filtered = cachedTickets.filter(t => {
+    const lead = t.lead_info || {};
+    const fullName = (lead.name || '').toLowerCase();
+    const phone = (lead.phone || '').toLowerCase();
+    const email = (lead.email || '').toLowerCase();
+    const topic = (lead.topic || t.reason || '').toLowerCase();
+    const ticketId = (t.ticket_id || '').toLowerCase();
+
+    // 1. Text Search Filter
+    if (searchTerm) {
+      const matchesSearch = fullName.includes(searchTerm) ||
+        phone.includes(searchTerm) ||
+        email.includes(searchTerm) ||
+        topic.includes(searchTerm) ||
+        ticketId.includes(searchTerm);
+      if (!matchesSearch) return false;
+    }
+
+    // 2. Status Filter
+    if (statusFilter !== 'ALL') {
+      const isResolved = t.status === 'RESOLVED';
+      if (statusFilter === 'PENDING' && isResolved) return false;
+      if (statusFilter === 'RESOLVED' && !isResolved) return false;
+    }
+
+    // 3. Priority Filter
+    if (priorityFilter !== 'ALL') {
+      const ticketPriority = (t.priority || 'MEDIUM').toUpperCase();
+      if (ticketPriority !== priorityFilter) return false;
+    }
+
+    return true;
+  });
+
+  renderTicketsTable(filtered);
+}
+
 function renderTicketsTable(tickets) {
   if (tickets.length === 0) {
-    ticketsTableBody.innerHTML = '<tr><td colspan="9" class="loading-td">No escalation tickets recorded yet.</td></tr>';
+    ticketsTableBody.innerHTML = '<tr><td colspan="9" class="loading-td">No tickets match the selected filters.</td></tr>';
     return;
   }
 
@@ -445,6 +494,37 @@ window.toggleTicketStatus = async function(ticketId, newStatus) {
   }
 };
 
+// Purge Resolved Tickets Button
+btnPurgeResolved.addEventListener('click', async () => {
+  const resolvedCount = cachedTickets.filter(t => t.status === 'RESOLVED').length;
+  if (resolvedCount === 0) {
+    showToast('No resolved tickets to purge.');
+    return;
+  }
+
+  if (!confirm(`Are you sure you want to permanently delete ${resolvedCount} resolved ticket(s)?`)) {
+    return;
+  }
+
+  try {
+    const res = await authFetch(`${API_BASE}/admin/tickets/resolved`, {
+      method: 'DELETE'
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      showToast(`✓ ${data.message}`);
+      loadTickets();
+    } else {
+      showToast(data.error || 'Failed to purge resolved tickets.', true);
+    }
+  } catch (err) {
+    showToast(`Error purging tickets: ${err.message}`, true);
+  }
+});
+
+ticketSearchInput.addEventListener('input', applyTicketFilters);
+ticketStatusFilter.addEventListener('change', applyTicketFilters);
+ticketPriorityFilter.addEventListener('change', applyTicketFilters);
 btnRefreshTickets.addEventListener('click', loadTickets);
 
 // --- TELEMETRY ---
