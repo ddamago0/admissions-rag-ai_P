@@ -3,23 +3,201 @@ import { HumanMessage, SystemMessage, AIMessage } from '@langchain/core/messages
 import { config, validateEnv } from '../config/env.js';
 import { getFormattedContext } from '../rag/retriever.js';
 
-// Pool of fallback models to guarantee high availability against free-tier rate limits
-const MODEL_FALLBACK_POOL = [
-  config.gemini.chatModel || 'gemini-2.5-flash-lite',
-  'gemini-2.5-flash-lite',
-  'gemini-3.5-flash-lite',
-  'gemini-3.1-flash-lite',
-  'gemini-3.5-flash'
-];
+// ============================================================================
+// TIERED MODEL FALLBACK POOL DEFINITIONS (Cost & Latency Optimized)
+// ============================================================================
 
-function createChatModel(modelName) {
+/**
+ * Builds the tiered model execution pool in order of cost and latency:
+ * - Tier 1: Primary ultra-low latency lite model (e.g. gemini-3.5-flash-lite)
+ * - Tier 2: Low-cost economic fallback (gemini-2.5-flash-lite)
+ * - Tier 3: High-capacity resilience fallback (gemini-3.5-flash / gemini-2.5-flash)
+ * - Tier 4: External fail-safe provider (Groq Llama 3.3 70B) if API key configured
+ */
+export function getModelTiers() {
+  const primaryModel = config.gemini.chatModel || 'gemini-3.5-flash-lite';
+  const economicFallback = primaryModel === 'gemini-2.5-flash-lite'
+    ? 'gemini-3.5-flash-lite'
+    : 'gemini-2.5-flash-lite';
+
+  const tiers = [
+    {
+      tier: 'TIER_1_PRIMARY',
+      name: primaryModel,
+      provider: 'gemini',
+      timeoutMs: config.gemini.requestTimeoutMs || 5000
+    },
+    {
+      tier: 'TIER_2_LITE_FALLBACK',
+      name: economicFallback,
+      provider: 'gemini',
+      timeoutMs: config.gemini.requestTimeoutMs || 5000
+    },
+    {
+      tier: 'TIER_3_RESILIENCE',
+      name: 'gemini-3.5-flash',
+      provider: 'gemini',
+      timeoutMs: Math.max((config.gemini.requestTimeoutMs || 5000) + 1000, 6000)
+    },
+    {
+      tier: 'TIER_3_ALT_RESILIENCE',
+      name: 'gemini-2.5-flash',
+      provider: 'gemini',
+      timeoutMs: Math.max((config.gemini.requestTimeoutMs || 5000) + 1000, 6000)
+    }
+  ];
+
+  // Optional external fail-safe tier
+  if (config.groq?.apiKey && config.groq.apiKey.trim() !== '') {
+    tiers.push({
+      tier: 'TIER_4_EXTERNAL_GROQ',
+      name: config.groq.model || 'llama-3.3-70b-versatile',
+      provider: 'groq',
+      timeoutMs: config.groq.timeoutMs || 5000
+    });
+  }
+
+  // Deduplicate while maintaining tier order
+  const uniqueTiers = [];
+  const seen = new Set();
+  for (const t of tiers) {
+    const key = `${t.provider}:${t.name}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      uniqueTiers.push(t);
+    }
+  }
+  return uniqueTiers;
+}
+
+/**
+ * Checks if an error is transient, rate-limited (429), or a network timeout
+ * so the orchestrator can immediately switch to the next fallback candidate.
+ */
+function isRecoverableOrRateLimitError(err) {
+  if (!err) return true;
+  const msg = (err.message || '').toLowerCase();
+  const name = (err.name || '').toLowerCase();
+
+  return (
+    name === 'aborterror' ||
+    msg.includes('timeout') ||
+    msg.includes('429') ||
+    msg.includes('rate limit') ||
+    msg.includes('resource_exhausted') ||
+    msg.includes('quota') ||
+    msg.includes('503') ||
+    msg.includes('500') ||
+    msg.includes('404') ||
+    msg.includes('not found') ||
+    msg.includes('fetch failed') ||
+    msg.includes('econnreset') ||
+    msg.includes('etimedout') ||
+    msg.includes('unavailable')
+  );
+}
+
+/**
+ * Invokes a Gemini candidate model with strict AbortController timeout & max output tokens.
+ */
+async function invokeGeminiCandidate(candidate, messages) {
   validateEnv();
-  return new ChatGoogleGenerativeAI({
+  const model = new ChatGoogleGenerativeAI({
     apiKey: config.gemini.apiKey,
-    model: modelName,
-    modelName: modelName,
-    temperature: 0.1 // Lower temperature for high precision and strict adherence to rules
+    model: candidate.name,
+    modelName: candidate.name,
+    temperature: 0.1,
+    maxOutputTokens: config.gemini.maxOutputTokens || 600
   });
+
+  const controller = new AbortController();
+  const timeoutMs = candidate.timeoutMs || 5000;
+  let timerId;
+
+  const timeoutPromise = new Promise((_, reject) => {
+    timerId = setTimeout(() => {
+      controller.abort();
+      reject(new Error(`Timeout of ${timeoutMs}ms exceeded while waiting for ${candidate.name}`));
+    }, timeoutMs);
+  });
+
+  try {
+    const invocationPromise = model.invoke(messages, { signal: controller.signal });
+    const response = await Promise.race([invocationPromise, timeoutPromise]);
+    clearTimeout(timerId);
+    return response;
+  } catch (err) {
+    clearTimeout(timerId);
+    controller.abort();
+    throw err;
+  }
+}
+
+/**
+ * Invokes external Groq candidate via OpenAI-compatible API format with strict timeout.
+ */
+async function invokeGroqCandidate(candidate, combinedSystemPrompt, userQuery, history) {
+  const timeoutMs = candidate.timeoutMs || 5000;
+  const controller = new AbortController();
+  let timerId;
+
+  const timeoutPromise = new Promise((_, reject) => {
+    timerId = setTimeout(() => {
+      controller.abort();
+      reject(new Error(`Timeout of ${timeoutMs}ms exceeded on Groq (${candidate.name})`));
+    }, timeoutMs);
+  });
+
+  const groqMessages = [
+    { role: 'system', content: combinedSystemPrompt }
+  ];
+
+  if (Array.isArray(history) && history.length > 0) {
+    for (const msg of history.slice(-6)) {
+      groqMessages.push({
+        role: msg.role === 'user' ? 'user' : 'assistant',
+        content: typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)
+      });
+    }
+  }
+
+  groqMessages.push({
+    role: 'user',
+    content: `User Inquiry: "${userQuery}"\n\nRespond strictly with the required JSON schema.`
+  });
+
+  try {
+    const fetchPromise = fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${config.groq.apiKey}`
+      },
+      body: JSON.stringify({
+        model: candidate.name,
+        messages: groqMessages,
+        temperature: 0.1,
+        max_tokens: config.gemini.maxOutputTokens || 600,
+        response_format: { type: 'json_object' }
+      }),
+      signal: controller.signal
+    });
+
+    const res = await Promise.race([fetchPromise, timeoutPromise]);
+    clearTimeout(timerId);
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(`Groq API returned HTTP ${res.status}: ${errorText.substring(0, 100)}`);
+    }
+
+    const data = await res.json();
+    return data.choices?.[0]?.message?.content || '';
+  } catch (err) {
+    clearTimeout(timerId);
+    controller.abort();
+    throw err;
+  }
 }
 
 const SYSTEM_PROMPT = `You are the Lead Admissions & Academic Advisor Assistant for Colombia Language Academy (Academia de Idiomas Colombia).
@@ -250,9 +428,9 @@ export async function processCustomerInquiry(userQuery, history = []) {
     new SystemMessage(combinedSystemPrompt)
   ];
 
-  // 4. Append conversational memory turns
+  // 4. Append conversational memory turns (sliding window of 6 messages / 3 turns to prevent token bloat)
   if (Array.isArray(history) && history.length > 0) {
-    const recentHistory = history.slice(-10);
+    const recentHistory = history.slice(-6);
     for (const msg of recentHistory) {
       if (msg.role === 'user') {
         messages.push(new HumanMessage(typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)));
@@ -270,27 +448,48 @@ export async function processCustomerInquiry(userQuery, history = []) {
     )
   );
 
-  // 6. Invoke model with automatic fallback across pool
+  // 6. Invoke model pool with tiered fallback order and per-attempt timeout
+  const modelCandidates = getModelTiers();
   let lastError = null;
-  const uniqueModels = [...new Set(MODEL_FALLBACK_POOL)];
+  let attemptsCount = 0;
 
-  for (const modelCandidate of uniqueModels) {
+  for (const candidate of modelCandidates) {
+    attemptsCount++;
+    const attemptStartTime = Date.now();
+
     try {
-      const model = createChatModel(modelCandidate);
-      const response = await model.invoke(messages);
-      const parsedResponse = parseLlmJson(response);
+      let rawResponse;
+      if (candidate.provider === 'groq') {
+        rawResponse = await invokeGroqCandidate(candidate, combinedSystemPrompt, userQuery, history);
+      } else {
+        rawResponse = await invokeGeminiCandidate(candidate, messages);
+      }
+
+      const parsedResponse = parseLlmJson(rawResponse);
+      const latencyMs = Date.now() - attemptStartTime;
+
+      console.log(`[AI Orchestrator] Resolved via ${candidate.tier} (${candidate.name}) in ${latencyMs}ms (attempt #${attemptsCount})`);
 
       return {
         ...parsedResponse,
         sources: sources || [],
-        modelUsed: modelCandidate,
+        modelUsed: candidate.name,
+        tier: candidate.tier,
+        attemptsCount,
+        latencyMs,
         timestamp: new Date().toISOString()
       };
     } catch (err) {
-      console.warn(`[AI Service] Model ${modelCandidate} failed (${err.message.substring(0, 70)}...). Trying next candidate in fallback pool...`);
+      const elapsed = Date.now() - attemptStartTime;
+      console.warn(`[AI Orchestrator] ${candidate.tier} (${candidate.name}) failed after ${elapsed}ms: ${err.message.substring(0, 80)}...`);
       lastError = err;
+
+      // If error is recoverable or rate limit (429/timeout), seamlessly continue to next candidate
+      if (isRecoverableOrRateLimitError(err)) {
+        continue;
+      }
     }
   }
 
-  throw lastError || new Error('All Gemini model candidates in fallback pool failed.');
+  throw lastError || new Error('All model candidates in tiered fallback pool failed.');
 }

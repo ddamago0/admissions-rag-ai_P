@@ -245,3 +245,23 @@ Direct WhatsApp Link: https://api.whatsapp.com/send?phone=573014777763&text=Hell
 2026-09-05 22:14:40,286 [INFO] - Target Advisor: ddamago0@gmail.com | WhatsApp/Telegram: +573014777763
 2026-09-05 22:14:40,286 [INFO] - Webhook Endpoint: http://localhost:5000/webhook/escalations
 2026-09-05 22:14:40,287 [INFO] - Health Check: http://localhost:5000/health
+2026-09-06 12:02:58,107 [INFO] Python Automation Orchestrator listening on http://localhost:5000
+2026-09-06 12:02:58,107 [INFO] - Target Advisor: ddamago0@gmail.com | WhatsApp/Telegram: +573014777763
+2026-09-06 12:02:58,108 [INFO] - Webhook Endpoint: http://localhost:5000/webhook/escalations
+2026-09-06 12:02:58,108 [INFO] - Health Check: http://localhost:5000/health
+2026-09-06 12:08:47,679 [WARNING] 
+=================================================================
+[URGENT HUMAN ESCALATION DISPATCHED] Ticket: ESC-20260906-81154E
+Timestamp: 2026-09-06T17:08:47.679321+00:00
+Priority: MEDIUM
+Reason: Solicitud de atención y escalamiento de caso
+Lead Contact: {"name": "Carlos Mendoza", "first_name": "Carlos", "phone": "3014777763", "email": "carlos@ejemplo.com", "topic": "Cobro doble en matrícula por PSE"}
+Inquiry: ""Hola, tuve un cobro doble en mi tarjeta al pagar la matrícula por PSE y necesito ayuda de un asesor. Mi nombre es Carlos Mendoza, mi teléfono es 3014777763 y mi correo es 
+carlos@ejemplo.com
+""
+Advisor Notification: ddamago0@gmail.com | WhatsApp: +573014777763
+Direct WhatsApp Link: https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260906-81154E%5D%3A%20Solicitud%20de%20atenci%C3%B3n%20y%20escalamiento%20de%20caso
+=================================================================
+2026-09-06 12:08:48,217 [WARNING] [Telegram Alert] Telegram API returned status 400: {"ok":false,"error_code":400,"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 267"}
+2026-09-06 12:08:51,785 [INFO] [Email Alert] Successfully sent escalation notification to ddamago0@gmail.com
+2026-09-06 12:08:51,786 [ERROR] Error processing webhook request: [Errno 32] Broken pipe

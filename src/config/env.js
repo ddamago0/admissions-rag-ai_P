@@ -29,8 +29,15 @@ export const config = {
   gemini: {
     apiKey: process.env.GEMINI_API_KEY || '',
     embeddingModel: process.env.GEMINI_EMBEDDING_MODEL || 'gemini-embedding-001',
-    chatModel: process.env.GEMINI_CHAT_MODEL || 'gemini-2.5-flash-lite',
-    temperature: 0.1
+    chatModel: process.env.GEMINI_CHAT_MODEL || 'gemini-3.5-flash-lite',
+    temperature: 0.1,
+    maxOutputTokens: parseInt(process.env.MAX_OUTPUT_TOKENS || '600', 10),
+    requestTimeoutMs: parseInt(process.env.GEMINI_TIMEOUT_MS || '5000', 10)
+  },
+  groq: {
+    apiKey: process.env.GROQ_API_KEY || '',
+    model: process.env.GROQ_MODEL || 'openai/gpt-oss-120b',
+    timeoutMs: parseInt(process.env.GROQ_TIMEOUT_MS || '5000', 10)
   },
   vectorStore: {
     path: path.resolve(__dirname, '../../', process.env.VECTOR_STORE_PATH || './vectorstore')

@@ -7,6 +7,7 @@ import {
   getDynamicCachedResponse, 
   setDynamicCachedResponse 
 } from '../services/cacheService.js';
+import { evaluateLocalGuardrails } from '../services/guardrailService.js';
 import { config } from '../config/env.js';
 
 /**
@@ -169,9 +170,35 @@ export async function handleChat(req, res, next) {
       });
     }
 
+    // 2. Fast-Path Local Deterministic Guardrails (< 1ms, 0 tokens)
+    const guardrailResult = evaluateLocalGuardrails(message);
+    if (guardrailResult.triggered && guardrailResult.response) {
+      const guardrailLatency = Math.max(1, Date.now() - startTime);
+      const guardrailPayload = {
+        ...guardrailResult.response,
+        sessionId: currentSessionId,
+        latencyMs: guardrailLatency,
+        timestamp: new Date().toISOString()
+      };
+
+      console.log(`[Fast-Path Guardrail] Intercepted ${guardrailResult.type} query in ${guardrailLatency}ms ($0 tokens consumed)`);
+
+      recordQueryMetric({
+        sessionId: currentSessionId,
+        userQuery: message.trim(),
+        reply: guardrailPayload.reply,
+        isEscalated: false,
+        latencyMs: guardrailLatency,
+        reason: `Local guardrail: ${guardrailResult.type}`,
+        leadInfo: null
+      });
+
+      return res.status(200).json(guardrailPayload);
+    }
+
     const history = getSessionHistory(currentSessionId);
 
-    // 2. Process inquiry through RAG + Gemini
+    // 3. Process inquiry through Tiered RAG + LLM Gateway
     const aiResult = await processCustomerInquiry(message.trim(), history);
     const latencyMs = Date.now() - startTime;
     let ticketId = null;
@@ -273,6 +300,9 @@ export async function handleChat(req, res, next) {
       lead_info: aiResult.lead_info || null,
       suggested_actions: aiResult.suggested_actions || [],
       sources: aiResult.sources || [],
+      tier: aiResult.tier || 'TIER_1_PRIMARY',
+      modelUsed: aiResult.modelUsed || config.gemini.chatModel,
+      attemptsCount: aiResult.attemptsCount || 1,
       latencyMs,
       timestamp: new Date().toISOString()
     });

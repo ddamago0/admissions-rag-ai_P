@@ -1,24 +1,5 @@
 [
   {
-    "ticket_id": "ESC-20260831-0C0D86",
-    "timestamp": "2026-08-31T15:19:26.474583+00:00",
-    "status": "PENDING_HUMAN_REVIEW",
-    "priority": "HIGH",
-    "reason": "Billing dispute regarding a duplicate card charge and an explicit customer request for a phone callback.",
-    "lead_info": {
-      "name": null,
-      "phone": "3105551234",
-      "email": null,
-      "topic": "Duplicate card charge and callback request"
-    },
-    "inquiry": "I was charged twice on my card, call me at 3105551234",
-    "ai_reply": "Hello! I am very sorry to hear about the duplicate charge on your card. I completely understand how concerning this is, and I have immediately escalated your case to our Billing and Finance department as a high-priority ticket.\n\nOne of our advisors will call you directly at 3105551234 during our operating hours (Monday to Friday 7:00 AM – 8:00 PM, Saturday 8:00 AM – 4:00 PM COT) to review the transaction and process your refund swiftly.\n\nIf you have your bank payment receipt handy, you can also send it directly to billing@colombialanguageacademy.edu.co or via our WhatsApp hotline at +57 310 987 6543 so we can resolve this even faster for you.",
-    "sources": [
-      "pricing_and_enrollment.md",
-      "certifications_and_policies.md"
-    ]
-  },
-  {
     "ticket_id": "ESC-20260831-5F1B81",
     "timestamp": "2026-08-31T15:32:19.024594+00:00",
     "status": "PENDING_HUMAN_REVIEW",
@@ -153,27 +134,6 @@
     ]
   },
   {
-    "ticket_id": "ESC-20260831-897513",
-    "timestamp": "2026-08-31T16:33:53.148734+00:00",
-    "status": "RESOLVED",
-    "priority": "MEDIUM",
-    "reason": "Inconveniente con doble cobro en tarjeta y solicitud de ayuda financiera reportado por el estudiante.",
-    "lead_info": {
-      "name": "Daniel David Martinez Gonzalez",
-      "first_name": "Daniel",
-      "phone": "3014777763",
-      "email": "ddamago0@gmail.com",
-      "topic": "Inconveniente con doble cobro en tarjeta y solicitud de ayuda financiera"
-    },
-    "inquiry": "Mi nombre completo es Daniel David Martinez Gonzalez, teléfono 3014777763 y correo ddamago0@gmail.com. Tengo un problema de doble cobro en mi tarjeta y requiero ayuda financiera.",
-    "ai_reply": "¡Muchas gracias, Daniel! He generado tu ticket de soporte prioritario con tus datos de contacto (+57 301 477 7763, ddamago0@gmail.com). Nuestro asesor principal, Daniel, ha recibido la notificación de tu caso sobre el doble cobro en tu tarjeta y se comunicará contigo directamente por WhatsApp/Telegram para darte solución financiera.",
-    "sources": [
-      "pricing_and_enrollment.md",
-      "certifications_and_policies.md"
-    ],
-    "updatedAt": "2026-08-31T17:15:15.701Z"
-  },
-  {
     "ticket_id": "ESC-20260901-99C070",
     "timestamp": "2026-09-02T00:34:34.278738+00:00",
     "status": "PENDING_HUMAN_REVIEW",
@@ -247,32 +207,6 @@
       "advisor_phone": "+573014777763",
       "whatsapp_action_link": "https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260901-C72CB2%5D%3A%20Conflicto%20grave%20entre%20estudiantes%20que%20requiere%20mediaci%C3%B3n%20y%20posible%20intervenci%C3%B3n%20disciplinaria%20de%20la%20Direcci%C3%B3n%20Acad%C3%A9mica%20o%20Bienestar%20Estudiantil."
     }
-  },
-  {
-    "ticket_id": "ESC-20260901-FA982D",
-    "timestamp": "2026-09-02T01:46:54.643059+00:00",
-    "status": "RESOLVED",
-    "priority": "MEDIUM",
-    "reason": "El estudiante reporta un cobro duplicado y solicita un reembolso, proporcionando sus datos de contacto completos para asignación de caso con facturación.",
-    "lead_info": {
-      "name": "Camilo Torres",
-      "first_name": "Camilo",
-      "phone": "3014777763",
-      "email": "camilo.torres@gmail.com",
-      "topic": "Reclamo por cobro duplicado y solicitud de reembolso"
-    },
-    "inquiry": "Mi nombre es Camilo Torres, mi teléfono es 3014777763 y mi correo es camilo.torres@gmail.com, por favor ayúdenme con el reembolso.",
-    "ai_reply": "Hola Camilo, gracias por proporcionarnos tus datos. Hemos registrado tu solicitud de reembolso por el cobro duplicado y la hemos escalado de inmediato con nuestro departamento de Facturación y Finanzas (billing@colombialanguageacademy.edu.co). Un asesor se pondrá en contacto contigo a través de tu correo (caminor.torres@gmail.com) o teléfono en el transcurso del siguiente día hábil (lunes a viernes de 7:00 AM a 8:00 PM COT) para resolver tu situación a la mayor brevedad. ¿Hay algo más en lo que te podamos ayudar mientras tanto?",
-    "sources": [
-      "certifications_and_policies.md",
-      "pricing_and_enrollment.md"
-    ],
-    "assigned_to": {
-      "advisor_email": "ddamago0@gmail.com",
-      "advisor_phone": "+573014777763",
-      "whatsapp_action_link": "https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260901-FA982D%5D%3A%20El%20estudiante%20reporta%20un%20cobro%20duplicado%20y%20solicita%20un%20reembolso%2C%20proporcionando%20sus%20datos%20de%20contacto%20completos%20para%20asignaci%C3%B3n%20de%20caso%20con%20facturaci%C3%B3n."
-    },
-    "updatedAt": "2026-09-02T01:49:12.656Z"
   },
   {
     "ticket_id": "ESC-20260901-CB96E3",
@@ -425,29 +359,28 @@
     }
   },
   {
-    "ticket_id": "ESC-20260903-B58094",
-    "timestamp": "2026-09-03T17:08:33.418225+00:00",
+    "ticket_id": "ESC-20260906-81154E",
+    "timestamp": "2026-09-06T17:08:47.679321+00:00",
     "status": "PENDING_HUMAN_REVIEW",
     "priority": "MEDIUM",
-    "reason": "El usuario reporta un cobro duplicado y ha proporcionado sus datos de contacto completos (nombre, teléfono y correo electrónico) para que su caso sea escalado al área de facturación y cobros.",
+    "reason": "Solicitud de atención y escalamiento de caso",
     "lead_info": {
-      "name": "daniel martinez",
-      "first_name": "daniel",
+      "name": "Carlos Mendoza",
+      "first_name": "Carlos",
       "phone": "3014777763",
-      "email": "ddamago0@gmail.com",
-      "topic": "Cobro duplicado en programa"
+      "email": "carlos@ejemplo.com",
+      "topic": "Cobro doble en matrícula por PSE"
     },
-    "inquiry": "mi nombre es daniel martinez, mi numero es 3014777763 y mi correo es ddamago0@gmail.com",
-    "ai_reply": "Gracias, Daniel. Hemos recibido tus datos y tu reporte sobre el cobro duplicado. Hemos escalado tu caso al área de facturación y cobros para que lo revisen a la brevedad y te contacten para solucionarlo. Agradecemos tu paciencia.",
+    "inquiry": "\"Hola, tuve un cobro doble en mi tarjeta al pagar la matrícula por PSE y necesito ayuda de un asesor. Mi nombre es Carlos Mendoza, mi teléfono es 3014777763 y mi correo es \ncarlos@ejemplo.com\n\"",
+    "ai_reply": "Lamento mucho el inconveniente con el cobro doble de tu matrícula. He registrado tu caso y lo derivaré al equipo de facturación para que revisen la transacción y gestionen la devolución correspondiente. Te contactaremos a la brevedad a través del número y correo que nos proporcionaste para confirmar los detalles y avanzar con la solución.\n\nMientras tanto, si tienes a mano el comprobante de pago o el número de referencia de la transacción, por favor tenlo disponible para agilizar el proceso.",
     "sources": [
       "pricing_and_enrollment.md",
-      "courses_and_levels.md"
+      "certifications_and_policies.md"
     ],
     "assigned_to": {
       "advisor_email": "ddamago0@gmail.com",
       "advisor_phone": "+573014777763",
-      "whatsapp_action_link": "https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260903-B58094%5D%3A%20El%20usuario%20reporta%20un%20cobro%20duplicado%20y%20ha%20proporcionado%20sus%20datos%20de%20contacto%20completos%20%28nombre%2C%20tel%C3%A9fono%20y%20correo%20electr%C3%B3nico%29%20para%20que%20su%20caso%20sea%20escalado%20al%20%C3%A1rea%20de%20facturaci%C3%B3n%20y%20cobros."
-    },
-    "updatedAt": "2026-09-03T17:11:41.789Z"
+      "whatsapp_action_link": "https://api.whatsapp.com/send?phone=573014777763&text=Hello%21%20I%20am%20contacting%20you%20regarding%20your%20Language%20Academy%20ticket%20%5BESC-20260906-81154E%5D%3A%20Solicitud%20de%20atenci%C3%B3n%20y%20escalamiento%20de%20caso"
+    }
   }
 ]
